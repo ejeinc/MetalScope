@@ -23,7 +23,6 @@
 		BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */; };
 		BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */; };
 		BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */; };
-		BFB8922D1E2F6E7100FA9129 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922C1E2F6E7100FA9129 /* Atomic.swift */; };
 		BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */; };
 		BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* CameraNode.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +46,6 @@
 		BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceOrientationProvider.swift; sourceTree = "<group>"; };
 		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalMediaScene.swift; sourceTree = "<group>"; };
 		BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PanoramaView+InterfaceOrientation.swift"; sourceTree = "<group>"; };
-		BFB8922C1E2F6E7100FA9129 /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; };
 		BFB892681E30DCEA00FA9129 /* CameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +95,6 @@
 				BFB891921E2E04EB00FA9129 /* Camera */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
 				BFB891911E2E044900FA9129 /* Video */,
-				BFB8922E1E2F70AF00FA9129 /* Utilities */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
 			);
 			path = Sources;
@@ -136,14 +133,6 @@
 				BFA89A791E310401005A3529 /* VideoScene.swift */,
 			);
 			name = Media;
-			sourceTree = "<group>";
-		};
-		BFB8922E1E2F70AF00FA9129 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				BFB8922C1E2F6E7100FA9129 /* Atomic.swift */,
-			);
-			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +226,6 @@
 				BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */,
 				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,
 				BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */,
-				BFB8922D1E2F6E7100FA9129 /* Atomic.swift in Sources */,
 				BFA89A8E1E3112F4005A3529 /* PanoramaVideoLoader.swift in Sources */,
 				BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */,
 				BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */,
