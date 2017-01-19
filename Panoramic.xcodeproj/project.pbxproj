@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A791E310401005A3529 /* VideoScene.swift */; };
+		BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */; };
+		BFA89A8C1E3112BC005A3529 /* PanoramaMediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A8B1E3112BC005A3529 /* PanoramaMediaLoader.swift */; };
+		BFA89A8E1E3112F4005A3529 /* PanoramaVideoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A8D1E3112F4005A3529 /* PanoramaVideoLoader.swift */; };
+		BFB8917D1E2E013400FA9129 /* Panoramic.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* Panoramic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918B1E2E037100FA9129 /* CVError.swift */; };
+		BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */; };
+		BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918F1E2E03A300FA9129 /* PlayerRenderer.swift */; };
+		BFB8919F1E2E083000FA9129 /* PanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8919E1E2E083000FA9129 /* PanoramaView.swift */; };
+		BFB891A21E2E08FC00FA9129 /* DeviceOrientationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */; };
+		BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A31E2E090A00FA9129 /* Rotation.swift */; };
+		BFB891A61E2E109A00FA9129 /* Rotation+CoreMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A51E2E109A00FA9129 /* Rotation+CoreMotion.swift */; };
+		BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */; };
+		BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */; };
+		BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */; };
+		BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */; };
+		BFB8922D1E2F6E7100FA9129 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922C1E2F6E7100FA9129 /* Atomic.swift */; };
+		BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */; };
+		BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* CameraNode.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BFA89A791E310401005A3529 /* VideoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoScene.swift; sourceTree = "<group>"; };
+		BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoScene.swift; sourceTree = "<group>"; };
+		BFA89A8B1E3112BC005A3529 /* PanoramaMediaLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaMediaLoader.swift; sourceTree = "<group>"; };
+		BFA89A8D1E3112F4005A3529 /* PanoramaVideoLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaVideoLoader.swift; sourceTree = "<group>"; };
+		BFB891781E2E013400FA9129 /* Panoramic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Panoramic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB8917B1E2E013400FA9129 /* Panoramic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Panoramic.h; sourceTree = "<group>"; };
+		BFB8917C1E2E013400FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB8918B1E2E037100FA9129 /* CVError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVError.swift; sourceTree = "<group>"; };
+		BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerItemRenderer.swift; sourceTree = "<group>"; };
+		BFB8918F1E2E03A300FA9129 /* PlayerRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerRenderer.swift; sourceTree = "<group>"; };
+		BFB8919E1E2E083000FA9129 /* PanoramaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaView.swift; sourceTree = "<group>"; };
+		BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOrientationProvider.swift; sourceTree = "<group>"; };
+		BFB891A31E2E090A00FA9129 /* Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		BFB891A51E2E109A00FA9129 /* Rotation+CoreMotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rotation+CoreMotion.swift"; sourceTree = "<group>"; };
+		BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rotation+SceneKit.swift"; sourceTree = "<group>"; };
+		BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceOrientationProvider.swift; sourceTree = "<group>"; };
+		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalMediaScene.swift; sourceTree = "<group>"; };
+		BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PanoramaView+InterfaceOrientation.swift"; sourceTree = "<group>"; };
+		BFB8922C1E2F6E7100FA9129 /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; };
+		BFB892681E30DCEA00FA9129 /* CameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFB891741E2E013400FA9129 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BFA89A8F1E311403005A3529 /* PanoramaView */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
+				BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */,
+				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
+			);
+			name = PanoramaView;
+			sourceTree = "<group>";
+		};
+		BFB8916E1E2E013400FA9129 = {
+			isa = PBXGroup;
+			children = (
+				BFB8917A1E2E013400FA9129 /* Sources */,
+				BFB891791E2E013400FA9129 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BFB891791E2E013400FA9129 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFB891781E2E013400FA9129 /* Panoramic.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFB8917A1E2E013400FA9129 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8917B1E2E013400FA9129 /* Panoramic.h */,
+				BFA89A8F1E311403005A3529 /* PanoramaView */,
+				BFB891921E2E04EB00FA9129 /* Camera */,
+				BFB891B31E2E1EEA00FA9129 /* Media */,
+				BFB891911E2E044900FA9129 /* Video */,
+				BFB8922E1E2F70AF00FA9129 /* Utilities */,
+				BFB8917C1E2E013400FA9129 /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		BFB891911E2E044900FA9129 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8918F1E2E03A300FA9129 /* PlayerRenderer.swift */,
+				BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */,
+				BFB8918B1E2E037100FA9129 /* CVError.swift */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		BFB891921E2E04EB00FA9129 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				BFB892681E30DCEA00FA9129 /* CameraNode.swift */,
+				BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */,
+				BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */,
+				BFB891A31E2E090A00FA9129 /* Rotation.swift */,
+				BFB891A51E2E109A00FA9129 /* Rotation+CoreMotion.swift */,
+				BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		BFB891B31E2E1EEA00FA9129 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				BFA89A8B1E3112BC005A3529 /* PanoramaMediaLoader.swift */,
+				BFA89A8D1E3112F4005A3529 /* PanoramaVideoLoader.swift */,
+				BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */,
+				BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */,
+				BFA89A791E310401005A3529 /* VideoScene.swift */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		BFB8922E1E2F70AF00FA9129 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8922C1E2F6E7100FA9129 /* Atomic.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BFB891751E2E013400FA9129 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB8917D1E2E013400FA9129 /* Panoramic.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BFB891771E2E013400FA9129 /* Panoramic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "Panoramic" */;
+			buildPhases = (
+				BFB891731E2E013400FA9129 /* Sources */,
+				BFB891741E2E013400FA9129 /* Frameworks */,
+				BFB891751E2E013400FA9129 /* Headers */,
+				BFB891761E2E013400FA9129 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Panoramic;
+			productName = Panoramic;
+			productReference = BFB891781E2E013400FA9129 /* Panoramic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFB8916F1E2E013400FA9129 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "eje Inc.";
+				TargetAttributes = {
+					BFB891771E2E013400FA9129 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2ZY4DX9AXC;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "Panoramic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BFB8916E1E2E013400FA9129;
+			productRefGroup = BFB891791E2E013400FA9129 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFB891771E2E013400FA9129 /* Panoramic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFB891761E2E013400FA9129 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BFB891731E2E013400FA9129 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */,
+				BFB891A21E2E08FC00FA9129 /* DeviceOrientationProvider.swift in Sources */,
+				BFA89A8C1E3112BC005A3529 /* PanoramaMediaLoader.swift in Sources */,
+				BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */,
+				BFB891A61E2E109A00FA9129 /* Rotation+CoreMotion.swift in Sources */,
+				BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */,
+				BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */,
+				BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */,
+				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,
+				BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */,
+				BFB8922D1E2F6E7100FA9129 /* Atomic.swift in Sources */,
+				BFA89A8E1E3112F4005A3529 /* PanoramaVideoLoader.swift in Sources */,
+				BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */,
+				BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */,
+				BFB8919F1E2E083000FA9129 /* PanoramaView.swift in Sources */,
+				BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */,
+				BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */,
+				BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BFB8917E1E2E013400FA9129 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BFB8917F1E2E013400FA9129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BFB891811E2E013400FA9129 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BFB891821E2E013400FA9129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "Panoramic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFB8917E1E2E013400FA9129 /* Debug */,
+				BFB8917F1E2E013400FA9129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "Panoramic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFB891811E2E013400FA9129 /* Debug */,
+				BFB891821E2E013400FA9129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFB8916F1E2E013400FA9129 /* Project object */;
+}
