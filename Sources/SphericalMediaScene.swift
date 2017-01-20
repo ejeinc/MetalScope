@@ -8,11 +8,6 @@
 
 import SceneKit
 
-public enum SphericalMediaFormat {
-	case mono
-	case stereoOverUnder
-}
-
 public final class MediaSphereNode: SCNNode {
 	public var mediaContents: Any? {
 		get {
