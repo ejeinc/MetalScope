@@ -8,7 +8,7 @@
 
 import UIKit
 import Metal
-import Panoramic
+import Axel
 import AVFoundation
 
 final class ViewController: UIViewController {

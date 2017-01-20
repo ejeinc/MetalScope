@@ -8,7 +8,7 @@
 
 import UIKit
 import Metal
-import Panoramic
+import Axel
 
 final class ViewController: UIViewController {
 	weak var panoramaView: PanoramaView?

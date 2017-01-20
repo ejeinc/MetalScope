@@ -1,6 +1,6 @@
 //
 //  PanoramaView+InterfaceOrientation.swift
-//  Panoramic
+//  Axel
 //
 //  Created by Jun Tanaka on 2017/01/18.
 //  Copyright © 2017 eje Inc. All rights reserved.

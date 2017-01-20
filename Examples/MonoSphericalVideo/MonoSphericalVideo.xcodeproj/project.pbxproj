@@ -7,36 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1452FC1E3217A40042598E /* Axel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452F91E3217960042598E /* Axel.framework */; };
+		BF1452FD1E3217A40042598E /* Axel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452F91E3217960042598E /* Axel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFA89A9D1E3117C0005A3529 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */; };
 		BFA89A9F1E3117C0005A3529 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9E1E3117C0005A3529 /* ViewController.swift */; };
 		BFA89AA41E3117C0005A3529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA31E3117C0005A3529 /* Assets.xcassets */; };
 		BFA89AA71E3117C0005A3529 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */; };
-		BFA89AB71E31183E005A3529 /* Panoramic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA89AB41E311830005A3529 /* Panoramic.framework */; };
-		BFA89AB81E31183E005A3529 /* Panoramic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFA89AB41E311830005A3529 /* Panoramic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFA89ABD1E31187A005A3529 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BFA89ABC1E31187A005A3529 /* test.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BFA89AB31E311830005A3529 /* PBXContainerItemProxy */ = {
+		BF1452F81E3217960042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452F41E3217960042598E /* Axel.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFB891781E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
-		BFA89AB51E311834005A3529 /* PBXContainerItemProxy */ = {
+		BF1452FA1E32179E0042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452F41E3217960042598E /* Axel.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
-		BFA89AB91E31183E005A3529 /* PBXContainerItemProxy */ = {
+		BF1452FE1E3217A40042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452F41E3217960042598E /* Axel.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFA89AB81E31183E005A3529 /* Panoramic.framework in Embed Frameworks */,
+				BF1452FD1E3217A40042598E /* Axel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,13 +55,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF1452F41E3217960042598E /* Axel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Axel.xcodeproj; path = ../../Axel.xcodeproj; sourceTree = "<group>"; };
 		BFA89A991E3117C0005A3529 /* MonoSphericalVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoSphericalVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFA89A9E1E3117C0005A3529 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFA89AA31E3117C0005A3529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFA89AA61E3117C0005A3529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFA89AA81E3117C0005A3529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Panoramic.xcodeproj; path = ../../Panoramic.xcodeproj; sourceTree = "<group>"; };
 		BFA89ABC1E31187A005A3529 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,19 +70,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA89AB71E31183E005A3529 /* Panoramic.framework in Frameworks */,
+				BF1452FC1E3217A40042598E /* Axel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF1452F51E3217960042598E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF1452F91E3217960042598E /* Axel.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BFA89A901E3117C0005A3529 = {
 			isa = PBXGroup;
 			children = (
-				BFA89A9B1E3117C0005A3529 /* MonoSphericalVideo */,
+				BFA89A9B1E3117C0005A3529 /* Sources */,
 				BFA89A9A1E3117C0005A3529 /* Products */,
-				BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */,
+				BF1452F41E3217960042598E /* Axel.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,7 +102,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFA89A9B1E3117C0005A3529 /* MonoSphericalVideo */ = {
+		BFA89A9B1E3117C0005A3529 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */,
@@ -104,15 +112,7 @@
 				BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */,
 				BFA89AA81E3117C0005A3529 /* Info.plist */,
 			);
-			path = MonoSphericalVideo;
-			sourceTree = "<group>";
-		};
-		BFA89AB01E311830005A3529 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BFA89AB41E311830005A3529 /* Panoramic.framework */,
-			);
-			name = Products;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,8 +130,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				BFA89AB61E311834005A3529 /* PBXTargetDependency */,
-				BFA89ABA1E31183E005A3529 /* PBXTargetDependency */,
+				BF1452FB1E32179E0042598E /* PBXTargetDependency */,
+				BF1452FF1E3217A40042598E /* PBXTargetDependency */,
 			);
 			name = MonoSphericalVideo;
 			productName = MonoSphericalVideo;
@@ -168,8 +168,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BFA89AB01E311830005A3529 /* Products */;
-					ProjectRef = BFA89AAF1E311830005A3529 /* Panoramic.xcodeproj */;
+					ProductGroup = BF1452F51E3217960042598E /* Products */;
+					ProjectRef = BF1452F41E3217960042598E /* Axel.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -180,11 +180,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		BFA89AB41E311830005A3529 /* Panoramic.framework */ = {
+		BF1452F91E3217960042598E /* Axel.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = Panoramic.framework;
-			remoteRef = BFA89AB31E311830005A3529 /* PBXContainerItemProxy */;
+			path = Axel.framework;
+			remoteRef = BF1452F81E3217960042598E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -215,15 +215,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BFA89AB61E311834005A3529 /* PBXTargetDependency */ = {
+		BF1452FB1E32179E0042598E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Panoramic;
-			targetProxy = BFA89AB51E311834005A3529 /* PBXContainerItemProxy */;
+			name = Axel;
+			targetProxy = BF1452FA1E32179E0042598E /* PBXContainerItemProxy */;
 		};
-		BFA89ABA1E31183E005A3529 /* PBXTargetDependency */ = {
+		BF1452FF1E3217A40042598E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Panoramic;
-			targetProxy = BFA89AB91E31183E005A3529 /* PBXContainerItemProxy */;
+			name = Axel;
+			targetProxy = BF1452FE1E3217A40042598E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -334,9 +334,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = MonoSphericalVideo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic.MonoSphericalVideo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -348,9 +348,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = MonoSphericalVideo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic.MonoSphericalVideo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -375,6 +375,7 @@
 				BFA89AAD1E3117C0005A3529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

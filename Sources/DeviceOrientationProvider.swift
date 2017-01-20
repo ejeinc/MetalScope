@@ -1,6 +1,6 @@
 //
 //  DeviceOrientationProvider.swift
-//  Panoramic
+//  Axel
 //
 //  Created by Jun Tanaka on 2017/01/17.
 //  Copyright © 2017 eje Inc. All rights reserved.
@@ -45,7 +45,7 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
 		return manager
 	}()
 
-	private let activeViewCountQueue = DispatchQueue(label: "com.eje-c.Panoramic.DefaultMotionManager.activeViewCountQueue")
+	private let activeViewCountQueue = DispatchQueue(label: "com.eje-c.Axel.DefaultMotionManager.activeViewCountQueue")
 
 	private var _activeViewCount: Int = 0 {
 		didSet {

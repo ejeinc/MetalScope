@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1452EF1E32167A0042598E /* Axel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452EC1E3216630042598E /* Axel.framework */; };
+		BF1452F01E32167A0042598E /* Axel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452EC1E3216630042598E /* Axel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFB892441E2F9CFF00FA9129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */; };
 		BFB892461E2F9CFF00FA9129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892451E2F9CFF00FA9129 /* ViewController.swift */; };
 		BFB8924B1E2F9CFF00FA9129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */; };
 		BFB8924E1E2F9CFF00FA9129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB8924C1E2F9CFF00FA9129 /* LaunchScreen.storyboard */; };
-		BFB8925D1E2F9D4600FA9129 /* Panoramic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB8925A1E2F9D3500FA9129 /* Panoramic.framework */; };
-		BFB8925E1E2F9D4600FA9129 /* Panoramic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFB8925A1E2F9D3500FA9129 /* Panoramic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BFB892591E2F9D3500FA9129 /* PBXContainerItemProxy */ = {
+		BF1452EB1E3216630042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFB891781E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
-		BFB8925B1E2F9D3D00FA9129 /* PBXContainerItemProxy */ = {
+		BF1452ED1E3216730042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
-		BFB8925F1E2F9D4600FA9129 /* PBXContainerItemProxy */ = {
+		BF1452F11E32167A0042598E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */;
+			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Panoramic;
+			remoteInfo = Axel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFB8925E1E2F9D4600FA9129 /* Panoramic.framework in Embed Frameworks */,
+				BF1452F01E32167A0042598E /* Axel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,13 +54,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF1452E71E3216630042598E /* Axel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Axel.xcodeproj; path = ../../Axel.xcodeproj; sourceTree = "<group>"; };
 		BFB892401E2F9CFF00FA9129 /* MonoSphericalPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoSphericalPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFB892451E2F9CFF00FA9129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB8924D1E2F9CFF00FA9129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFB8924F1E2F9CFF00FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Panoramic.xcodeproj; path = ../../Panoramic.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,19 +68,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFB8925D1E2F9D4600FA9129 /* Panoramic.framework in Frameworks */,
+				BF1452EF1E32167A0042598E /* Axel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF1452E81E3216630042598E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF1452EC1E3216630042598E /* Axel.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BFB892371E2F9CFF00FA9129 = {
 			isa = PBXGroup;
 			children = (
-				BFB892421E2F9CFF00FA9129 /* MonoSphericalPhoto */,
+				BFB892421E2F9CFF00FA9129 /* Sources */,
 				BFB892411E2F9CFF00FA9129 /* Products */,
-				BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */,
+				BF1452E71E3216630042598E /* Axel.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,7 +100,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFB892421E2F9CFF00FA9129 /* MonoSphericalPhoto */ = {
+		BFB892421E2F9CFF00FA9129 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */,
@@ -101,15 +109,7 @@
 				BFB8924C1E2F9CFF00FA9129 /* LaunchScreen.storyboard */,
 				BFB8924F1E2F9CFF00FA9129 /* Info.plist */,
 			);
-			path = MonoSphericalPhoto;
-			sourceTree = "<group>";
-		};
-		BFB892561E2F9D3500FA9129 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BFB8925A1E2F9D3500FA9129 /* Panoramic.framework */,
-			);
-			name = Products;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,8 +127,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				BFB8925C1E2F9D3D00FA9129 /* PBXTargetDependency */,
-				BFB892601E2F9D4600FA9129 /* PBXTargetDependency */,
+				BF1452EE1E3216730042598E /* PBXTargetDependency */,
+				BF1452F21E32167A0042598E /* PBXTargetDependency */,
 			);
 			name = MonoSphericalPhoto;
 			productName = MonoSphericalPhoto;
@@ -165,8 +165,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BFB892561E2F9D3500FA9129 /* Products */;
-					ProjectRef = BFB892551E2F9D3500FA9129 /* Panoramic.xcodeproj */;
+					ProductGroup = BF1452E81E3216630042598E /* Products */;
+					ProjectRef = BF1452E71E3216630042598E /* Axel.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -177,11 +177,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		BFB8925A1E2F9D3500FA9129 /* Panoramic.framework */ = {
+		BF1452EC1E3216630042598E /* Axel.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = Panoramic.framework;
-			remoteRef = BFB892591E2F9D3500FA9129 /* PBXContainerItemProxy */;
+			path = Axel.framework;
+			remoteRef = BF1452EB1E3216630042598E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -211,15 +211,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BFB8925C1E2F9D3D00FA9129 /* PBXTargetDependency */ = {
+		BF1452EE1E3216730042598E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Panoramic;
-			targetProxy = BFB8925B1E2F9D3D00FA9129 /* PBXContainerItemProxy */;
+			name = Axel;
+			targetProxy = BF1452ED1E3216730042598E /* PBXContainerItemProxy */;
 		};
-		BFB892601E2F9D4600FA9129 /* PBXTargetDependency */ = {
+		BF1452F21E32167A0042598E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Panoramic;
-			targetProxy = BFB8925F1E2F9D4600FA9129 /* PBXContainerItemProxy */;
+			name = Axel;
+			targetProxy = BF1452F11E32167A0042598E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -330,9 +330,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = MonoSphericalPhoto/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic.MonoSphericalPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -344,9 +344,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = MonoSphericalPhoto/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Panoramic.MonoSphericalPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
