@@ -110,7 +110,7 @@ extension PanoramaView {
 
 extension PanoramaView: SCNSceneRendererDelegate {
 	public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-		if let scene = scene as? VideoSceneProtocol {
+		if let scene = renderer.scene as? VideoSceneProtocol {
 			scene.renderVideo(atTime: time, renderer: renderer)
 		}
 
