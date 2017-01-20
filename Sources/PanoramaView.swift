@@ -25,7 +25,12 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 
 	public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
 
-	public lazy var cameraNode = CameraNode()
+	public lazy var cameraNode: CameraNode = {
+		let node = CameraNode()
+		let mask = CategoryBitMask.all.subtracting(.leftEye)
+		node.pointOfView.camera?.categoryBitMask = mask.rawValue
+		return node
+	}()
 
 	lazy var scnView: SCNView = {
 		let view = SCNView(frame: self.bounds, options: [

@@ -16,7 +16,7 @@ extension MediaSceneLoader {
 		case .mono:
 			scene = MonoSphericalPhotoScene()
 		default:
-			fatalError("Unsupported format")
+			scene = StereoSphericalPhotoScene()
 		}
 
 		scene.image = image

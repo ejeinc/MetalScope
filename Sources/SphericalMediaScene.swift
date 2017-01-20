@@ -41,3 +41,19 @@ public class MonoSphericalMediaScene: SCNScene {
 		return node
 	}()
 }
+
+public class StereoSphericalMediaScene: SCNScene {
+	public lazy var leftMediaSphereNode: MediaSphereNode = {
+		let node = MediaSphereNode()
+		node.categoryBitMask = CategoryBitMask.leftEye.rawValue
+		self.rootNode.addChildNode(node)
+		return node
+	}()
+
+	public lazy var rightMediaSphereNode: MediaSphereNode = {
+		let node = MediaSphereNode()
+		node.categoryBitMask = CategoryBitMask.rightEye.rawValue
+		self.rootNode.addChildNode(node)
+		return node
+	}()
+}
