@@ -20,7 +20,7 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
 
 	private var playerTexture: MTLTexture? {
 		didSet {
-			mediaSphereNode.geometry?.firstMaterial?.diffuse.contents = playerTexture
+			mediaSphereNode.mediaContents = playerTexture
 		}
 	}
 

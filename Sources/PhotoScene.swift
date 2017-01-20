@@ -16,7 +16,7 @@ public protocol PhotoSceneProtocol: class {
 public final class MonoSphericalPhotoScene: MonoSphericalMediaScene, PhotoSceneProtocol {
 	public var image: UIImage? {
 		didSet {
-			mediaSphereNode.geometry?.firstMaterial?.diffuse.contents = image
+			mediaSphereNode.mediaContents = image
 		}
 	}
 }
