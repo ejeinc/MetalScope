@@ -39,7 +39,6 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 		])
 		view.backgroundColor = .black
 		view.isUserInteractionEnabled = false
-		view.antialiasingMode = .multisampling2X
 		view.delegate = self
 		view.pointOfView = self.cameraNode.pointOfView
 		view.isPlaying = true
