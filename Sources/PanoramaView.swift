@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import CoreMotion
 
-public final class PanoramaView: UIView, PanoramaVideoLoader {
+public final class PanoramaView: UIView, MediaSceneLoader {
 	public let device: MTLDevice
 
 	public var scene: SCNScene? {

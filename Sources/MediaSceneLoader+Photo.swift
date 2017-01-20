@@ -1,5 +1,5 @@
 //
-//  PanoramaMediaLoader.swift
+//  MediaSceneLoader+Photo.swift
 //  Panoramic
 //
 //  Created by Jun Tanaka on 2017/01/20.
@@ -8,11 +8,7 @@
 
 import SceneKit
 
-public protocol PanoramaMediaLoader: class {
-	var scene: SCNScene? { get set }
-}
-
-extension PanoramaMediaLoader {
+extension MediaSceneLoader {
 	public func loadPhoto(image: UIImage, format: SphericalMediaFormat = .mono) {
 		let scene: PhotoSceneProtocol
 

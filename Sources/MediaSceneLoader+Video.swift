@@ -1,5 +1,5 @@
 //
-//  PanoramaVideoLoader.swift
+//  MediaSceneLoader+Video.swift
 //  Panoramic
 //
 //  Created by Jun Tanaka on 2017/01/20.
@@ -9,11 +9,7 @@
 import SceneKit
 import AVFoundation
 
-public protocol PanoramaVideoLoader: PanoramaMediaLoader {
-	var device: MTLDevice { get }
-}
-
-extension PanoramaVideoLoader {
+extension MediaSceneLoader {
 	public func loadVideo(player: AVPlayer, format: SphericalMediaFormat = .mono) throws {
 		let scene: VideoSceneProtocol
 
