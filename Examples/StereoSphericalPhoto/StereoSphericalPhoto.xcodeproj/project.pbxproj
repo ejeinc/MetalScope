@@ -78,7 +78,7 @@
 		BF1453091E322A440042598E = {
 			isa = PBXGroup;
 			children = (
-				BF1453141E322A440042598E /* StereoSphericalPhoto */,
+				BF1453141E322A440042598E /* Sources */,
 				BF1453131E322A440042598E /* Products */,
 				BF1453271E322A5E0042598E /* Axel.xcodeproj */,
 			);
@@ -92,7 +92,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF1453141E322A440042598E /* StereoSphericalPhoto */ = {
+		BF1453141E322A440042598E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				BF1453151E322A440042598E /* AppDelegate.swift */,
@@ -101,7 +101,7 @@
 				BF14531E1E322A440042598E /* LaunchScreen.storyboard */,
 				BF1453211E322A440042598E /* Info.plist */,
 			);
-			path = StereoSphericalPhoto;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		BF1453281E322A5E0042598E /* Products */ = {
@@ -330,7 +330,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = StereoSphericalPhoto/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.StereoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,7 +344,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
-				INFOPLIST_FILE = StereoSphericalPhoto/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.StereoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
