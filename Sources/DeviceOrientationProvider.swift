@@ -45,15 +45,14 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
 		return manager
 	}()
 
-	private let activeViewCountQueue = DispatchQueue(label: "com.eje-c.Axel.DefaultDeviceOrientationProvider.activeViewCountQueue")
+	private let tokenCountQueue = DispatchQueue(label: "com.eje-c.Axel.DefaultDeviceOrientationProvider.tokenCountQueue")
 
-	private var _activeViewCount: Int = 0 {
+	private var tokenCount: Int = 0 {
 		didSet {
 			guard motionManager.isDeviceMotionAvailable else {
 				return
 			}
-
-			if _activeViewCount > 0 {
+			if tokenCount > 0 {
 				if !motionManager.isDeviceMotionActive {
 					motionManager.startDeviceMotionUpdates()
 				}
@@ -63,23 +62,32 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
 		}
 	}
 
-	var activeViewCount: Int {
-		return activeViewCountQueue.sync { _activeViewCount }
+	public var isPaused: Bool {
+		return tokenCountQueue.sync { !motionManager.isDeviceMotionActive }
 	}
 
-	func incrementActiveViewCount() {
-		return activeViewCountQueue.async { [weak self] in
-			self?._activeViewCount += 1
-		}
-	}
-
-	func decrementActiveViewCount() {
-		return activeViewCountQueue.async { [weak self] in
-			self?._activeViewCount -= 1
+	public func makeToken() -> Token {
+		tokenCountQueue.async { self.tokenCount += 1 }
+		return Token {
+			self.tokenCountQueue.async { self.tokenCount -= 1 }
 		}
 	}
 
 	public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
 		return motionManager.deviceOrientation(atTime: time)
+	}
+}
+
+extension DefaultDeviceOrientationProvider {
+	public final class Token {
+		private let invalidation: () -> Void
+
+		fileprivate init(_ invalidation: @escaping () -> Void) {
+			self.invalidation = invalidation
+		}
+
+		deinit {
+			invalidation()
+		}
 	}
 }

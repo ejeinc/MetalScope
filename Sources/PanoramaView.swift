@@ -70,18 +70,6 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 
 		scnView.frame = bounds
 	}
-
-	public override func willMove(toWindow newWindow: UIWindow?) {
-		guard let provider = cameraNode.deviceOrientationProvider as? DefaultDeviceOrientationProvider else {
-			return
-		}
-
-		if window != nil && newWindow == nil {
-			provider.decrementActiveViewCount()
-		} else if window == nil && newWindow != nil {
-			provider.incrementActiveViewCount()
-		}
-	}
 }
 
 extension PanoramaView {
