@@ -12,11 +12,11 @@ public protocol InterfaceOrientationProvider {
 	func interfaceOrientation(atTime time: TimeInterval) -> Rotation?
 }
 
-extension UIApplication: InterfaceOrientationProvider {
+extension UIInterfaceOrientation: InterfaceOrientationProvider {
 	public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
 		var rotation = Rotation()
 
-		switch statusBarOrientation {
+		switch self {
 		case .portraitUpsideDown:
 			rotation.rotate(byZ: .pi)
 		case .landscapeLeft:
@@ -28,6 +28,12 @@ extension UIApplication: InterfaceOrientationProvider {
 		}
 
 		return rotation
+	}
+}
+
+extension UIApplication: InterfaceOrientationProvider {
+	public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
+		return statusBarOrientation.interfaceOrientation(atTime: time)
 	}
 }
 
