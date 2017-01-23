@@ -65,6 +65,10 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	deinit {
+		scene = nil
+	}
+
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 
