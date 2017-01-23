@@ -12,7 +12,7 @@ import UIKit
 extension PanoramaView {
 	public func updateInterfaceOrientation() {
 		let time = ProcessInfo.processInfo.systemUptime
-		cameraNode.updateInterfaceOrientation(atTime: time)
+		orientationNode.updateInterfaceOrientation(atTime: time)
 	}
 
 	public func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
