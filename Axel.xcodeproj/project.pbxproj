@@ -14,6 +14,18 @@
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
 		BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A791E310401005A3529 /* VideoScene.swift */; };
 		BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */; };
+		BFAB12FC1E35B82900A1642C /* StereoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB12FB1E35B82900A1642C /* StereoView.swift */; };
+		BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */; };
+		BFAB13011E35B97500A1642C /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13001E35B97500A1642C /* Eye.swift */; };
+		BFAB13031E35B9DA00A1642C /* ViewerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13021E35B9DA00A1642C /* ViewerModel.swift */; };
+		BFAB13051E35B9EB00A1642C /* ViewerParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13041E35B9EB00A1642C /* ViewerParameters.swift */; };
+		BFAB13071E35BE0C00A1642C /* ScreenParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13061E35BE0C00A1642C /* ScreenParameters.swift */; };
+		BFAB13091E35BE9800A1642C /* ScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13081E35BE9800A1642C /* ScreenModel.swift */; };
+		BFAB130B1E35D1E900A1642C /* StereoParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB130A1E35D1E900A1642C /* StereoParameters.swift */; };
+		BFAB130F1E35E7C600A1642C /* StereoCameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB130E1E35E7C600A1642C /* StereoCameraNode.swift */; };
+		BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13101E35EE0D00A1642C /* StereoScene.swift */; };
+		BFAB13131E361B3700A1642C /* StereoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13121E361B3700A1642C /* StereoViewController.swift */; };
+		BFAB13161E363ACD00A1642C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFAB13151E363ACD00A1642C /* Assets.xcassets */; };
 		BFB8917D1E2E013400FA9129 /* Axel.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* Axel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918B1E2E037100FA9129 /* CVError.swift */; };
 		BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */; };
@@ -38,6 +50,18 @@
 		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryBitMask.swift; sourceTree = "<group>"; };
 		BFA89A791E310401005A3529 /* VideoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB12FB1E35B82900A1642C /* StereoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoView.swift; sourceTree = "<group>"; };
+		BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoRenderer.swift; sourceTree = "<group>"; };
+		BFAB13001E35B97500A1642C /* Eye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
+		BFAB13021E35B9DA00A1642C /* ViewerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewerModel.swift; sourceTree = "<group>"; };
+		BFAB13041E35B9EB00A1642C /* ViewerParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewerParameters.swift; sourceTree = "<group>"; };
+		BFAB13061E35BE0C00A1642C /* ScreenParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenParameters.swift; sourceTree = "<group>"; };
+		BFAB13081E35BE9800A1642C /* ScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenModel.swift; sourceTree = "<group>"; };
+		BFAB130A1E35D1E900A1642C /* StereoParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoParameters.swift; sourceTree = "<group>"; };
+		BFAB130E1E35E7C600A1642C /* StereoCameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoCameraNode.swift; sourceTree = "<group>"; };
+		BFAB13101E35EE0D00A1642C /* StereoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoScene.swift; sourceTree = "<group>"; };
+		BFAB13121E361B3700A1642C /* StereoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoViewController.swift; sourceTree = "<group>"; };
+		BFAB13151E363ACD00A1642C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB891781E2E013400FA9129 /* Axel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Axel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB8917B1E2E013400FA9129 /* Axel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Axel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BFB8917C1E2E013400FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +101,24 @@
 			name = PanoramaView;
 			sourceTree = "<group>";
 		};
+		BFAB12FD1E35B82D00A1642C /* StereoView */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB12FB1E35B82900A1642C /* StereoView.swift */,
+				BFAB13121E361B3700A1642C /* StereoViewController.swift */,
+				BFAB130E1E35E7C600A1642C /* StereoCameraNode.swift */,
+				BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */,
+				BFAB13101E35EE0D00A1642C /* StereoScene.swift */,
+				BFAB130A1E35D1E900A1642C /* StereoParameters.swift */,
+				BFAB13061E35BE0C00A1642C /* ScreenParameters.swift */,
+				BFAB13081E35BE9800A1642C /* ScreenModel.swift */,
+				BFAB13041E35B9EB00A1642C /* ViewerParameters.swift */,
+				BFAB13021E35B9DA00A1642C /* ViewerModel.swift */,
+				BFAB13001E35B97500A1642C /* Eye.swift */,
+			);
+			name = StereoView;
+			sourceTree = "<group>";
+		};
 		BFB8916E1E2E013400FA9129 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +140,12 @@
 			children = (
 				BFB8917B1E2E013400FA9129 /* Axel.h */,
 				BFA89A8F1E311403005A3529 /* PanoramaView */,
+				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
 				BFB891911E2E044900FA9129 /* Video */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
+				BFAB13151E363ACD00A1642C /* Assets.xcassets */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -214,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFAB13161E363ACD00A1642C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,21 +269,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFAB12FC1E35B82900A1642C /* StereoView.swift in Sources */,
+				BFAB13011E35B97500A1642C /* Eye.swift in Sources */,
 				BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */,
 				BFB891A21E2E08FC00FA9129 /* DeviceOrientationProvider.swift in Sources */,
 				BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */,
 				BFB891A61E2E109A00FA9129 /* Rotation+CoreMotion.swift in Sources */,
 				BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */,
+				BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */,
 				BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */,
 				BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */,
+				BFAB13131E361B3700A1642C /* StereoViewController.swift in Sources */,
 				BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */,
+				BFAB13051E35B9EB00A1642C /* ViewerParameters.swift in Sources */,
+				BFAB13071E35BE0C00A1642C /* ScreenParameters.swift in Sources */,
 				BF1452DF1E320BAC0042598E /* MediaSceneLoader.swift in Sources */,
 				BF1452E11E320BEF0042598E /* MediaSceneLoader+Photo.swift in Sources */,
 				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,
+				BFAB130B1E35D1E900A1642C /* StereoParameters.swift in Sources */,
+				BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */,
+				BFAB13091E35BE9800A1642C /* ScreenModel.swift in Sources */,
 				BF1452E51E320FE60042598E /* SphericalMediaFormat.swift in Sources */,
+				BFAB13031E35B9DA00A1642C /* ViewerModel.swift in Sources */,
 				BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */,
 				BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */,
 				BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */,
+				BFAB130F1E35E7C600A1642C /* StereoCameraNode.swift in Sources */,
 				BFB8919F1E2E083000FA9129 /* PanoramaView.swift in Sources */,
 				BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */,
 				BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */,
