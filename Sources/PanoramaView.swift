@@ -81,6 +81,15 @@ extension PanoramaView {
 		return scnView
 	}
 
+	public var isPlaying: Bool {
+		get {
+			return scnView.isPlaying
+		}
+		set(value) {
+			scnView.isPlaying = value
+		}
+	}
+
 	public var antialiasingMode: SCNAntialiasingMode {
 		get {
 			return scnView.antialiasingMode
