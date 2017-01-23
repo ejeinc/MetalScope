@@ -17,16 +17,16 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 			return scnView.scene
 		}
 		set(value) {
-			cameraNode.removeFromParentNode()
-			value?.rootNode.addChildNode(cameraNode)
+			orientationNode.removeFromParentNode()
+			value?.rootNode.addChildNode(orientationNode)
 			scnView.scene = value
 		}
 	}
 
 	public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
 
-	public lazy var cameraNode: CameraNode = {
-		let node = CameraNode()
+	public lazy var orientationNode: OrientationNode = {
+		let node = OrientationNode()
 		let mask = CategoryBitMask.all.subtracting(.leftEye)
 		node.pointOfView.camera?.categoryBitMask = mask.rawValue
 		return node
@@ -40,14 +40,14 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 		view.backgroundColor = .black
 		view.isUserInteractionEnabled = false
 		view.delegate = self
-		view.pointOfView = self.cameraNode.pointOfView
+		view.pointOfView = self.orientationNode.pointOfView
 		view.isPlaying = true
 		self.addSubview(view)
 		return view
 	}()
 
 	lazy var panGestureManager: PanGestureManager = {
-		let helper = PanGestureManager(rotationNode: self.cameraNode.userRotationNode)
+		let helper = PanGestureManager(rotationNode: self.orientationNode.userRotationNode)
 		helper.minimumVerticalRotationAngle = -60 / 180 * .pi
 		helper.maximumVerticalRotationAngle = 60 / 180 * .pi
 		return helper
@@ -95,7 +95,7 @@ extension PanoramaView {
 	}
 
 	@IBAction public func resetCenter(_ sender: Any) {
-		cameraNode.resetCenter(animated: true)
+		orientationNode.resetCenter(animated: true)
 	}
 }
 
@@ -109,7 +109,7 @@ extension PanoramaView: SCNSceneRendererDelegate {
 		SCNTransaction.begin()
 		SCNTransaction.animationDuration = 1 / 15
 
-		cameraNode.updateDeviceOrientation(atTime: time)
+		orientationNode.updateDeviceOrientation(atTime: time)
 
 		SCNTransaction.commit()
 		SCNTransaction.unlock()

@@ -27,7 +27,7 @@
 		BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */; };
 		BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */; };
 		BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */; };
-		BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* CameraNode.swift */; };
+		BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* OrientationNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SphericalMediaScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+InterfaceOrientation.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFB892681E30DCEA00FA9129 /* CameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CameraNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFB892681E30DCEA00FA9129 /* OrientationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OrientationNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 			children = (
 				BFB8917B1E2E013400FA9129 /* Axel.h */,
 				BFA89A8F1E311403005A3529 /* PanoramaView */,
-				BFB891921E2E04EB00FA9129 /* Camera */,
+				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
 				BFB891911E2E044900FA9129 /* Video */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
@@ -116,17 +116,17 @@
 			name = Video;
 			sourceTree = "<group>";
 		};
-		BFB891921E2E04EB00FA9129 /* Camera */ = {
+		BFB891921E2E04EB00FA9129 /* OrientationNode */ = {
 			isa = PBXGroup;
 			children = (
-				BFB892681E30DCEA00FA9129 /* CameraNode.swift */,
+				BFB892681E30DCEA00FA9129 /* OrientationNode.swift */,
 				BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */,
 				BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */,
 				BFB891A31E2E090A00FA9129 /* Rotation.swift */,
 				BFB891A51E2E109A00FA9129 /* Rotation+CoreMotion.swift */,
 				BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */,
 			);
-			name = Camera;
+			name = OrientationNode;
 			sourceTree = "<group>";
 		};
 		BFB891B31E2E1EEA00FA9129 /* Media */ = {
@@ -231,7 +231,7 @@
 				BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */,
 				BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */,
 				BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */,
-				BFB892691E30DCEA00FA9129 /* CameraNode.swift in Sources */,
+				BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */,
 				BF1452DF1E320BAC0042598E /* MediaSceneLoader.swift in Sources */,
 				BF1452E11E320BEF0042598E /* MediaSceneLoader+Photo.swift in Sources */,
 				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,

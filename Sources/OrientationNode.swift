@@ -1,5 +1,5 @@
 //
-//  CameraNode.swift
+//  OrientationNode.swift
 //  Axel
 //
 //  Created by Jun Tanaka on 2017/01/19.
@@ -8,18 +8,31 @@
 
 import SceneKit
 
-public final class CameraNode: SCNNode {
-	public let pointOfView = SCNNode()
-
+public final class OrientationNode: SCNNode {
 	let userRotationNode = SCNNode()
 	let referenceRotationNode = SCNNode()
 	let deviceOrientationNode = SCNNode()
 	let interfaceOrientationNode = SCNNode()
 
-	public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider.shared
+	public let pointOfView = SCNNode()
+
+	public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider.shared {
+		didSet {
+			renewDefaultDeviceOrientationProviderTokenIfNeeded()
+		}
+	}
+
 	public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider.shared
 
-	override init() {
+	public override var isPaused: Bool {
+		didSet {
+			renewDefaultDeviceOrientationProviderTokenIfNeeded()
+		}
+	}
+
+	private var defaultDeviceOrientationProviderToken: DefaultDeviceOrientationProvider.Token?
+
+	public override init() {
 		super.init()
 
 		addChildNode(userRotationNode)
@@ -32,20 +45,22 @@ public final class CameraNode: SCNNode {
 		camera.xFov = 60
 		camera.yFov = 60
 		pointOfView.camera = camera
+
+		renewDefaultDeviceOrientationProviderTokenIfNeeded()
 	}
 	
 	public required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func updateDeviceOrientation(atTime time: TimeInterval) {
+	public func updateDeviceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
 		guard let rotation = deviceOrientationProvider?.deviceOrientation(atTime: time) else {
 			return
 		}
 		deviceOrientationNode.orientation = rotation.scnQuaternion
 	}
 
-	func updateInterfaceOrientation(atTime time: TimeInterval) {
+	public func updateInterfaceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
 		guard let rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time) else {
 			return
 		}
@@ -73,5 +88,13 @@ public final class CameraNode: SCNNode {
 
 		SCNTransaction.commit()
 		SCNTransaction.unlock()
+	}
+
+	private func renewDefaultDeviceOrientationProviderTokenIfNeeded() {
+		if !isPaused, let defaultProvider = deviceOrientationProvider as? DefaultDeviceOrientationProvider {
+			defaultDeviceOrientationProviderToken = defaultProvider.makeToken()
+		} else {
+			defaultDeviceOrientationProviderToken = nil
+		}
 	}
 }
