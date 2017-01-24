@@ -8,7 +8,7 @@
 
 import UIKit
 import Metal
-import Axel
+import PanoramaView
 
 final class ViewController: UIViewController {
     lazy var device: MTLDevice = {

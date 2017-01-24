@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF1452EF1E32167A0042598E /* Axel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452EC1E3216630042598E /* Axel.framework */; };
-		BF1452F01E32167A0042598E /* Axel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1452EC1E3216630042598E /* Axel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF89EE401E376AB9001DF885 /* PanoramaView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */; };
+		BF89EE411E376AB9001DF885 /* PanoramaView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFB892441E2F9CFF00FA9129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */; };
 		BFB892461E2F9CFF00FA9129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892451E2F9CFF00FA9129 /* ViewController.swift */; };
 		BFB8924B1E2F9CFF00FA9129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */; };
@@ -16,26 +16,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BF1452EB1E3216630042598E /* PBXContainerItemProxy */ = {
+		BF89EE3C1E376AA9001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFB891781E2E013400FA9129;
-			remoteInfo = Axel;
+			remoteInfo = PanoramaView;
 		};
-		BF1452ED1E3216730042598E /* PBXContainerItemProxy */ = {
+		BF89EE3E1E376AAF001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Axel;
+			remoteInfo = PanoramaView;
 		};
-		BF1452F11E32167A0042598E /* PBXContainerItemProxy */ = {
+		BF89EE421E376AB9001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF1452E71E3216630042598E /* Axel.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
-			remoteInfo = Axel;
+			remoteInfo = PanoramaView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BF1452F01E32167A0042598E /* Axel.framework in Embed Frameworks */,
+				BF89EE411E376AB9001DF885 /* PanoramaView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BF1452E71E3216630042598E /* Axel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Axel.xcodeproj; path = ../../Axel.xcodeproj; sourceTree = "<group>"; };
+		BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PanoramaView.xcodeproj; path = ../../PanoramaView.xcodeproj; sourceTree = "<group>"; };
 		BFB892401E2F9CFF00FA9129 /* MonoSphericalPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoSphericalPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFB892451E2F9CFF00FA9129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,17 +68,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF1452EF1E32167A0042598E /* Axel.framework in Frameworks */,
+				BF89EE401E376AB9001DF885 /* PanoramaView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF1452E81E3216630042598E /* Products */ = {
+		BF89EE391E376AA9001DF885 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF1452EC1E3216630042598E /* Axel.framework */,
+				BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			children = (
 				BFB892421E2F9CFF00FA9129 /* Sources */,
 				BFB892411E2F9CFF00FA9129 /* Products */,
-				BF1452E71E3216630042598E /* Axel.xcodeproj */,
+				BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,8 +127,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				BF1452EE1E3216730042598E /* PBXTargetDependency */,
-				BF1452F21E32167A0042598E /* PBXTargetDependency */,
+				BF89EE3F1E376AAF001DF885 /* PBXTargetDependency */,
+				BF89EE431E376AB9001DF885 /* PBXTargetDependency */,
 			);
 			name = MonoSphericalPhoto;
 			productName = MonoSphericalPhoto;
@@ -165,8 +165,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BF1452E81E3216630042598E /* Products */;
-					ProjectRef = BF1452E71E3216630042598E /* Axel.xcodeproj */;
+					ProductGroup = BF89EE391E376AA9001DF885 /* Products */;
+					ProjectRef = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -177,11 +177,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		BF1452EC1E3216630042598E /* Axel.framework */ = {
+		BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = Axel.framework;
-			remoteRef = BF1452EB1E3216630042598E /* PBXContainerItemProxy */;
+			path = PanoramaView.framework;
+			remoteRef = BF89EE3C1E376AA9001DF885 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -211,15 +211,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BF1452EE1E3216730042598E /* PBXTargetDependency */ = {
+		BF89EE3F1E376AAF001DF885 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Axel;
-			targetProxy = BF1452ED1E3216730042598E /* PBXContainerItemProxy */;
+			name = PanoramaView;
+			targetProxy = BF89EE3E1E376AAF001DF885 /* PBXContainerItemProxy */;
 		};
-		BF1452F21E32167A0042598E /* PBXTargetDependency */ = {
+		BF89EE431E376AB9001DF885 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Axel;
-			targetProxy = BF1452F11E32167A0042598E /* PBXContainerItemProxy */;
+			name = PanoramaView;
+			targetProxy = BF89EE421E376AB9001DF885 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -332,7 +332,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -346,7 +346,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel.MonoSphericalPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoSphericalPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

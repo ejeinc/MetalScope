@@ -26,7 +26,7 @@
 		BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13101E35EE0D00A1642C /* StereoScene.swift */; };
 		BFAB13131E361B3700A1642C /* StereoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13121E361B3700A1642C /* StereoViewController.swift */; };
 		BFAB13161E363ACD00A1642C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFAB13151E363ACD00A1642C /* Assets.xcassets */; };
-		BFB8917D1E2E013400FA9129 /* Axel.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* Axel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFB8917D1E2E013400FA9129 /* PanoramaView.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* PanoramaView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918B1E2E037100FA9129 /* CVError.swift */; };
 		BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */; };
 		BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918F1E2E03A300FA9129 /* PlayerRenderer.swift */; };
@@ -47,23 +47,23 @@
 		BF1452E01E320BEF0042598E /* MediaSceneLoader+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Photo.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Video.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1452E41E320FE60042598E /* SphericalMediaFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SphericalMediaFormat.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryBitMask.swift; sourceTree = "<group>"; };
+		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryBitMask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFA89A791E310401005A3529 /* VideoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFAB12FB1E35B82900A1642C /* StereoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoView.swift; sourceTree = "<group>"; };
-		BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoRenderer.swift; sourceTree = "<group>"; };
-		BFAB13001E35B97500A1642C /* Eye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
-		BFAB13021E35B9DA00A1642C /* ViewerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewerModel.swift; sourceTree = "<group>"; };
-		BFAB13041E35B9EB00A1642C /* ViewerParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewerParameters.swift; sourceTree = "<group>"; };
-		BFAB13061E35BE0C00A1642C /* ScreenParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenParameters.swift; sourceTree = "<group>"; };
-		BFAB13081E35BE9800A1642C /* ScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenModel.swift; sourceTree = "<group>"; };
-		BFAB130A1E35D1E900A1642C /* StereoParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoParameters.swift; sourceTree = "<group>"; };
-		BFAB130E1E35E7C600A1642C /* StereoCameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoCameraNode.swift; sourceTree = "<group>"; };
-		BFAB13101E35EE0D00A1642C /* StereoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoScene.swift; sourceTree = "<group>"; };
-		BFAB13121E361B3700A1642C /* StereoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StereoViewController.swift; sourceTree = "<group>"; };
+		BFAB12FB1E35B82900A1642C /* StereoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoRenderer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13001E35B97500A1642C /* Eye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Eye.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13021E35B9DA00A1642C /* ViewerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewerModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13041E35B9EB00A1642C /* ViewerParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewerParameters.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13061E35BE0C00A1642C /* ScreenParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScreenParameters.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13081E35BE9800A1642C /* ScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ScreenModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB130A1E35D1E900A1642C /* StereoParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoParameters.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB130E1E35E7C600A1642C /* StereoCameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoCameraNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13101E35EE0D00A1642C /* StereoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFAB13121E361B3700A1642C /* StereoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB13151E363ACD00A1642C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BFB891781E2E013400FA9129 /* Axel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Axel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFB8917B1E2E013400FA9129 /* Axel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Axel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		BFB891781E2E013400FA9129 /* PanoramaView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PanoramaView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB8917B1E2E013400FA9129 /* PanoramaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PanoramaView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BFB8917C1E2E013400FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB8918B1E2E037100FA9129 /* CVError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CVError.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlayerItemRenderer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -91,16 +91,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BFA89A8F1E311403005A3529 /* PanoramaView */ = {
-			isa = PBXGroup;
-			children = (
-				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
-				BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */,
-				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
-			);
-			name = PanoramaView;
-			sourceTree = "<group>";
-		};
 		BFAB12FD1E35B82D00A1642C /* StereoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +120,7 @@
 		BFB891791E2E013400FA9129 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFB891781E2E013400FA9129 /* Axel.framework */,
+				BFB891781E2E013400FA9129 /* PanoramaView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,8 +128,10 @@
 		BFB8917A1E2E013400FA9129 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BFB8917B1E2E013400FA9129 /* Axel.h */,
-				BFA89A8F1E311403005A3529 /* PanoramaView */,
+				BFB8917B1E2E013400FA9129 /* PanoramaView.h */,
+				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
+				BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */,
+				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
@@ -195,16 +187,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFB8917D1E2E013400FA9129 /* Axel.h in Headers */,
+				BFB8917D1E2E013400FA9129 /* PanoramaView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BFB891771E2E013400FA9129 /* Axel */ = {
+		BFB891771E2E013400FA9129 /* PanoramaView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "Axel" */;
+			buildConfigurationList = BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "PanoramaView" */;
 			buildPhases = (
 				BFB891731E2E013400FA9129 /* Sources */,
 				BFB891741E2E013400FA9129 /* Frameworks */,
@@ -215,9 +207,9 @@
 			);
 			dependencies = (
 			);
-			name = Axel;
+			name = PanoramaView;
 			productName = Panoramic;
-			productReference = BFB891781E2E013400FA9129 /* Axel.framework */;
+			productReference = BFB891781E2E013400FA9129 /* PanoramaView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +228,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "Axel" */;
+			buildConfigurationList = BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "PanoramaView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -248,7 +240,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BFB891771E2E013400FA9129 /* Axel */,
+				BFB891771E2E013400FA9129 /* PanoramaView */,
 			);
 		};
 /* End PBXProject section */
@@ -419,7 +411,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -441,7 +433,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.Axel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -451,7 +443,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "Axel" */ = {
+		BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "PanoramaView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB8917E1E2E013400FA9129 /* Debug */,
@@ -460,7 +452,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "Axel" */ = {
+		BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "PanoramaView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB891811E2E013400FA9129 /* Debug */,

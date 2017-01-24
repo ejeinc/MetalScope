@@ -1,6 +1,6 @@
 //
 //  DeviceOrientationProvider.swift
-//  Axel
+//  PanoramaView
 //
 //  Created by Jun Tanaka on 2017/01/17.
 //  Copyright © 2017 eje Inc. All rights reserved.
@@ -45,7 +45,7 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
         return manager
     }()
 
-    private let tokenCountQueue = DispatchQueue(label: "com.eje-c.Axel.DefaultDeviceOrientationProvider.tokenCountQueue")
+    private let tokenCountQueue = DispatchQueue(label: "com.eje-c.PanoramaView.DefaultDeviceOrientationProvider.tokenCountQueue")
 
     private var tokenCount: Int = 0 {
         didSet {
