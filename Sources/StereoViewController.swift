@@ -120,7 +120,7 @@ public class StereoViewController: UIViewController {
         closeButton.isHidden = !showsCloseButton
         closeButton.contentVerticalAlignment = .top
         closeButton.contentHorizontalAlignment = .left
-        closeButton.contentEdgeInsets = UIEdgeInsets(top: 19, left: 19, bottom: 0, right: 0)
+        closeButton.contentEdgeInsets = UIEdgeInsets(top: 11, left: 11, bottom: 0, right: 0)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         _closeButton = closeButton
 
@@ -146,7 +146,7 @@ public class StereoViewController: UIViewController {
         helpButton.isHidden = !showsHelpButton
         helpButton.contentVerticalAlignment = .top
         helpButton.contentHorizontalAlignment = .right
-        helpButton.contentEdgeInsets = UIEdgeInsets(top: 19, left: 0, bottom: 0, right: 19)
+        helpButton.contentEdgeInsets = UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 11)
         helpButton.translatesAutoresizingMaskIntoConstraints = false
         _helpButton = helpButton
         
