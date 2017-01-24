@@ -11,12 +11,12 @@ import Metal
 import Axel
 
 final class ViewController: UIViewController {
-    var device: MTLDevice {
+    lazy var device: MTLDevice = {
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Failed to create MTLDevice")
         }
         return device
-    }
+    }()
 
     weak var panoramaView: PanoramaView?
 

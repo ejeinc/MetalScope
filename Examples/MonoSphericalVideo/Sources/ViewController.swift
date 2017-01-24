@@ -12,14 +12,17 @@ import Axel
 import AVFoundation
 
 final class ViewController: UIViewController {
+    lazy var device: MTLDevice = {
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            fatalError("Failed to create MTLDevice")
+        }
+        return device
+    }()
+
     weak var panoramaView: PanoramaView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        guard let device = MTLCreateSystemDefaultDevice() else {
-            fatalError("Failed to create MTLDevice")
-        }
 
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
         view.addSubview(panoramaView)
