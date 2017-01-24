@@ -48,8 +48,6 @@ public final class StereoView: UIView, MediaSceneLoader {
         }
     }
 
-    public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
-
     public lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
         self.addGestureRecognizer(recognizer)
@@ -143,6 +141,14 @@ extension StereoView {
         return stereoRenderer.scnRenderer
     }
 
+    public func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
+        return stereoRenderer.sceneRendererDelegate(for: eye)
+    }
+
+    public func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
+        stereoRenderer.setSceneRendererDelegate(delegate, for: eye)
+    }
+
     public var isPlaying: Bool {
         get {
             return scnView.isPlaying
@@ -175,26 +181,10 @@ extension StereoView: SCNSceneRendererDelegate {
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
-
-        sceneRendererDelegate?.renderer?(renderer, updateAtTime: time)
     }
 
-    public func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
-        sceneRendererDelegate?.renderer?(renderer, didApplyAnimationsAtTime: time)
-    }
-    
-    public func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
-        sceneRendererDelegate?.renderer?(renderer, didSimulatePhysicsAtTime: time)
-    }
-    
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
         stereoRenderer.render(atTime: time)
-        
-        sceneRendererDelegate?.renderer?(renderer, willRenderScene: scene, atTime: time)
-    }
-    
-    public func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        sceneRendererDelegate?.renderer?(renderer, didRenderScene: scene, atTime: time)
     }
 }
 

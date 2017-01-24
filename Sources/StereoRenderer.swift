@@ -24,8 +24,7 @@ internal final class StereoRenderer {
     let scnRenderer: SCNRenderer
 
     private let renderSemaphore = DispatchSemaphore(value: 3)
-    private let eyeTextures: [Eye: MTLTexture]
-    private var pointOfViews: [Eye: SCNNode] = [:]
+    private let eyeRenderingConfigurations: [Eye: EyeRenderingConfiguration]
 
     init(outputTexture: MTLTexture) {
         self.outputTexture = outputTexture
@@ -41,18 +40,26 @@ internal final class StereoRenderer {
             mipmapped: false
         )
 
-        eyeTextures = [
-            .left: device.makeTexture(descriptor: eyeTextureDescriptor),
-            .right: device.makeTexture(descriptor: eyeTextureDescriptor)
+        eyeRenderingConfigurations = [
+            .left: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor)),
+            .right: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor))
         ]
     }
 
     func pointOfView(for eye: Eye) -> SCNNode? {
-        return pointOfViews[eye]
+        return eyeRenderingConfigurations[eye]?.pointOfView
     }
 
     func setPointOfView(_ pointOfView: SCNNode?, for eye: Eye) {
-        pointOfViews[eye] = pointOfView
+        eyeRenderingConfigurations[eye]?.pointOfView = pointOfView
+    }
+
+    func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
+        return eyeRenderingConfigurations[eye]?.delegate
+    }
+
+    func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
+        eyeRenderingConfigurations[eye]?.delegate = delegate
     }
 
     func render(atTime time: TimeInterval) {
@@ -66,16 +73,18 @@ internal final class StereoRenderer {
 
         let commandBuffer = commandQueue.makeCommandBuffer()
 
-        for (eye, eyeTexture) in eyeTextures {
-            let viewport = CGRect(x: 0, y: 0, width: eyeTexture.width, height: eyeTexture.height)
+        for (eye, configuration) in eyeRenderingConfigurations {
+            let texture = configuration.texture
+            let viewport = CGRect(x: 0, y: 0, width: texture.width, height: texture.height)
 
             let passDescriptor = MTLRenderPassDescriptor()
-            passDescriptor.colorAttachments[0].texture = eyeTexture
+            passDescriptor.colorAttachments[0].texture = texture
             passDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1)
             passDescriptor.colorAttachments[0].storeAction = .store
             passDescriptor.colorAttachments[0].loadAction = .clear
 
-            scnRenderer.pointOfView = pointOfView(for: eye)
+            scnRenderer.pointOfView = configuration.pointOfView
+            scnRenderer.delegate = configuration.delegate
             scnRenderer.render(atTime: time, viewport: viewport, commandBuffer: commandBuffer, passDescriptor: passDescriptor)
 
             let destinationOrigin: MTLOrigin
@@ -88,11 +97,11 @@ internal final class StereoRenderer {
 
             let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
             blitCommandEncoder.copy(
-                from: eyeTexture,
+                from: texture,
                 sourceSlice: 0,
                 sourceLevel: 0,
                 sourceOrigin: MTLOrigin(x: 0, y: 0, z: 0),
-                sourceSize: MTLSize(width: eyeTexture.width, height: eyeTexture.height, depth: eyeTexture.depth),
+                sourceSize: MTLSize(width: texture.width, height: texture.height, depth: texture.depth),
                 to: outputTexture,
                 destinationSlice: 0,
                 destinationLevel: 0,
@@ -106,5 +115,17 @@ internal final class StereoRenderer {
         }
         
         commandBuffer.commit()
+    }
+}
+
+private extension StereoRenderer {
+    final class EyeRenderingConfiguration {
+        let texture: MTLTexture
+        var pointOfView: SCNNode?
+        weak var delegate: SCNSceneRendererDelegate?
+
+        init(texture: MTLTexture) {
+            self.texture = texture
+        }
     }
 }
