@@ -17,7 +17,7 @@ extension MediaSceneLoader {
         case .mono:
             scene = try MonoSphericalVideoScene(device: device)
         default:
-            fatalError("Unsupported format")
+            scene = try StereoSphericalVideoScene(device: device)
         }
 
         scene.player = player
