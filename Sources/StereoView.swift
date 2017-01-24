@@ -169,8 +169,8 @@ extension StereoView {
 
 extension StereoView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if let provider = orientationNode.deviceOrientationProvider as? DefaultDeviceOrientationProvider, provider.deviceOrientation(atTime: time) == nil {
-            provider.waitUntilDeviceOrientationIsAvailable()
+        if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
+            provider.waitDeviceOrientation(atTime: time)
         }
 
         SCNTransaction.lock()

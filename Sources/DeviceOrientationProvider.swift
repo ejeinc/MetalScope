@@ -10,11 +10,36 @@ import CoreMotion
 
 public protocol DeviceOrientationProvider {
     func deviceOrientation(atTime time: TimeInterval) -> Rotation?
+    func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool
+}
+
+extension DeviceOrientationProvider {
+    public func waitDeviceOrientation(atTime time: TimeInterval) {
+        let _ = waitDeviceOrientation(atTime: time, timeout: .distantFuture)
+    }
+
+    public func waitDeviceOrientation(atTime time: TimeInterval, timeout: DispatchTime) -> DispatchTimeoutResult {
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let queue = DispatchQueue(label: "com.eje-c.PanoramaView.DeviceOrientationProvider.waitingQueue")
+        let timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.scheduleRepeating(deadline: .now(), interval: .milliseconds(10))
+        timer.setEventHandler {
+            guard let _ = self.deviceOrientation(atTime: time) else {
+                return
+            }
+            semaphore.signal()
+        }
+        timer.resume()
+        defer { timer.cancel() }
+
+        return semaphore.wait(timeout: timeout)
+    }
 }
 
 extension CMMotionManager: DeviceOrientationProvider {
     public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
-        guard let motion = deviceMotion else {
+        guard let motion = deviceMotion, abs(motion.timestamp - time) < 1 else {
             return nil
         }
 
@@ -33,6 +58,10 @@ extension CMMotionManager: DeviceOrientationProvider {
         let reference = Rotation(x: .pi / 2)
 
         return reference.inverted() * rotation.normalized()
+    }
+
+    public func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
+        return isDeviceMotionActive && abs((deviceMotion?.timestamp ?? 0) - time) > 1
     }
 }
 
@@ -73,30 +102,12 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
         }
     }
 
-    public func waitUntilDeviceOrientationIsAvailable() {
-        let _ = waitUntilDeviceOrientationIsAvailable(timeout: .distantFuture)
-    }
-
-    public func waitUntilDeviceOrientationIsAvailable(timeout: DispatchTime) -> DispatchTimeoutResult {
-        let semaphore = DispatchSemaphore(value: 0)
-
-        let queue = DispatchQueue(label: "com.eje-c.PanoramaView.DefaultDeviceOrientationProvider.waitingQueue")
-        let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.scheduleRepeating(deadline: .now(), interval: .milliseconds(10))
-        timer.setEventHandler {
-            guard let _ = self.motionManager.deviceMotion else {
-                return
-            }
-            semaphore.signal()
-        }
-        timer.resume()
-        defer { timer.cancel() }
-
-        return semaphore.wait(timeout: timeout)
-    }
-
     public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
         return motionManager.deviceOrientation(atTime: time)
+    }
+
+    public func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
+        return motionManager.shouldWaitDeviceOrientation(atTime: time)
     }
 }
 
