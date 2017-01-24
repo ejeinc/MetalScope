@@ -114,13 +114,17 @@ extension PanoramaView {
 
 extension PanoramaView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if let scene = renderer.scene as? VideoSceneProtocol {
-            scene.renderVideo(atTime: time, renderer: renderer)
+        var disableActions = false
+
+        if let provider = orientationNode.deviceOrientationProvider as? DefaultDeviceOrientationProvider, provider.deviceOrientation(atTime: time) == nil {
+            provider.waitUntilDeviceOrientationIsAvailable()
+            disableActions = true
         }
 
         SCNTransaction.lock()
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 1 / 15
+        SCNTransaction.disableActions = disableActions
 
         orientationNode.updateDeviceOrientation(atTime: time)
 
@@ -139,6 +143,10 @@ extension PanoramaView: SCNSceneRendererDelegate {
     }
     
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        if let scene = renderer.scene as? VideoSceneProtocol {
+            scene.renderVideo(atTime: time, renderer: renderer)
+        }
+
         sceneRendererDelegate?.renderer?(renderer, willRenderScene: scene, atTime: time)
     }
     

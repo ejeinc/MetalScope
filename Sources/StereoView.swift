@@ -169,8 +169,8 @@ extension StereoView {
 
 extension StereoView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if let scene = scene as? VideoSceneProtocol {
-            scene.renderVideo(atTime: time, renderer: renderer)
+        if let provider = orientationNode.deviceOrientationProvider as? DefaultDeviceOrientationProvider, provider.deviceOrientation(atTime: time) == nil {
+            provider.waitUntilDeviceOrientationIsAvailable()
         }
 
         SCNTransaction.lock()
@@ -184,6 +184,10 @@ extension StereoView: SCNSceneRendererDelegate {
     }
 
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        if let scene = scene as? VideoSceneProtocol {
+            scene.renderVideo(atTime: time, renderer: renderer)
+        }
+
         stereoRenderer.render(atTime: time)
     }
 }
