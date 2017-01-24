@@ -23,6 +23,10 @@ public final class PlayerRenderer {
         }
     }
 
+    public var device: MTLDevice {
+        return itemRenderer.device
+    }
+
     public let itemRenderer: PlayerItemRenderer
 
     public init(itemRenderer: PlayerItemRenderer) {
