@@ -19,10 +19,9 @@ final class ViewController: UIViewController {
     }()
 
     weak var panoramaView: PanoramaView?
+    weak var cardboardButton: UIButton?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
@@ -34,6 +33,16 @@ final class ViewController: UIViewController {
             panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter(_:)))
+        tapGestureRecognizer.numberOfTapsRequired = 2
+        panoramaView.addGestureRecognizer(tapGestureRecognizer)
+
+        panoramaView.loadPhoto(image: #imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
+        
+        self.panoramaView = panoramaView
+    }
+
+    private func loadCardboardButton() {
         let cardboardButton = UIButton(type: .system)
         cardboardButton.setImage(UIImage(named: "icon-cardboard", in: Bundle(for: PanoramaView.self), compatibleWith: nil), for: .normal)
         cardboardButton.addTarget(self, action: #selector(presentStereoView), for: .touchUpInside)
@@ -47,13 +56,14 @@ final class ViewController: UIViewController {
             cardboardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter(_:)))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        panoramaView.addGestureRecognizer(tapGestureRecognizer)
+        self.cardboardButton = cardboardButton
+    }
 
-        panoramaView.loadPhoto(image: #imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        self.panoramaView = panoramaView
+        loadPanoramaView()
+        loadCardboardButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {

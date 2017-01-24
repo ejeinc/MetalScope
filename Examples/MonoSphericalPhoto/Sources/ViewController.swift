@@ -20,9 +20,7 @@ final class ViewController: UIViewController {
 
     weak var panoramaView: PanoramaView?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
@@ -38,9 +36,15 @@ final class ViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
-        self.panoramaView = panoramaView
-
         panoramaView.loadPhoto(image: #imageLiteral(resourceName: "test"), format: .mono)
+
+        self.panoramaView = panoramaView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loadPanoramaView()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
