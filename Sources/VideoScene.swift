@@ -193,19 +193,3 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
     }
 }
-
-private extension MTLBlitCommandEncoder {
-    func copy(from sourceTexture: MTLTexture, to destinationTexture: MTLTexture, region: MTLRegion) {
-        copy(
-            from: sourceTexture,
-            sourceSlice: 0,
-            sourceLevel: 0,
-            sourceOrigin: region.origin,
-            sourceSize: region.size,
-            to: destinationTexture,
-            destinationSlice: 0,
-            destinationLevel: 0,
-            destinationOrigin: MTLOrigin(x: 0, y: 0, z: 0)
-        )
-    }
-}
