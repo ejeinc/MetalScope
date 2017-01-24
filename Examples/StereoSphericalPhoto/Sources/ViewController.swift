@@ -66,11 +66,11 @@ final class ViewController: UIViewController {
         loadCardboardButton()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         panoramaView?.isPlaying = true
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         panoramaView?.isPlaying = false
     }
 
