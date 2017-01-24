@@ -7,6 +7,6 @@
 //
 
 public enum Eye {
-	case left
-	case right
+    case left
+    case right
 }

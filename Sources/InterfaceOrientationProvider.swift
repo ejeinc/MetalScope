@@ -9,38 +9,38 @@
 import UIKit
 
 public protocol InterfaceOrientationProvider {
-	func interfaceOrientation(atTime time: TimeInterval) -> Rotation?
+    func interfaceOrientation(atTime time: TimeInterval) -> Rotation?
 }
 
 extension UIInterfaceOrientation: InterfaceOrientationProvider {
-	public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
-		var rotation = Rotation()
+    public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
+        var rotation = Rotation()
 
-		switch self {
-		case .portraitUpsideDown:
-			rotation.rotate(byZ: .pi)
-		case .landscapeLeft:
-			rotation.rotate(byZ: .pi / 2)
-		case .landscapeRight:
-			rotation.rotate(byZ: .pi / -2)
-		default:
-			break
-		}
+        switch self {
+        case .portraitUpsideDown:
+            rotation.rotate(byZ: .pi)
+        case .landscapeLeft:
+            rotation.rotate(byZ: .pi / 2)
+        case .landscapeRight:
+            rotation.rotate(byZ: .pi / -2)
+        default:
+            break
+        }
 
-		return rotation
-	}
+        return rotation
+    }
 }
 
 extension UIApplication: InterfaceOrientationProvider {
-	public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
-		return statusBarOrientation.interfaceOrientation(atTime: time)
-	}
+    public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
+        return statusBarOrientation.interfaceOrientation(atTime: time)
+    }
 }
 
 public final class DefaultInterfaceOrientationProvider: InterfaceOrientationProvider {
-	public static let shared = DefaultInterfaceOrientationProvider()
+    public static let shared = DefaultInterfaceOrientationProvider()
 
-	public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
-		return UIApplication.shared.interfaceOrientation(atTime: time)
-	}
+    public func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
+        return UIApplication.shared.interfaceOrientation(atTime: time)
+    }
 }

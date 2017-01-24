@@ -9,65 +9,65 @@
 import SceneKit
 
 public final class StereoCameraNode: SCNNode {
-	public var stereoParameters: StereoParametersProtocol {
-		didSet {
-			updatePointOfViews()
-		}
-	}
+    public var stereoParameters: StereoParametersProtocol {
+        didSet {
+            updatePointOfViews()
+        }
+    }
 
-	public var nearZ: Float = 0.1 {
-		didSet {
-			updatePointOfViews()
-		}
-	}
+    public var nearZ: Float = 0.1 {
+        didSet {
+            updatePointOfViews()
+        }
+    }
 
-	public var farZ: Float = 1000 {
-		didSet {
-			updatePointOfViews()
-		}
-	}
+    public var farZ: Float = 1000 {
+        didSet {
+            updatePointOfViews()
+        }
+    }
 
-	private let pointOfViews: [Eye: SCNNode] = [
-		.left: SCNNode(),
-		.right: SCNNode()
-	]
+    private let pointOfViews: [Eye: SCNNode] = [
+        .left: SCNNode(),
+        .right: SCNNode()
+    ]
 
-	public init(stereoParameters: StereoParametersProtocol) {
-		self.stereoParameters = stereoParameters
+    public init(stereoParameters: StereoParametersProtocol) {
+        self.stereoParameters = stereoParameters
 
-		super.init()
+        super.init()
 
-		for (_, node) in pointOfViews {
-			node.camera = SCNCamera()
-			self.addChildNode(node)
-		}
+        for (_, node) in pointOfViews {
+            node.camera = SCNCamera()
+            self.addChildNode(node)
+        }
 
-		updatePointOfViews()
-	}
-	
-	public required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+        updatePointOfViews()
+    }
 
-	public func pointOfView(for eye: Eye) -> SCNNode {
-		return pointOfViews[eye]!
-	}
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-	private func updatePointOfViews() {
-		let separation = stereoParameters.viewer.lenses.separation
+    public func pointOfView(for eye: Eye) -> SCNNode {
+        return pointOfViews[eye]!
+    }
 
-		for (eye, node) in pointOfViews {
-			var position = SCNVector3Zero
+    private func updatePointOfViews() {
+        let separation = stereoParameters.viewer.lenses.separation
 
-			switch eye {
-			case .left:
-				position.x = separation / -2
-			case .right:
-				position.x = separation / 2
-			}
+        for (eye, node) in pointOfViews {
+            var position = SCNVector3Zero
 
-			node.position = position
-			node.camera?.projectionTransform = stereoParameters.cameraProjectionTransform(for: eye, nearZ: nearZ, farZ: farZ)
-		}
-	}
+            switch eye {
+            case .left:
+                position.x = separation / -2
+            case .right:
+                position.x = separation / 2
+            }
+            
+            node.position = position
+            node.camera?.projectionTransform = stereoParameters.cameraProjectionTransform(for: eye, nearZ: nearZ, farZ: farZ)
+        }
+    }
 }

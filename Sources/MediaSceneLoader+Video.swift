@@ -10,18 +10,18 @@ import SceneKit
 import AVFoundation
 
 extension MediaSceneLoader {
-	public func loadVideo(player: AVPlayer, format: SphericalMediaFormat = .mono) throws {
-		let scene: VideoSceneProtocol
+    public func loadVideo(player: AVPlayer, format: SphericalMediaFormat = .mono) throws {
+        let scene: VideoSceneProtocol
 
-		switch format {
-		case .mono:
-			scene = try MonoSphericalVideoScene(device: device)
-		default:
-			fatalError("Unsupported format")
-		}
+        switch format {
+        case .mono:
+            scene = try MonoSphericalVideoScene(device: device)
+        default:
+            fatalError("Unsupported format")
+        }
 
-		scene.player = player
-
-		self.scene = (scene as? SCNScene)
-	}
+        scene.player = player
+        
+        self.scene = (scene as? SCNScene)
+    }
 }

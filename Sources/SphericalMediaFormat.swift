@@ -7,6 +7,6 @@
 //
 
 public enum SphericalMediaFormat {
-	case mono
-	case stereoOverUnder
+    case mono
+    case stereoOverUnder
 }

@@ -9,18 +9,18 @@
 import SceneKit
 
 extension MediaSceneLoader {
-	public func loadPhoto(image: UIImage, format: SphericalMediaFormat = .mono) {
-		let scene: PhotoSceneProtocol
+    public func loadPhoto(image: UIImage, format: SphericalMediaFormat = .mono) {
+        let scene: PhotoSceneProtocol
 
-		switch format {
-		case .mono:
-			scene = MonoSphericalPhotoScene()
-		default:
-			scene = StereoSphericalPhotoScene()
-		}
+        switch format {
+        case .mono:
+            scene = MonoSphericalPhotoScene()
+        default:
+            scene = StereoSphericalPhotoScene()
+        }
 
-		scene.image = image
-
-		self.scene = (scene as? SCNScene)
-	}
+        scene.image = image
+        
+        self.scene = (scene as? SCNScene)
+    }
 }

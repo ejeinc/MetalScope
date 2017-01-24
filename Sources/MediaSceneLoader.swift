@@ -9,6 +9,6 @@
 import SceneKit
 
 public protocol MediaSceneLoader: class {
-	var device: MTLDevice { get }
-	var scene: SCNScene? { get set }
+    var device: MTLDevice { get }
+    var scene: SCNScene? { get set }
 }
