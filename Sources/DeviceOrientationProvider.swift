@@ -73,6 +73,28 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
         }
     }
 
+    public func waitUntilDeviceOrientationIsAvailable() {
+        let _ = waitUntilDeviceOrientationIsAvailable(timeout: .distantFuture)
+    }
+
+    public func waitUntilDeviceOrientationIsAvailable(timeout: DispatchTime) -> DispatchTimeoutResult {
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let queue = DispatchQueue(label: "com.eje-c.PanoramaView.DefaultDeviceOrientationProvider.waitingQueue")
+        let timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.scheduleRepeating(deadline: .now(), interval: .milliseconds(10))
+        timer.setEventHandler {
+            guard let _ = self.motionManager.deviceMotion else {
+                return
+            }
+            semaphore.signal()
+        }
+        timer.resume()
+        defer { timer.cancel() }
+
+        return semaphore.wait(timeout: timeout)
+    }
+
     public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
         return motionManager.deviceOrientation(atTime: time)
     }
