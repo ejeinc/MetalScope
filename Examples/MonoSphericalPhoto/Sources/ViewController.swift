@@ -24,7 +24,15 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
+        panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
+
+        NSLayoutConstraint.activate([
+            panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
+            panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 2
@@ -33,10 +41,6 @@ final class ViewController: UIViewController {
         self.panoramaView = panoramaView
 
         panoramaView.loadPhoto(image: #imageLiteral(resourceName: "test"), format: .mono)
-    }
-
-    override func viewDidLayoutSubviews() {
-        panoramaView?.frame = view.bounds
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
