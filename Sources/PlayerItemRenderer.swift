@@ -73,11 +73,11 @@ public final class PlayerItemRenderer {
         playerItem = nil
     }
 
-    public func render(atItemTime time: CMTime, to texture: MTLTexture, commandBuffer: MTLCommandBuffer) throws {
-        guard videoOutput.hasNewPixelBuffer(forItemTime: time) else {
-            return
-        }
+    public func hasNewPixelBuffer(atItemTime time: CMTime) -> Bool {
+        return videoOutput.hasNewPixelBuffer(forItemTime: time)
+    }
 
+    public func render(atItemTime time: CMTime, to texture: MTLTexture, commandBuffer: MTLCommandBuffer) throws {
         guard let pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: time, itemTimeForDisplay: nil) else {
             return
         }
@@ -104,7 +104,12 @@ public final class PlayerItemRenderer {
         blitCommandEncoder.copy(from: sourceTexture, sourceSlice: 0, sourceLevel: 0, sourceOrigin: sourceOrigin, sourceSize: sourceSize, to: texture, destinationSlice: 0, destinationLevel: 0, destinationOrigin: destinationOrigin)
         blitCommandEncoder.endEncoding()
     }
-    
+
+    public func hasNewPixelBuffer(atHostTime time: TimeInterval) -> Bool {
+        let itemTime = videoOutput.itemTime(forHostTime: time)
+        return hasNewPixelBuffer(atItemTime: itemTime)
+    }
+
     public func render(atHostTime time: TimeInterval, to texture: MTLTexture, commandBuffer: MTLCommandBuffer) throws {
         let itemTime = videoOutput.itemTime(forHostTime: time)
         try render(atItemTime: itemTime, to: texture, commandBuffer: commandBuffer)

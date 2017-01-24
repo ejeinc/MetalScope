@@ -64,6 +64,10 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
     }
 
     public func renderVideo(atTime time: TimeInterval, renderer: SCNSceneRenderer) {
+        guard playerRenderer.hasNewPixelBuffer(atHostTime: time) else {
+            return
+        }
+
         updateTextureIfNeeded()
 
         guard let texture = playerTexture, let commandQueue = renderer.commandQueue else {

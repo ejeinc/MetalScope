@@ -46,8 +46,16 @@ public final class PlayerRenderer {
         player = nil
     }
 
+    public func hasNewPixelBuffer(atItemTime time: CMTime) -> Bool {
+        return itemRenderer.hasNewPixelBuffer(atItemTime: time)
+    }
+
     public func render(atItemTime time: CMTime, to texture: MTLTexture, commandBuffer: MTLCommandBuffer) throws {
         try itemRenderer.render(atItemTime: time, to: texture, commandBuffer: commandBuffer)
+    }
+
+    public func hasNewPixelBuffer(atHostTime time: TimeInterval) -> Bool {
+        return itemRenderer.hasNewPixelBuffer(atHostTime: time)
     }
 
     public func render(atHostTime time: TimeInterval, to texture: MTLTexture, commandBuffer: MTLCommandBuffer) throws {
