@@ -37,8 +37,15 @@ public final class StereoCameraNode: SCNNode {
 
         super.init()
 
-        for (_, node) in pointOfViews {
-            node.camera = SCNCamera()
+        for (eye, node) in pointOfViews {
+            let camera = SCNCamera()
+            switch eye {
+            case .left:
+                camera.categoryBitMask = CategoryBitMask.all.subtracting(.rightEye).rawValue
+            case .right:
+                camera.categoryBitMask = CategoryBitMask.all.subtracting(.leftEye).rawValue
+            }
+            node.camera = camera
             self.addChildNode(node)
         }
 

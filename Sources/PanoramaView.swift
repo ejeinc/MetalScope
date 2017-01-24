@@ -27,7 +27,7 @@ public final class PanoramaView: UIView, MediaSceneLoader {
 
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
-        let mask = CategoryBitMask.all.subtracting(.leftEye)
+        let mask = CategoryBitMask.all.subtracting(.rightEye)
         node.pointOfView.camera?.categoryBitMask = mask.rawValue
         return node
     }()
