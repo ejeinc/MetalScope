@@ -36,7 +36,7 @@ extension PanoramaView {
 
         lazy var gestureRecognizer: UIPanGestureRecognizer = {
             let recognizer = PanGestureRecognizer()
-            recognizer.addTarget(self, action: #selector(PanGestureManager.handlePanGesture(_:)))
+            recognizer.addTarget(self, action: #selector(handlePanGesture(_:)))
             recognizer.earlyTouchEventHandler = { [weak self] in
                 self?.resetReferenceAngles()
             }
@@ -55,7 +55,7 @@ extension PanoramaView {
             referenceAngles = angles
         }
 
-        @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+        func handlePanGesture(_ sender: UIPanGestureRecognizer) {
             guard let view = sender.view else {
                 return
             }
