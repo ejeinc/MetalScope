@@ -139,7 +139,6 @@
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
-				BFB891911E2E044900FA9129 /* Video */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
 				BFAB13151E363ACD00A1642C /* Assets.xcassets */,
 			);
@@ -180,6 +179,7 @@
 				BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */,
 				BFA89A791E310401005A3529 /* VideoScene.swift */,
 				BF1453051E321CE30042598E /* CategoryBitMask.swift */,
+				BFB891911E2E044900FA9129 /* Video */,
 			);
 			name = Media;
 			sourceTree = "<group>";
