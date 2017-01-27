@@ -155,7 +155,7 @@ internal final class StereoScene: SCNScene {
             sources: [
                 SCNGeometrySource(vertices: vertices, count: vertices.count),
                 SCNGeometrySource(texcoord: texcoord),
-                SCNGeometrySource(colors: colors),
+                SCNGeometrySource(colors: colors)
             ],
             elements: [
                 SCNGeometryElement(indices: indices, primitiveType: .triangles)
