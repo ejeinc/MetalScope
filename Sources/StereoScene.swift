@@ -84,7 +84,7 @@ internal final class StereoScene: SCNScene {
 
                     let x = lerpf(lensFrustum[0], lensFrustum[2], u)
                     let y = lerpf(lensFrustum[3], lensFrustum[1], v)
-                    let d = sqrtf(x * x + y * y)
+                    let d = sqrt(x * x + y * y)
                     let r = viewer.distortion.distortInv(d)
                     let p = x * r / d
                     let q = y * r / d
