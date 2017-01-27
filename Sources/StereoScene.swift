@@ -47,7 +47,35 @@ internal final class StereoScene: SCNScene {
         meshNode.geometry?.firstMaterial?.diffuse.contents = stereoTexture
     }
 
-    private func updateMesh(with parameters: StereoParametersProtocol, cellSize: Int = 40) {
+    private func updateMesh(with parameters: StereoParametersProtocol, width: Int = 40, height: Int = 40) {
+        let (vertices, texcoord) = computeMeshPoints(with: parameters, width: width, height: height)
+        let colors = computeMeshColors(width: width, height: height)
+        let indices = computeMeshIndices(width: width, height: height)
+
+        let mesh = SCNGeometry(
+            sources: [
+                SCNGeometrySource(vertices: vertices, count: vertices.count),
+                SCNGeometrySource(texcoord: texcoord),
+                SCNGeometrySource(colors: colors)
+            ],
+            elements: [
+                SCNGeometryElement(indices: indices, primitiveType: .triangles)
+            ]
+        )
+
+        let material = SCNMaterial()
+        material.isDoubleSided = true
+        mesh.materials = [material]
+
+        meshNode.geometry = mesh
+    }
+}
+
+private extension StereoScene {
+    /// Most of the code in this section is originally ported from Google's Cardboard SDK for Unity
+    /// https://github.com/googlevr/gvr-unity-sdk/blob/v0.6/Cardboard/Scripts/CardboardPostRender.cs
+
+    func computeMeshPoints(with parameters: StereoParametersProtocol, width: Int, height: Int) -> (vertices: [SCNVector3], texcoord: [float2]) {
         let viewer = parameters.viewer
         let screen = parameters.screen
 
@@ -55,28 +83,20 @@ internal final class StereoScene: SCNScene {
         var noLensFrustum = parameters.leftEyeNoLensVisibleTanAngles
         var viewport = parameters.leftEyeVisibleScreenRect
 
-        let width = cellSize
-        let height = cellSize
-        let halfWidth = width / 2
-        let halfHeight = height / 2
-
-        let size = 2 * width * height
-
-        var vertices: [SCNVector3] = Array(repeating: SCNVector3Zero, count: size)
-        var texcoord: [float2] = Array(repeating: float2(), count: size)
-        var colors: [SCNVector3] = Array(repeating: SCNVector3(1, 1, 1), count: size)
-        var indices = [Int16](repeating: 0, count: 2 * (width - 1) * (height - 1) * 6)
+        let count = 2 * width * height
+        var vertices: [SCNVector3] = Array(repeating: SCNVector3Zero, count: count)
+        var texcoord: [float2] = Array(repeating: float2(), count: count)
+        var vid = 0
 
         func lerp(_ a: Float, _ b: Float, _ t: Float) -> Float {
             return a + t * (b - a)
         }
 
-        var vid = 0
-        var iid = 0
-
         for e in 0..<2 {
             for j in 0..<height {
                 for i in 0..<width {
+                    defer { vid += 1 }
+
                     var u = Float(i) / Float(width - 1)
                     var v = Float(j) / Float(height - 1)
                     var s = u
@@ -98,45 +118,9 @@ internal final class StereoScene: SCNScene {
                     vertices[vid] = SCNVector3(u, v, 0)
 
                     s = (s + Float(e)) / 2
-                    t = 1.0 - t // flip vertically
+                    t = 1 - t // flip vertically
 
                     texcoord[vid] = float2(s, t)
-
-                    if i == 0 || j == 0 || i == (width - 1) || j == (height - 1) {
-                        colors[vid] = SCNVector3Zero
-                    }
-
-                    if i == 0 || j == 0 {
-                        // do nothing
-                    } else if (i <= halfWidth) == (j <= halfHeight) {
-                        indices[iid] = Int16(vid)
-                        iid += 1
-                        indices[iid] = Int16(vid - width)
-                        iid += 1
-                        indices[iid] = Int16(vid - width - 1)
-                        iid += 1
-                        indices[iid] = Int16(vid - width - 1)
-                        iid += 1
-                        indices[iid] = Int16(vid - 1)
-                        iid += 1
-                        indices[iid] = Int16(vid)
-                        iid += 1
-                    } else {
-                        indices[iid] = Int16(vid - 1)
-                        iid += 1
-                        indices[iid] = Int16(vid)
-                        iid += 1
-                        indices[iid] = Int16(vid - width)
-                        iid += 1
-                        indices[iid] = Int16(vid - width)
-                        iid += 1
-                        indices[iid] = Int16(vid - width - 1)
-                        iid += 1
-                        indices[iid] = Int16(vid - 1)
-                        iid += 1
-                    }
-
-                    vid += 1
                 }
             }
 
@@ -148,25 +132,66 @@ internal final class StereoScene: SCNScene {
             noLensFrustum[0] = -(w + noLensFrustum[0])
             noLensFrustum[2] = w - noLensFrustum[2]
 
-            viewport.origin.x = 1.0 - (viewport.origin.x + viewport.size.width)
+            viewport.origin.x = 1 - (viewport.origin.x + viewport.size.width)
         }
 
-        let mesh = SCNGeometry(
-            sources: [
-                SCNGeometrySource(vertices: vertices, count: vertices.count),
-                SCNGeometrySource(texcoord: texcoord),
-                SCNGeometrySource(colors: colors)
-            ],
-            elements: [
-                SCNGeometryElement(indices: indices, primitiveType: .triangles)
-            ]
-        )
+        return (vertices, texcoord)
+    }
 
-        let material = SCNMaterial()
-        material.isDoubleSided = true
-        mesh.materials = [material]
+    func computeMeshColors(width: Int, height: Int) -> [SCNVector3] {
+        let count = 2 * width * height
+        var colors: [SCNVector3] = Array(repeating: SCNVector3(1, 1, 1), count: count)
+        var vid = 0
 
-        meshNode.geometry = mesh
+        for _ in 0..<2 {
+            for j in 0..<height {
+                for i in 0..<width {
+                    defer { vid += 1 }
+
+                    if i == 0 || j == 0 || i == (width - 1) || j == (height - 1) {
+                        colors[vid] = SCNVector3Zero
+                    }
+                }
+            }
+        }
+
+        return colors
+    }
+
+    func computeMeshIndices(width: Int, height: Int) -> [Int16] {
+        let halfWidth = width / 2
+        let halfHeight = height / 2
+
+        var indices: [Int16] = []
+        var vid = 0
+
+        for _ in 0..<2 {
+            for j in 0..<height {
+                for i in 0..<width {
+                    defer { vid += 1 }
+
+                    if i == 0 || j == 0 {
+                        // do nothing
+                    } else if (i <= halfWidth) == (j <= halfHeight) {
+                        indices.append(Int16(vid))
+                        indices.append(Int16(vid - width))
+                        indices.append(Int16(vid - width - 1))
+                        indices.append(Int16(vid - width - 1))
+                        indices.append(Int16(vid - 1))
+                        indices.append(Int16(vid))
+                    } else {
+                        indices.append(Int16(vid - 1))
+                        indices.append(Int16(vid))
+                        indices.append(Int16(vid - width))
+                        indices.append(Int16(vid - width))
+                        indices.append(Int16(vid - width - 1))
+                        indices.append(Int16(vid - 1))
+                    }
+                }
+            }
+        }
+        
+        return indices
     }
 }
 
