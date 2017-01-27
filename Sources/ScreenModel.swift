@@ -41,34 +41,34 @@ public enum ScreenModel {
         return String(cString: machine)
     }
 
-    private init?(modelIdentifier: String) {
-        func match(id: String, prefixes: [String]) -> Bool {
-            return prefixes.filter({ id.hasPrefix($0) }).count > 0
+    private init?(modelIdentifier identifier: String) {
+        func match(_ identifier: String, _ prefixes: [String]) -> Bool {
+            return prefixes.filter({ identifier.hasPrefix($0) }).count > 0
         }
 
-        if match(id: modelIdentifier, prefixes: ["iPhone3"]) {
+        if match(identifier, ["iPhone3"]) {
             self = .iPhone4
-        } else if match(id: modelIdentifier, prefixes: ["iPhone4"]) {
+        } else if match(identifier, ["iPhone4"]) {
             self = .iPhone4S
-        } else if match(id: modelIdentifier, prefixes: ["iPhone5"]) {
+        } else if match(identifier, ["iPhone5"]) {
             self = .iPhone5
-        } else if match(id: modelIdentifier, prefixes: ["iPhone6"]) {
+        } else if match(identifier, ["iPhone6"]) {
             self = .iPhone5s
-        } else if match(id: modelIdentifier, prefixes: ["iPhone8,4"]) {
+        } else if match(identifier, ["iPhone8,4"]) {
             self = .iPhoneSE
-        } else if match(id: modelIdentifier, prefixes: ["iPhone7,2"]) {
+        } else if match(identifier, ["iPhone7,2"]) {
             self = .iPhone6
-        } else if match(id: modelIdentifier, prefixes: ["iPhone8,1"]) {
+        } else if match(identifier, ["iPhone8,1"]) {
             self = .iPhone6s
-        } else if match(id: modelIdentifier, prefixes: ["iPhone9,1", "iPhone9,3"]) {
+        } else if match(identifier, ["iPhone9,1", "iPhone9,3"]) {
             self = .iPhone7
-        } else if match(id: modelIdentifier, prefixes: ["iPhone7,1"]) {
+        } else if match(identifier, ["iPhone7,1"]) {
             self = .iPhone6Plus
-        } else if match(id: modelIdentifier, prefixes: ["iPhone8,2"]) {
+        } else if match(identifier, ["iPhone8,2"]) {
             self = .iPhone6sPlus
-        } else if match(id: modelIdentifier, prefixes: ["iPhone9,2", "iPhone9,4"]) {
+        } else if match(identifier, ["iPhone9,2", "iPhone9,4"]) {
             self = .iPhone7Plus
-        } else if match(id: modelIdentifier, prefixes: ["iPod7,1"]) {
+        } else if match(identifier, ["iPod7,1"]) {
             self = .iPodTouch
         } else {
             return nil
