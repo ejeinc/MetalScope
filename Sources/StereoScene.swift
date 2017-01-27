@@ -62,9 +62,9 @@ internal final class StereoScene: SCNScene {
 
         let size = 2 * width * height
 
-        var vertices = [SCNVector3](repeating: SCNVector3Zero, count: size)
-        var texcoord = [float2](repeating: float2(), count: size)
-        var colors = [SCNVector3](repeating: SCNVector3(1, 1, 1), count: size)
+        var vertices: [SCNVector3] = Array(repeating: SCNVector3Zero, count: size)
+        var texcoord: [float2] = Array(repeating: float2(), count: size)
+        var colors: [SCNVector3] = Array(repeating: SCNVector3(1, 1, 1), count: size)
         var indices = [Int16](repeating: 0, count: 2 * (width - 1) * (height - 1) * 6)
 
         func lerpf(_ from: Float, _ to: Float, _ alpha: Float) -> Float {
