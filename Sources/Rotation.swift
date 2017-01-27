@@ -132,10 +132,10 @@ extension Rotation {
     }
 }
 
-public func *(lhs: Rotation, rhs: Rotation) -> Rotation {
+public func * (lhs: Rotation, rhs: Rotation) -> Rotation {
     return Rotation(GLKMatrix3Multiply(lhs.glkMatrix3, rhs.glkMatrix3))
 }
 
-public func *(lhs: Rotation, rhs: GLKVector3) -> GLKVector3 {
+public func * (lhs: Rotation, rhs: GLKVector3) -> GLKVector3 {
     return GLKMatrix3MultiplyVector3(lhs.glkMatrix3, rhs)
 }
