@@ -49,12 +49,6 @@ extension PanoramaView {
             self.rotationNode = rotationNode
         }
 
-        private func resetReferenceAngles() {
-            let angles = normalize(rotationNode.presentation.eulerAngles)
-            rotationNode.eulerAngles = angles // stop animation
-            referenceAngles = angles
-        }
-
         func handlePanGesture(_ sender: UIPanGestureRecognizer) {
             guard let view = sender.view else {
                 return
@@ -133,23 +127,30 @@ extension PanoramaView {
                 break
             }
         }
+
+        private func resetReferenceAngles() {
+            let angles = normalize(rotationNode.presentation.eulerAngles)
+            rotationNode.eulerAngles = angles // stop animation
+            referenceAngles = angles
+        }
+
+        private func normalize(_ angle: Float) -> Float {
+            if angle > .pi {
+                return angle - (.pi * 2) * ceil(abs(angle) / (.pi * 2))
+            } else if angle < -.pi {
+                return angle + (.pi * 2) * ceil(abs(angle) / (.pi * 2))
+            } else {
+                return angle
+            }
+        }
+
+        private func normalize(_ angles: SCNVector3) -> SCNVector3 {
+            return SCNVector3(
+                x: normalize(angles.x),
+                y: normalize(angles.y),
+                z: normalize(angles.z)
+            )
+        }
     }
 }
 
-private func normalize(_ angle: Float) -> Float {
-    if angle > .pi {
-        return angle - (.pi * 2) * ceil(abs(angle) / (.pi * 2))
-    } else if angle < -.pi {
-        return angle + (.pi * 2) * ceil(abs(angle) / (.pi * 2))
-    } else {
-        return angle
-    }
-}
-
-private func normalize(_ angles: SCNVector3) -> SCNVector3 {
-    return SCNVector3(
-        x: normalize(angles.x),
-        y: normalize(angles.y),
-        z: normalize(angles.z)
-    )
-}
