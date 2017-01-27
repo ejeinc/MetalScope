@@ -36,7 +36,7 @@ public enum ScreenModel {
     private static var currentModelIdentifier: String {
         var size: size_t = 0
         sysctlbyname("hw.machine", nil, &size, nil, 0)
-        var machine = Array<CChar>(repeating: 0, count: Int(size))
+        var machine: [CChar] = Array(repeating: 0, count: Int(size))
         sysctlbyname("hw.machine", &machine, &size, nil, 0)
         return String(cString: machine)
     }
