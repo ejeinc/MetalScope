@@ -114,11 +114,11 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
 extension DefaultDeviceOrientationProvider {
     public final class Token {
         private let invalidation: () -> Void
-        
+
         fileprivate init(_ invalidation: @escaping () -> Void) {
             self.invalidation = invalidation
         }
-        
+
         deinit {
             invalidation()
         }

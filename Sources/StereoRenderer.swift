@@ -109,11 +109,11 @@ internal final class StereoRenderer {
             )
             blitCommandEncoder.endEncoding()
         }
-        
+
         commandBuffer.addCompletedHandler { _ in
             semaphore.signal()
         }
-        
+
         commandBuffer.commit()
     }
 }

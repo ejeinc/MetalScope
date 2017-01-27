@@ -140,7 +140,7 @@ public class StereoViewController: UIViewController {
         }
 
         let icon = UIImage(named: "icon-help", in: Bundle(for: StereoViewController.self), compatibleWith: nil)
-        
+
         let helpButton = UIButton(type: .system)
         helpButton.setImage(icon, for: .normal)
         helpButton.isHidden = !showsHelpButton
@@ -149,9 +149,9 @@ public class StereoViewController: UIViewController {
         helpButton.contentEdgeInsets = UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 11)
         helpButton.translatesAutoresizingMaskIntoConstraints = false
         _helpButton = helpButton
-        
+
         view.insertSubview(helpButton, aboveSubview: stereoView)
-        
+
         NSLayoutConstraint.activate([
             helpButton.widthAnchor.constraint(equalToConstant: 88),
             helpButton.heightAnchor.constraint(equalToConstant: 88),

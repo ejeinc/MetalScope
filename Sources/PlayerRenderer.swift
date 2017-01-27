@@ -70,7 +70,7 @@ private extension PlayerRenderer {
         init(_ action: @escaping ([NSKeyValueChangeKey: Any]?) -> Void) {
             self.action = action
         }
-        
+
         override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
             action(change)
         }

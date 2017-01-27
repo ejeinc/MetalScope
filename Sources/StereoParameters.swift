@@ -160,29 +160,29 @@ extension StereoParametersProtocol {
             min(fovRight, screenRight),
             max(fovBottom, screenBottom)
         )
-        
+
         return result
     }
-    
+
     var leftEyeVisibleScreenRect: CGRect {
         let undistortedFrustum = leftEyeNoLensVisibleTanAngles
         let dist = viewer.lenses.screenDistance
-        
+
         let eyeX = (screen.width - viewer.lenses.separation) / 2
         let eyeY = verticalLensOffsetFromScreenCenter + screen.height / 2
-        
+
         let left = (undistortedFrustum[0] * dist + eyeX) / screen.width
         let top = (undistortedFrustum[1] * dist + eyeY) / screen.height
         let right = (undistortedFrustum[2] * dist + eyeX) / screen.width
         let bottom = (undistortedFrustum[3] * dist + eyeY) / screen.height
-        
+
         let result = CGRect(
             x: CGFloat(left),
             y: CGFloat(bottom),
             width: CGFloat(right - left),
             height: CGFloat(top - bottom)
         )
-        
+
         return result
     }
 }

@@ -88,7 +88,7 @@ public struct Distortion {
         let r2 = r * r
         return ((k2 * r2 + k1) * r2 + 1) * r
     }
-    
+
     public func distortInv(_ r: Float) -> Float {
         var r0: Float = 0
         var r1: Float = 1

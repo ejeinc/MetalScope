@@ -106,15 +106,15 @@ extension ScreenModel: ScreenParametersProtocol {
             return ScreenParameters(parameters)
         }
     }
-    
+
     public var width: Float {
         return parameters.width
     }
-    
+
     public var height: Float {
         return parameters.height
     }
-    
+
     public var border: Float {
         return parameters.border
     }

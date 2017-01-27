@@ -72,7 +72,7 @@ public final class StereoCameraNode: SCNNode {
             case .right:
                 position.x = separation / 2
             }
-            
+
             node.position = position
             node.camera?.projectionTransform = stereoParameters.cameraProjectionTransform(for: eye, nearZ: nearZ, farZ: farZ)
         }

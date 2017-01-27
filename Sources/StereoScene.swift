@@ -147,10 +147,10 @@ internal final class StereoScene: SCNScene {
             w = noLensFrustum[2] - noLensFrustum[0]
             noLensFrustum[0] = -(w + noLensFrustum[0])
             noLensFrustum[2] = w - noLensFrustum[2]
-            
+
             viewport.origin.x = 1.0 - (viewport.origin.x + viewport.size.width)
         }
-        
+
         let mesh = SCNGeometry(
             sources: [
                 SCNGeometrySource(vertices: vertices, count: vertices.count),
@@ -161,11 +161,11 @@ internal final class StereoScene: SCNScene {
                 SCNGeometryElement(indices: indices, primitiveType: .triangles)
             ]
         )
-        
+
         let material = SCNMaterial()
         material.isDoubleSided = true
         mesh.materials = [material]
-        
+
         meshNode.geometry = mesh
     }
 }
@@ -183,7 +183,7 @@ private extension SCNGeometrySource {
             dataStride: MemoryLayout<float2>.size
         )
     }
-    
+
     convenience init(colors vectors: [SCNVector3]) {
         self.init(
             data: Data(bytes: vectors, count: vectors.count * MemoryLayout<SCNVector3>.size),

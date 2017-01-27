@@ -40,7 +40,7 @@ public final class StereoSphericalPhotoScene: StereoSphericalMediaScene, PhotoSc
                 rightImage = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
             }
-            
+
             leftMediaSphereNode.mediaContents = leftImage?.cgImage
             rightMediaSphereNode.mediaContents = rightImage?.cgImage
         }

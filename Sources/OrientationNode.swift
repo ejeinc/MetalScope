@@ -85,11 +85,11 @@ public final class OrientationNode: SCNNode {
         SCNTransaction.disableActions = !animated
 
         resetCenter()
-        
+
         SCNTransaction.commit()
         SCNTransaction.unlock()
     }
-    
+
     private func renewDefaultDeviceOrientationProviderTokenIfNeeded() {
         if !isPaused, let defaultProvider = deviceOrientationProvider as? DefaultDeviceOrientationProvider {
             defaultDeviceOrientationProviderToken = defaultProvider.makeToken()

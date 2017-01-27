@@ -124,7 +124,7 @@ extension Rotation {
         r.invert()
         return r
     }
-    
+
     public func normalized() -> Rotation {
         var r = self
         r.normalize()

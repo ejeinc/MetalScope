@@ -45,7 +45,7 @@ private extension UIViewAnimationCurve {
         case .linear:
             name = kCAMediaTimingFunctionLinear
         }
-        
+
         return CAMediaTimingFunction(name: name)
     }
 }

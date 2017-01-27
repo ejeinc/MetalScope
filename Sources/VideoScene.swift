@@ -145,7 +145,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         guard playerRenderer.hasNewPixelBuffer(atHostTime: time) else {
             return
         }
-        
+
         updateTexturesIfNeeded()
 
         guard

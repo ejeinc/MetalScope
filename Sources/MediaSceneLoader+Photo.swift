@@ -20,7 +20,7 @@ extension MediaSceneLoader {
         }
 
         scene.image = image
-        
+
         self.scene = (scene as? SCNScene)
     }
 }

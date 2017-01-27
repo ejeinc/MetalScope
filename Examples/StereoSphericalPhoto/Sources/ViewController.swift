@@ -38,7 +38,7 @@ final class ViewController: UIViewController {
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
         panoramaView.loadPhoto(image: #imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
-        
+
         self.panoramaView = panoramaView
     }
 
@@ -81,12 +81,12 @@ final class ViewController: UIViewController {
     func presentStereoView() {
         let stereoViewController = StereoViewController(device: device)
         stereoViewController.scene = panoramaView?.scene
-        
+
         present(stereoViewController, animated: true) {
             stereoViewController.closeButton.addTarget(self, action: #selector(self.dismissStereoView), for: .touchUpInside)
         }
     }
-    
+
     func dismissStereoView() {
         dismiss(animated: true, completion: nil)
     }

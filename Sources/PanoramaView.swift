@@ -137,11 +137,11 @@ extension PanoramaView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
         sceneRendererDelegate?.renderer?(renderer, didApplyAnimationsAtTime: time)
     }
-    
+
     public func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
         sceneRendererDelegate?.renderer?(renderer, didSimulatePhysicsAtTime: time)
     }
-    
+
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
         if let scene = renderer.scene as? VideoSceneProtocol {
             scene.renderVideo(atTime: time, renderer: renderer)
@@ -149,7 +149,7 @@ extension PanoramaView: SCNSceneRendererDelegate {
 
         sceneRendererDelegate?.renderer?(renderer, willRenderScene: scene, atTime: time)
     }
-    
+
     public func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
         sceneRendererDelegate?.renderer?(renderer, didRenderScene: scene, atTime: time)
     }

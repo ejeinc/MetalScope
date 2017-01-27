@@ -37,11 +37,11 @@ extension ViewerModel: ViewerParametersProtocol {
     public var lenses: Lenses {
         return parameters.lenses
     }
-    
+
     public var distortion: Distortion {
         return parameters.distortion
     }
-    
+
     public var maximumFieldOfView: FieldOfView {
         return parameters.maximumFieldOfView
     }

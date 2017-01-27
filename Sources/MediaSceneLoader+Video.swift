@@ -21,7 +21,7 @@ extension MediaSceneLoader {
         }
 
         scene.player = player
-        
+
         self.scene = (scene as? SCNScene)
     }
 }

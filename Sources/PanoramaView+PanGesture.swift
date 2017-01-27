@@ -118,17 +118,17 @@ extension PanoramaView {
                     }
                     angles.y = angle
                 }
-                
+
                 SCNTransaction.lock()
                 SCNTransaction.begin()
                 SCNTransaction.animationDuration = 1
                 SCNTransaction.animationTimingFunction = CAMediaTimingFunction(controlPoints: 0.165, 0.84, 0.44, 1)
-                
+
                 rotationNode.eulerAngles = angles
-                
+
                 SCNTransaction.commit()
                 SCNTransaction.unlock()
-                
+
             default:
                 break
             }

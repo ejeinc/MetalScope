@@ -54,7 +54,7 @@ final class ViewController: UIViewController {
 
         loadPanoramaView()
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         panoramaView?.updateInterfaceOrientation(with: coordinator)
     }
