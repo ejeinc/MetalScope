@@ -67,8 +67,8 @@ internal final class StereoScene: SCNScene {
         var colors: [SCNVector3] = Array(repeating: SCNVector3(1, 1, 1), count: size)
         var indices = [Int16](repeating: 0, count: 2 * (width - 1) * (height - 1) * 6)
 
-        func lerpf(_ from: Float, _ to: Float, _ alpha: Float) -> Float {
-            return from + alpha * (to - from)
+        func lerp(_ a: Float, _ b: Float, _ t: Float) -> Float {
+            return a + t * (b - a)
         }
 
         var vid = 0
@@ -82,8 +82,8 @@ internal final class StereoScene: SCNScene {
                     var s = u
                     var t = v
 
-                    let x = lerpf(lensFrustum[0], lensFrustum[2], u)
-                    let y = lerpf(lensFrustum[3], lensFrustum[1], v)
+                    let x = lerp(lensFrustum[0], lensFrustum[2], u)
+                    let y = lerp(lensFrustum[3], lensFrustum[1], v)
                     let d = sqrt(x * x + y * y)
                     let r = viewer.distortion.distortInv(d)
                     let p = x * r / d
