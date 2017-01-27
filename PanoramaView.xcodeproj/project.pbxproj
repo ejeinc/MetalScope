@@ -115,7 +115,11 @@
 				BFB8917A1E2E013400FA9129 /* Sources */,
 				BFB891791E2E013400FA9129 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		BFB891791E2E013400FA9129 /* Products */ = {
 			isa = PBXGroup;

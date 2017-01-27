@@ -90,7 +90,11 @@
 				BFB892411E2F9CFF00FA9129 /* Products */,
 				BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		BFB892411E2F9CFF00FA9129 /* Products */ = {
 			isa = PBXGroup;

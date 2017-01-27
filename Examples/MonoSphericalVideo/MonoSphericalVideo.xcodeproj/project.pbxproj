@@ -92,7 +92,11 @@
 				BFA89A9A1E3117C0005A3529 /* Products */,
 				BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		BFA89A9A1E3117C0005A3529 /* Products */ = {
 			isa = PBXGroup;

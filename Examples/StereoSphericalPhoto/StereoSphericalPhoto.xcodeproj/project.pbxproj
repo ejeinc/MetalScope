@@ -82,7 +82,11 @@
 				BF1453131E322A440042598E /* Products */,
 				BF89EE521E376B99001DF885 /* PanoramaView.xcodeproj */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		BF1453131E322A440042598E /* Products */ = {
 			isa = PBXGroup;
