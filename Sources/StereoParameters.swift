@@ -93,6 +93,11 @@ extension StereoParametersProtocol {
     var verticalLensOffsetFromScreenCenter: Float {
         return (viewer.lenses.offset - screen.border - screen.height / 2) * Float(viewer.lenses.alignment.rawValue)
     }
+}
+
+extension StereoParametersProtocol {
+    /// Most of the code in this section is originally ported from Google's Cardboard SDK for Unity
+    /// https://github.com/googlevr/gvr-unity-sdk/blob/v0.6/Cardboard/Scripts/CardboardProfile.cs
 
     var leftEyeVisibleTanAngles: float4 {
         let fov = viewer.maximumFieldOfView
