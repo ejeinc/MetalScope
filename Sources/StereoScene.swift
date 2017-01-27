@@ -190,7 +190,7 @@ private extension StereoScene {
                 }
             }
         }
-        
+
         return indices
     }
 }
