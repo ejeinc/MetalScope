@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MonoSphericalVideo.xcodeproj">
+      location = "self:/Users/Jun/Desktop/eje/PanoramaView/Examples/MonoVideo/MonoVideo.xcodeproj">
    </FileRef>
 </Workspace>

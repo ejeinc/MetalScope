@@ -7,33 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF89EE4D1E376B4C001DF885 /* PanoramaView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE4A1E376B2A001DF885 /* PanoramaView.framework */; };
-		BF89EE4E1E376B4C001DF885 /* PanoramaView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE4A1E376B2A001DF885 /* PanoramaView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BFA89A9D1E3117C0005A3529 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */; };
-		BFA89A9F1E3117C0005A3529 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9E1E3117C0005A3529 /* ViewController.swift */; };
-		BFA89AA41E3117C0005A3529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA31E3117C0005A3529 /* Assets.xcassets */; };
-		BFA89AA71E3117C0005A3529 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */; };
-		BFA89ABD1E31187A005A3529 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BFA89ABC1E31187A005A3529 /* test.mp4 */; };
+		BF89EE401E376AB9001DF885 /* PanoramaView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */; };
+		BF89EE411E376AB9001DF885 /* PanoramaView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFB892441E2F9CFF00FA9129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */; };
+		BFB892461E2F9CFF00FA9129 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892451E2F9CFF00FA9129 /* ViewController.swift */; };
+		BFB8924B1E2F9CFF00FA9129 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */; };
+		BFB8924E1E2F9CFF00FA9129 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB8924C1E2F9CFF00FA9129 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BF89EE491E376B2A001DF885 /* PBXContainerItemProxy */ = {
+		BF89EE3C1E376AA9001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFB891781E2E013400FA9129;
 			remoteInfo = PanoramaView;
 		};
-		BF89EE4B1E376B47001DF885 /* PBXContainerItemProxy */ = {
+		BF89EE3E1E376AAF001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
 			remoteInfo = PanoramaView;
 		};
-		BF89EE4F1E376B4C001DF885 /* PBXContainerItemProxy */ = {
+		BF89EE421E376AB9001DF885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */;
+			containerPortal = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFB891771E2E013400FA9129;
 			remoteInfo = PanoramaView;
@@ -41,13 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BFA89ABB1E31183E005A3529 /* Embed Frameworks */ = {
+		BFB892611E2F9D4600FA9129 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BF89EE4E1E376B4C001DF885 /* PanoramaView.framework in Embed Frameworks */,
+				BF89EE411E376AB9001DF885 /* PanoramaView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,42 +54,41 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PanoramaView.xcodeproj; path = ../../PanoramaView.xcodeproj; sourceTree = "<group>"; };
-		BFA89A991E3117C0005A3529 /* MonoSphericalVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoSphericalVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFA89A9E1E3117C0005A3529 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BFA89AA31E3117C0005A3529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BFA89AA61E3117C0005A3529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BFA89AA81E3117C0005A3529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFA89ABC1E31187A005A3529 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
+		BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PanoramaView.xcodeproj; path = ../../PanoramaView.xcodeproj; sourceTree = "<group>"; };
+		BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BFB892451E2F9CFF00FA9129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFB8924D1E2F9CFF00FA9129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BFB8924F1E2F9CFF00FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BFA89A961E3117C0005A3529 /* Frameworks */ = {
+		BFB8923D1E2F9CFF00FA9129 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF89EE4D1E376B4C001DF885 /* PanoramaView.framework in Frameworks */,
+				BF89EE401E376AB9001DF885 /* PanoramaView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF89EE461E376B2A001DF885 /* Products */ = {
+		BF89EE391E376AA9001DF885 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF89EE4A1E376B2A001DF885 /* PanoramaView.framework */,
+				BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFA89A901E3117C0005A3529 = {
+		BFB892371E2F9CFF00FA9129 = {
 			isa = PBXGroup;
 			children = (
-				BFA89A9B1E3117C0005A3529 /* Sources */,
-				BFA89A9A1E3117C0005A3529 /* Products */,
-				BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */,
+				BFB892421E2F9CFF00FA9129 /* Sources */,
+				BFB892411E2F9CFF00FA9129 /* Products */,
+				BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -98,23 +96,22 @@
 			usesTabs = 0;
 			wrapsLines = 1;
 		};
-		BFA89A9A1E3117C0005A3529 /* Products */ = {
+		BFB892411E2F9CFF00FA9129 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFA89A991E3117C0005A3529 /* MonoSphericalVideo.app */,
+				BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFA89A9B1E3117C0005A3529 /* Sources */ = {
+		BFB892421E2F9CFF00FA9129 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */,
-				BFA89A9E1E3117C0005A3529 /* ViewController.swift */,
-				BFA89ABC1E31187A005A3529 /* test.mp4 */,
-				BFA89AA31E3117C0005A3529 /* Assets.xcassets */,
-				BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */,
-				BFA89AA81E3117C0005A3529 /* Info.plist */,
+				BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */,
+				BFB892451E2F9CFF00FA9129 /* ViewController.swift */,
+				BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */,
+				BFB8924C1E2F9CFF00FA9129 /* LaunchScreen.storyboard */,
+				BFB8924F1E2F9CFF00FA9129 /* Info.plist */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -122,44 +119,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BFA89A981E3117C0005A3529 /* MonoSphericalVideo */ = {
+		BFB8923F1E2F9CFF00FA9129 /* MonoPhoto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFA89AAB1E3117C0005A3529 /* Build configuration list for PBXNativeTarget "MonoSphericalVideo" */;
+			buildConfigurationList = BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoPhoto" */;
 			buildPhases = (
-				BFA89A951E3117C0005A3529 /* Sources */,
-				BFA89A961E3117C0005A3529 /* Frameworks */,
-				BFA89A971E3117C0005A3529 /* Resources */,
-				BFA89ABB1E31183E005A3529 /* Embed Frameworks */,
+				BFB8923C1E2F9CFF00FA9129 /* Sources */,
+				BFB8923D1E2F9CFF00FA9129 /* Frameworks */,
+				BFB8923E1E2F9CFF00FA9129 /* Resources */,
+				BFB892611E2F9D4600FA9129 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BF89EE4C1E376B47001DF885 /* PBXTargetDependency */,
-				BF89EE501E376B4C001DF885 /* PBXTargetDependency */,
+				BF89EE3F1E376AAF001DF885 /* PBXTargetDependency */,
+				BF89EE431E376AB9001DF885 /* PBXTargetDependency */,
 			);
-			name = MonoSphericalVideo;
-			productName = MonoSphericalVideo;
-			productReference = BFA89A991E3117C0005A3529 /* MonoSphericalVideo.app */;
+			name = MonoPhoto;
+			productName = MonoSphericalPhoto;
+			productReference = BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BFA89A911E3117C0005A3529 /* Project object */ = {
+		BFB892381E2F9CFF00FA9129 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "eje Inc.";
 				TargetAttributes = {
-					BFA89A981E3117C0005A3529 = {
+					BFB8923F1E2F9CFF00FA9129 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2ZY4DX9AXC;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = BFA89A941E3117C0005A3529 /* Build configuration list for PBXProject "MonoSphericalVideo" */;
+			buildConfigurationList = BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoPhoto" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -167,75 +164,74 @@
 				en,
 				Base,
 			);
-			mainGroup = BFA89A901E3117C0005A3529;
-			productRefGroup = BFA89A9A1E3117C0005A3529 /* Products */;
+			mainGroup = BFB892371E2F9CFF00FA9129;
+			productRefGroup = BFB892411E2F9CFF00FA9129 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BF89EE461E376B2A001DF885 /* Products */;
-					ProjectRef = BF89EE451E376B2A001DF885 /* PanoramaView.xcodeproj */;
+					ProductGroup = BF89EE391E376AA9001DF885 /* Products */;
+					ProjectRef = BF89EE381E376AA9001DF885 /* PanoramaView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				BFA89A981E3117C0005A3529 /* MonoSphericalVideo */,
+				BFB8923F1E2F9CFF00FA9129 /* MonoPhoto */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		BF89EE4A1E376B2A001DF885 /* PanoramaView.framework */ = {
+		BF89EE3D1E376AA9001DF885 /* PanoramaView.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = PanoramaView.framework;
-			remoteRef = BF89EE491E376B2A001DF885 /* PBXContainerItemProxy */;
+			remoteRef = BF89EE3C1E376AA9001DF885 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BFA89A971E3117C0005A3529 /* Resources */ = {
+		BFB8923E1E2F9CFF00FA9129 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA89AA71E3117C0005A3529 /* LaunchScreen.storyboard in Resources */,
-				BFA89ABD1E31187A005A3529 /* test.mp4 in Resources */,
-				BFA89AA41E3117C0005A3529 /* Assets.xcassets in Resources */,
+				BFB8924E1E2F9CFF00FA9129 /* LaunchScreen.storyboard in Resources */,
+				BFB8924B1E2F9CFF00FA9129 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BFA89A951E3117C0005A3529 /* Sources */ = {
+		BFB8923C1E2F9CFF00FA9129 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFA89A9F1E3117C0005A3529 /* ViewController.swift in Sources */,
-				BFA89A9D1E3117C0005A3529 /* AppDelegate.swift in Sources */,
+				BFB892461E2F9CFF00FA9129 /* ViewController.swift in Sources */,
+				BFB892441E2F9CFF00FA9129 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BF89EE4C1E376B47001DF885 /* PBXTargetDependency */ = {
+		BF89EE3F1E376AAF001DF885 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PanoramaView;
-			targetProxy = BF89EE4B1E376B47001DF885 /* PBXContainerItemProxy */;
+			targetProxy = BF89EE3E1E376AAF001DF885 /* PBXContainerItemProxy */;
 		};
-		BF89EE501E376B4C001DF885 /* PBXTargetDependency */ = {
+		BF89EE431E376AB9001DF885 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PanoramaView;
-			targetProxy = BF89EE4F1E376B4C001DF885 /* PBXContainerItemProxy */;
+			targetProxy = BF89EE421E376AB9001DF885 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */ = {
+		BFB8924C1E2F9CFF00FA9129 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BFA89AA61E3117C0005A3529 /* Base */,
+				BFB8924D1E2F9CFF00FA9129 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -243,7 +239,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BFA89AA91E3117C0005A3529 /* Debug */ = {
+		BFB892501E2F9CFF00FA9129 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -291,7 +287,7 @@
 			};
 			name = Debug;
 		};
-		BFA89AAA1E3117C0005A3529 /* Release */ = {
+		BFB892511E2F9CFF00FA9129 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -332,7 +328,7 @@
 			};
 			name = Release;
 		};
-		BFA89AAC1E3117C0005A3529 /* Debug */ = {
+		BFB892531E2F9CFF00FA9129 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -340,13 +336,13 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoSphericalVideo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		BFA89AAD1E3117C0005A3529 /* Release */ = {
+		BFB892541E2F9CFF00FA9129 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -354,7 +350,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoSphericalVideo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView.MonoPhoto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -363,25 +359,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFA89A941E3117C0005A3529 /* Build configuration list for PBXProject "MonoSphericalVideo" */ = {
+		BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoPhoto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFA89AA91E3117C0005A3529 /* Debug */,
-				BFA89AAA1E3117C0005A3529 /* Release */,
+				BFB892501E2F9CFF00FA9129 /* Debug */,
+				BFB892511E2F9CFF00FA9129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFA89AAB1E3117C0005A3529 /* Build configuration list for PBXNativeTarget "MonoSphericalVideo" */ = {
+		BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoPhoto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFA89AAC1E3117C0005A3529 /* Debug */,
-				BFA89AAD1E3117C0005A3529 /* Release */,
+				BFB892531E2F9CFF00FA9129 /* Debug */,
+				BFB892541E2F9CFF00FA9129 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BFA89A911E3117C0005A3529 /* Project object */;
+	rootObject = BFB892381E2F9CFF00FA9129 /* Project object */;
 }
