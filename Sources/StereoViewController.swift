@@ -9,16 +9,16 @@
 import UIKit
 import SceneKit
 
-public class StereoViewController: UIViewController {
-    public let device: MTLDevice
+open class StereoViewController: UIViewController {
+    open let device: MTLDevice
 
-    public var scene: SCNScene? {
+    open var scene: SCNScene? {
         didSet {
             _stereoView?.scene = scene
         }
     }
 
-    public var stereoView: StereoView {
+    open var stereoView: StereoView {
         if !isViewLoaded {
             loadView()
         }
@@ -28,13 +28,13 @@ public class StereoViewController: UIViewController {
         return view
     }
 
-    public var showsCloseButton: Bool = true {
+    open var showsCloseButton: Bool = true {
         didSet {
             _closeButton?.isHidden = !showsCloseButton
         }
     }
 
-    public var closeButton: UIButton {
+    open var closeButton: UIButton {
         if _closeButton == nil {
             loadCloseButton()
         }
@@ -44,13 +44,13 @@ public class StereoViewController: UIViewController {
         return button
     }
 
-    public var showsHelpButton: Bool = true {
+    open var showsHelpButton: Bool = true {
         didSet {
             _helpButton?.isHidden = !showsHelpButton
         }
     }
 
-    public var helpButton: UIButton {
+    open var helpButton: UIButton {
         if _helpButton == nil {
             loadHelpButton()
         }
@@ -74,7 +74,7 @@ public class StereoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func loadView() {
+    open override func loadView() {
         let stereoView = StereoView(device: device)
         stereoView.scene = scene
         stereoView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,11 +100,11 @@ public class StereoViewController: UIViewController {
         }
     }
 
-    public override var prefersStatusBarHidden: Bool {
+    open override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeRight
     }
 
