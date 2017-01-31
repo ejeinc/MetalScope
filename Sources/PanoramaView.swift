@@ -46,7 +46,7 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         return view
     }()
 
-    lazy var panGestureManager: PanGestureManager = {
+    fileprivate lazy var panGestureManager: PanGestureManager = {
         let manager = PanGestureManager(rotationNode: self.orientationNode.userRotationNode)
         manager.minimumVerticalRotationAngle = -60 / 180 * .pi
         manager.maximumVerticalRotationAngle = 60 / 180 * .pi
