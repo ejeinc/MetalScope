@@ -24,12 +24,6 @@ public final class OrientationNode: SCNNode {
 
     public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider.shared
 
-    public override var isPaused: Bool {
-        didSet {
-            renewDefaultDeviceOrientationProviderTokenIfNeeded()
-        }
-    }
-
     private var defaultDeviceOrientationProviderToken: DefaultDeviceOrientationProvider.Token?
 
     public override init() {
@@ -91,7 +85,7 @@ public final class OrientationNode: SCNNode {
     }
 
     private func renewDefaultDeviceOrientationProviderTokenIfNeeded() {
-        if !isPaused, let defaultProvider = deviceOrientationProvider as? DefaultDeviceOrientationProvider {
+        if let defaultProvider = deviceOrientationProvider as? DefaultDeviceOrientationProvider {
             defaultDeviceOrientationProviderToken = defaultProvider.makeToken()
         } else {
             defaultDeviceOrientationProviderToken = nil
