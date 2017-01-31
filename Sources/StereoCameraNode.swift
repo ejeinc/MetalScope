@@ -27,12 +27,6 @@ public final class StereoCameraNode: SCNNode {
         }
     }
 
-    public var isEyeSeparationEnabled = true {
-        didSet {
-            updatePointOfViews()
-        }
-    }
-
     private let pointOfViews: [Eye: SCNNode] = [
         .left: SCNNode(),
         .right: SCNNode()
@@ -72,16 +66,14 @@ public final class StereoCameraNode: SCNNode {
         for (eye, node) in pointOfViews {
             var position = SCNVector3Zero
 
-            if isEyeSeparationEnabled {
-                switch eye {
-                case .left:
-                    position.x = separation / -2
-                case .right:
-                    position.x = separation / 2
-                }
-                node.position = position
+            switch eye {
+            case .left:
+                position.x = separation / -2
+            case .right:
+                position.x = separation / 2
             }
 
+            node.position = position
             node.camera?.projectionTransform = stereoParameters.cameraProjectionTransform(for: eye, nearZ: nearZ, farZ: farZ)
         }
     }
