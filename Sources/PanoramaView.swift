@@ -53,6 +53,10 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         return helper
     }()
 
+    fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
+        return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
+    }()
+
     public init(frame: CGRect, device: MTLDevice) {
         self.device = device
 
@@ -73,6 +77,15 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         super.layoutSubviews()
 
         scnView.frame = bounds
+    }
+
+    public override func willMove(toWindow newWindow: UIWindow?) {
+        if newWindow == nil {
+            interfaceOrientationUpdater.stopAutomaticInterfaceOrientationUpdates()
+        } else {
+            interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
+            interfaceOrientationUpdater.updateInterfaceOrientation()
+        }
     }
 }
 
@@ -105,6 +118,14 @@ extension PanoramaView {
 
     public var panGestureRecognizer: UIPanGestureRecognizer {
         return panGestureManager.gestureRecognizer
+    }
+
+    public func updateInterfaceOrientation() {
+        interfaceOrientationUpdater.updateInterfaceOrientation()
+    }
+
+    public func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
+        interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
     @IBAction public func resetCenter(_ sender: Any) {

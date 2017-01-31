@@ -37,9 +37,9 @@
 		BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */; };
 		BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */; };
 		BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */; };
-		BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */; };
 		BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */; };
 		BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* OrientationNode.swift */; };
+		BFFE23841E407DDD006097A1 /* InterfaceOrientationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,9 +75,9 @@
 		BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Rotation+SceneKit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InterfaceOrientationProvider.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SphericalMediaScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+InterfaceOrientation.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB892681E30DCEA00FA9129 /* OrientationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OrientationNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceOrientationUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,6 @@
 			children = (
 				BFB8917B1E2E013400FA9129 /* PanoramaView.h */,
 				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
-				BFB892271E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift */,
 				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
@@ -161,6 +160,7 @@
 				BFB892681E30DCEA00FA9129 /* OrientationNode.swift */,
 				BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */,
 				BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */,
+				BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */,
 				BFB891A31E2E090A00FA9129 /* Rotation.swift */,
 				BFB891A51E2E109A00FA9129 /* Rotation+CoreMotion.swift */,
 				BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */,
@@ -275,6 +275,7 @@
 				BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */,
 				BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */,
 				BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */,
+				BFFE23841E407DDD006097A1 /* InterfaceOrientationUpdater.swift in Sources */,
 				BFAB13131E361B3700A1642C /* StereoViewController.swift in Sources */,
 				BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */,
 				BFAB13051E35B9EB00A1642C /* ViewerParameters.swift in Sources */,
@@ -292,7 +293,6 @@
 				BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */,
 				BFAB130F1E35E7C600A1642C /* StereoCameraNode.swift in Sources */,
 				BFB8919F1E2E083000FA9129 /* PanoramaView.swift in Sources */,
-				BFB892281E2F63CE00FA9129 /* PanoramaView+InterfaceOrientation.swift in Sources */,
 				BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */,
 				BF1452E31E320C210042598E /* MediaSceneLoader+Video.swift in Sources */,
 				BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */,
