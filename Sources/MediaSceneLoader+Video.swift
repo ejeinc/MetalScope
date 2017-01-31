@@ -16,7 +16,7 @@ extension MediaSceneLoader {
         switch format {
         case .mono:
             scene = try MonoSphericalVideoScene(device: device)
-        default:
+        case .stereoOverUnder:
             scene = try StereoSphericalVideoScene(device: device)
         }
 
