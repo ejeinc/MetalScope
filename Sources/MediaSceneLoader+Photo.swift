@@ -9,7 +9,7 @@
 import SceneKit
 
 extension MediaSceneLoader {
-    public func loadPhoto(image: UIImage, format: SphericalMediaFormat) {
+    public func loadPhoto(image: UIImage, format: MediaFormat) {
         let scene: PhotoSceneProtocol
 
         switch format {
