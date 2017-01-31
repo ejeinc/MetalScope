@@ -1,6 +1,6 @@
 //
 //  PlayerItemRenderer.swift
-//  PanoramaView
+//  MetalScope
 //
 //  Created by Jun Tanaka on 2016/12/13.
 //  Copyright © 2016 eje Inc. All rights reserved.

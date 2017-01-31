@@ -8,7 +8,7 @@
 
 import UIKit
 import Metal
-import PanoramaView
+import MetalScope
 import AVFoundation
 
 final class ViewController: UIViewController {

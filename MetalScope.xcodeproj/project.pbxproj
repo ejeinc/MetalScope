@@ -61,7 +61,7 @@
 		BFAB13101E35EE0D00A1642C /* StereoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB13121E361B3700A1642C /* StereoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB13151E363ACD00A1642C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BFB891781E2E013400FA9129 /* PanoramaView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PanoramaView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB891781E2E013400FA9129 /* MetalScope.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetalScope.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB8917B1E2E013400FA9129 /* PanoramaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PanoramaView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BFB8917C1E2E013400FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB8918B1E2E037100FA9129 /* CVError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CVError.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -76,8 +76,8 @@
 		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SphericalMediaScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB892681E30DCEA00FA9129 /* OrientationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OrientationNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceOrientationUpdater.swift; sourceTree = "<group>"; };
-		BFFE23881E409046006097A1 /* MediaFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFormat.swift; sourceTree = "<group>"; };
+		BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InterfaceOrientationUpdater.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFFE23881E409046006097A1 /* MediaFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MediaFormat.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,7 @@
 		BFB891791E2E013400FA9129 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFB891781E2E013400FA9129 /* PanoramaView.framework */,
+				BFB891781E2E013400FA9129 /* MetalScope.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,9 +198,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BFB891771E2E013400FA9129 /* PanoramaView */ = {
+		BFB891771E2E013400FA9129 /* MetalScope */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "PanoramaView" */;
+			buildConfigurationList = BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "MetalScope" */;
 			buildPhases = (
 				BFB891731E2E013400FA9129 /* Sources */,
 				BFB891741E2E013400FA9129 /* Frameworks */,
@@ -211,9 +211,9 @@
 			);
 			dependencies = (
 			);
-			name = PanoramaView;
+			name = MetalScope;
 			productName = Panoramic;
-			productReference = BFB891781E2E013400FA9129 /* PanoramaView.framework */;
+			productReference = BFB891781E2E013400FA9129 /* MetalScope.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -232,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "PanoramaView" */;
+			buildConfigurationList = BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "MetalScope" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -244,7 +244,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BFB891771E2E013400FA9129 /* PanoramaView */,
+				BFB891771E2E013400FA9129 /* MetalScope */,
 			);
 		};
 /* End PBXProject section */
@@ -415,7 +415,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -437,7 +437,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.PanoramaView";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -447,7 +447,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "PanoramaView" */ = {
+		BFB891721E2E013400FA9129 /* Build configuration list for PBXProject "MetalScope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB8917E1E2E013400FA9129 /* Debug */,
@@ -456,7 +456,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "PanoramaView" */ = {
+		BFB891801E2E013400FA9129 /* Build configuration list for PBXNativeTarget "MetalScope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB891811E2E013400FA9129 /* Debug */,

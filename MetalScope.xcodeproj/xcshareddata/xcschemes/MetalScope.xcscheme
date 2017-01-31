@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BFB891771E2E013400FA9129"
-               BuildableName = "PanoramaView.framework"
-               BlueprintName = "PanoramaView"
-               ReferencedContainer = "container:PanoramaView.xcodeproj">
+               BuildableName = "MetalScope.framework"
+               BlueprintName = "MetalScope"
+               ReferencedContainer = "container:MetalScope.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFB891771E2E013400FA9129"
-            BuildableName = "PanoramaView.framework"
-            BlueprintName = "PanoramaView"
-            ReferencedContainer = "container:PanoramaView.xcodeproj">
+            BuildableName = "MetalScope.framework"
+            BlueprintName = "MetalScope"
+            ReferencedContainer = "container:MetalScope.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFB891771E2E013400FA9129"
-            BuildableName = "PanoramaView.framework"
-            BlueprintName = "PanoramaView"
-            ReferencedContainer = "container:PanoramaView.xcodeproj">
+            BuildableName = "MetalScope.framework"
+            BlueprintName = "MetalScope"
+            ReferencedContainer = "container:MetalScope.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

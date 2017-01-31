@@ -1,6 +1,6 @@
 //
 //  MediaSceneLoader+Photo.swift
-//  PanoramaView
+//  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/20.
 //  Copyright © 2017 eje Inc. All rights reserved.

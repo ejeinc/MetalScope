@@ -1,6 +1,6 @@
 //
 //  DeviceOrientationProvider.swift
-//  PanoramaView
+//  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/17.
 //  Copyright © 2017 eje Inc. All rights reserved.
@@ -21,7 +21,7 @@ extension DeviceOrientationProvider {
     public func waitDeviceOrientation(atTime time: TimeInterval, timeout: DispatchTime) -> DispatchTimeoutResult {
         let semaphore = DispatchSemaphore(value: 0)
 
-        let queue = DispatchQueue(label: "com.eje-c.PanoramaView.DeviceOrientationProvider.waitingQueue")
+        let queue = DispatchQueue(label: "com.eje-c.MetalScope.DeviceOrientationProvider.waitingQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
         timer.scheduleRepeating(deadline: .now(), interval: .milliseconds(10))
         timer.setEventHandler {
@@ -86,7 +86,7 @@ internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider
         }
     }
 
-    private let tokenCountQueue = DispatchQueue(label: "com.eje-c.PanoramaView.DefaultDeviceOrientationProvider.tokenCountQueue")
+    private let tokenCountQueue = DispatchQueue(label: "com.eje-c.MetalScope.DefaultDeviceOrientationProvider.tokenCountQueue")
 
     private var tokenCount: Int = 0 {
         didSet {

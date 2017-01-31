@@ -8,7 +8,7 @@
 
 import UIKit
 import Metal
-import PanoramaView
+import MetalScope
 
 final class ViewController: UIViewController {
     lazy var device: MTLDevice = {
