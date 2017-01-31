@@ -65,14 +65,26 @@ extension CMMotionManager: DeviceOrientationProvider {
     }
 }
 
-public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
-    public static let shared = DefaultDeviceOrientationProvider()
+internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
+    static let shared = DefaultDeviceOrientationProvider()
 
     private lazy var motionManager: CMMotionManager = {
         let manager = CMMotionManager()
         manager.deviceMotionUpdateInterval = 1 / 60
         return manager
     }()
+
+    final class Token {
+        private let invalidation: () -> Void
+
+        fileprivate init(_ invalidation: @escaping () -> Void) {
+            self.invalidation = invalidation
+        }
+
+        deinit {
+            invalidation()
+        }
+    }
 
     private let tokenCountQueue = DispatchQueue(label: "com.eje-c.PanoramaView.DefaultDeviceOrientationProvider.tokenCountQueue")
 
@@ -91,36 +103,22 @@ public final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
         }
     }
 
-    public var isPaused: Bool {
+    var isPaused: Bool {
         return tokenCountQueue.sync { !motionManager.isDeviceMotionActive }
     }
 
-    public func makeToken() -> Token {
+    func makeToken() -> Token {
         tokenCountQueue.async { self.tokenCount += 1 }
         return Token {
             self.tokenCountQueue.async { self.tokenCount -= 1 }
         }
     }
 
-    public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
+    func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
         return motionManager.deviceOrientation(atTime: time)
     }
 
-    public func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
+    func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
         return motionManager.shouldWaitDeviceOrientation(atTime: time)
-    }
-}
-
-extension DefaultDeviceOrientationProvider {
-    public final class Token {
-        private let invalidation: () -> Void
-
-        fileprivate init(_ invalidation: @escaping () -> Void) {
-            self.invalidation = invalidation
-        }
-
-        deinit {
-            invalidation()
-        }
     }
 }
