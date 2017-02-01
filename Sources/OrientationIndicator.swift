@@ -215,13 +215,11 @@ public final class OrientationIndicatorView: UIView, OrientationIndicator {
     }
 
     public func updateOrientation(animated: Bool) {
-        CATransaction.lock()
         CATransaction.begin()
         CATransaction.setDisableActions(!animated)
 
         orientationIndicatorLayer.updateOrientation()
 
         CATransaction.commit()
-        CATransaction.unlock()
     }
 }
