@@ -16,6 +16,7 @@ public protocol OrientationIndicatorDataSource: class {
 
 public protocol OrientationIndicator {
     weak var dataSource: OrientationIndicatorDataSource? { get set }
+
     func updateOrientation()
 }
 
@@ -194,13 +195,23 @@ public final class OrientationIndicatorView: UIView, OrientationIndicator {
         return OrientationIndicatorLayer.self
     }
 
+    public var orientationIndicatorLayer: OrientationIndicatorLayer {
+        return (layer as! OrientationIndicatorLayer)
+    }
+
     public weak var dataSource: OrientationIndicatorDataSource? {
         get {
-            return (layer as! OrientationIndicatorLayer).dataSource
+            return orientationIndicatorLayer.dataSource
         }
         set(value) {
-            (layer as! OrientationIndicatorLayer).dataSource = value
+            orientationIndicatorLayer.dataSource = value
         }
+    }
+
+    public override func tintColorDidChange() {
+        super.tintColorDidChange()
+
+        orientationIndicatorLayer.color = tintColor
     }
 
     public func updateOrientation() {
@@ -212,7 +223,7 @@ public final class OrientationIndicatorView: UIView, OrientationIndicator {
         CATransaction.begin()
         CATransaction.setDisableActions(!animated)
 
-        (layer as! OrientationIndicatorLayer).updateOrientation()
+        orientationIndicatorLayer.updateOrientation()
 
         CATransaction.commit()
         CATransaction.unlock()
