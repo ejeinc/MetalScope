@@ -93,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF4B3D291E420D95005BE575 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BF603F541E41B57600A28013 /* OrientationIndicator.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		BFAB12FD1E35B82D00A1642C /* StereoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +148,7 @@
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
+				BF4B3D291E420D95005BE575 /* UI */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
 				BFAB13151E363ACD00A1642C /* Assets.xcassets */,
 			);
@@ -160,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				BFB892681E30DCEA00FA9129 /* OrientationNode.swift */,
-				BF603F541E41B57600A28013 /* OrientationIndicator.swift */,
 				BFB891A11E2E08FC00FA9129 /* DeviceOrientationProvider.swift */,
 				BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */,
 				BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */,
