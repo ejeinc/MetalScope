@@ -23,55 +23,61 @@ public protocol OrientationIndicator {
 public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
     public var fov: Float = .pi / 3 {
         didSet {
-            updateArcLayer()
+            applyFov()
         }
     }
 
     public var rotation: Float = 0 {
         didSet {
-            updateArcLayer()
+            applyRotation()
         }
     }
 
     public var color: UIColor = .white {
         didSet {
-            updateColors()
+            applyColor()
         }
     }
 
     public weak var dataSource: OrientationIndicatorDataSource?
 
-    private let arrowLayer = CAShapeLayer()
-    private let ringLayer = CAShapeLayer()
-    private let arcLayer = CAShapeLayer()
-    private let dotLayer = CAShapeLayer()
+    private let strokeLayer = CAShapeLayer()
+    private let fovArcLayer = CAShapeLayer()
+    private let deviceLayer = CAShapeLayer()
+    private let rotationLayer = CALayer()
 
-    private let arrowSize = CGSize(width: 6, height: 4)
-    private let ringWidth: CGFloat = 2
-    private let arcMargin: CGFloat = 2
-    private let dotRadius: CGFloat = 2
+    private var strokeWidth: CGFloat = 3
 
-    private var arcWidth: CGFloat {
-        return bounds.height / 2 - arrowSize.height - ringWidth / 2 - arcMargin * 2 - dotRadius
+    private var innerFovArcRadius: CGFloat {
+        return CGFloat(ceil(fov * 3))
+    }
+
+    private var outerFovArcRadius: CGFloat {
+        return bounds.height / 2 - strokeWidth / 2
+    }
+
+    private var fovArcWidth: CGFloat {
+        return outerFovArcRadius - innerFovArcRadius
     }
 
     public override init() {
         super.init()
 
-        addSublayer(arrowLayer)
-        addSublayer(ringLayer)
-        addSublayer(arcLayer)
-        addSublayer(dotLayer)
+        addSublayer(strokeLayer)
+        addSublayer(rotationLayer)
 
-        ringLayer.lineWidth = 1
+        rotationLayer.addSublayer(fovArcLayer)
+        rotationLayer.addSublayer(deviceLayer)
 
-        arrowLayer.strokeColor = nil
-        ringLayer.fillColor = nil
-        arcLayer.fillColor = nil
-        dotLayer.strokeColor = nil
+        strokeLayer.fillColor = nil
+        fovArcLayer.fillColor = nil
+        deviceLayer.strokeColor = nil
 
-        updateColors()
-        updateArcLayer()
+        strokeLayer.lineWidth = 1
+
+        applyFov()
+        applyRotation()
+        applyColor()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -83,22 +89,23 @@ public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
 
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
 
-        arrowLayer.position = center
-        ringLayer.position = center
-        arcLayer.position = center
-        dotLayer.position = center
+        let sublayers = [
+            strokeLayer,
+            fovArcLayer,
+            deviceLayer,
+            rotationLayer
+        ]
 
-        arrowLayer.bounds = bounds
-        ringLayer.bounds = bounds
-        arcLayer.bounds = bounds
-        dotLayer.bounds = bounds
+        for sublayer in sublayers {
+            sublayer.position = center
+            sublayer.bounds = bounds
+        }
 
-        arrowLayer.path = makeArrowPath()
-        ringLayer.path = makeRingPath()
-        arcLayer.path = makeArcPath()
-        dotLayer.path = makeDotPath()
+        strokeLayer.path = makeStrokePath()
+        fovArcLayer.path = makeFovArcPath()
+        deviceLayer.path = makeDevicePath()
 
-        arcLayer.lineWidth = arcWidth
+        fovArcLayer.lineWidth = fovArcWidth
     }
 
     public func updateOrientation() {
@@ -128,37 +135,28 @@ public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
 
         let v1 = SCNVector3(0, 0, 1)
         let v2 = pointOfView.presentation.convertPosition(v1, to: nil)
+
         rotation = atan2(v2.z, v2.x) - (.pi / 2)
     }
 
-    private func updateColors() {
-        arrowLayer.fillColor = color.cgColor
-        ringLayer.strokeColor = color.cgColor
-        arcLayer.strokeColor = color.cgColor
-        dotLayer.fillColor = color.cgColor
+    private func applyFov() {
+        fovArcLayer.strokeEnd = CGFloat(fov) / (.pi * 2)
+        fovArcLayer.transform = CATransform3DMakeRotation(CGFloat((.pi + fov) / -2), 0, 0, 1)
     }
 
-    private func updateArcLayer() {
-        arcLayer.strokeStart = 0
-        arcLayer.strokeEnd = CGFloat(fov) / (.pi * 2)
-        arcLayer.transform = CATransform3DMakeRotation(CGFloat(rotation - (.pi + fov) / 2), 0, 0, 1)
+    private func applyRotation() {
+        rotationLayer.transform = CATransform3DMakeRotation(CGFloat(rotation), 0, 0, 1)
     }
 
-    private func makeArrowPath() -> CGPath {
+    private func applyColor() {
+        strokeLayer.strokeColor = color.withAlphaComponent(0.5).cgColor
+        fovArcLayer.strokeColor = color.cgColor
+        deviceLayer.fillColor = color.cgColor
+    }
+
+    private func makeStrokePath() -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-
-        let path = CGMutablePath()
-        path.move(to: CGPoint(x: center.x, y: bounds.minY))
-        path.addLine(to: CGPoint(x: center.x + arrowSize.width / 2, y: bounds.minY + arrowSize.height))
-        path.addLine(to: CGPoint(x: center.x - arrowSize.width / 2, y: bounds.minY + arrowSize.height))
-        path.closeSubpath()
-
-        return path
-    }
-
-    private func makeRingPath() -> CGPath {
-        let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = bounds.height / 2 - arrowSize.height
+        let radius = bounds.height / 2 - strokeWidth / 2
 
         let path = CGMutablePath()
         path.addRelativeArc(center: center, radius: radius, startAngle: 0, delta: .pi * 2)
@@ -167,9 +165,9 @@ public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
         return path
     }
 
-    private func makeArcPath() -> CGPath {
+    private func makeFovArcPath() -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = dotRadius + arcMargin + arcWidth / 2
+        let radius = innerFovArcRadius + fovArcWidth / 2
 
         let path = CGMutablePath()
         path.addRelativeArc(center: center, radius: radius, startAngle: 0, delta: .pi * 2)
@@ -178,14 +176,12 @@ public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
         return path
     }
 
-    private func makeDotPath() -> CGPath {
+    private func makeDevicePath() -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = dotRadius
+        let size = CGSize(width: 9, height: 3)
+        let rect = CGRect(x: center.x - size.width / 2, y: center.y - size.height / 2, width: size.width, height: size.height)
+        let path = CGPath(roundedRect: rect, cornerWidth: size.height / 2, cornerHeight: size.height / 2, transform: nil)
 
-        let path = CGMutablePath()
-        path.addRelativeArc(center: center, radius: radius, startAngle: 0, delta: .pi * 2)
-        path.closeSubpath()
-        
         return path
     }
 }
