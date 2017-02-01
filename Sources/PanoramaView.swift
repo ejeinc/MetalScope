@@ -133,6 +133,16 @@ extension PanoramaView {
     }
 }
 
+extension PanoramaView: OrientationIndicatorDataSource {
+    public var pointOfView: SCNNode? {
+        return orientationNode.pointOfView
+    }
+
+    public var viewportSize: CGSize {
+        return scnView.bounds.size
+    }
+}
+
 extension PanoramaView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         var disableActions = false
