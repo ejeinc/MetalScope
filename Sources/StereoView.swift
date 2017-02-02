@@ -162,7 +162,7 @@ extension StereoView {
         return scnView.snapshot()
     }
 
-    @IBAction public func resetCenter(_ sender: Any? = nil) {
+    public func resetCenter() {
         orientationNode.resetCenter(animated: true)
     }
 }

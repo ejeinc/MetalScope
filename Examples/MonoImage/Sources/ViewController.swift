@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
             panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
         tapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
