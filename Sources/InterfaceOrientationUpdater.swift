@@ -19,6 +19,10 @@ internal final class InterfaceOrientationUpdater {
         self.orientationNode = orientationNode
     }
 
+    deinit {
+        stopAutomaticInterfaceOrientationUpdates()
+    }
+
     func updateInterfaceOrientation() {
         orientationNode.updateInterfaceOrientation()
     }
