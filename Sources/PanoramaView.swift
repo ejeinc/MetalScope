@@ -128,7 +128,7 @@ extension PanoramaView {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
-    @IBAction public func resetCenter(_ sender: Any) {
+    @IBAction public func resetCenter(_ sender: Any? = nil) {
         orientationNode.resetCenter(animated: true)
     }
 }
