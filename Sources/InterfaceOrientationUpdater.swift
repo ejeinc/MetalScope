@@ -71,6 +71,8 @@ internal final class InterfaceOrientationUpdater {
         UIDevice.current.endGeneratingDeviceOrientationNotifications()
 
         NotificationCenter.default.removeObserver(observer)
+
+        deviceOrientationDidChangeNotificationObserver = nil
     }
 }
 
