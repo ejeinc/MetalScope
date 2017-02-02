@@ -2,8 +2,6 @@
 
 Metal-backed 360-degree media view for iOS.
 
-## Features
-
 |                          | Features
 |--------------------------|---------
 | :metal:                  | Built on top of SceneKit + Metal
