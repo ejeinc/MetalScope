@@ -4,7 +4,7 @@ Metal-backed 360-degree media view for iOS.
 
 ## Requirements
 
-- Xcode 8.0+
+- Xcode 8.2+
 - iOS 9.0+
 - Swift 3.0+
 - Metal
