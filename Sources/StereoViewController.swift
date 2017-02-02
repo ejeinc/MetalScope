@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-open class StereoViewController: UIViewController {
+open class StereoViewController: UIViewController, MediaSceneLoader {
     open let device: MTLDevice
 
     open var scene: SCNScene? {
