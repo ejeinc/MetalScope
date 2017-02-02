@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BF1452DF1E320BAC0042598E /* MediaSceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452DE1E320BAC0042598E /* MediaSceneLoader.swift */; };
-		BF1452E11E320BEF0042598E /* MediaSceneLoader+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E01E320BEF0042598E /* MediaSceneLoader+Photo.swift */; };
+		BF1452E11E320BEF0042598E /* MediaSceneLoader+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E01E320BEF0042598E /* MediaSceneLoader+Image.swift */; };
 		BF1452E31E320C210042598E /* MediaSceneLoader+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */; };
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
 		BF603F551E41B57600A28013 /* OrientationIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF603F541E41B57600A28013 /* OrientationIndicator.swift */; };
 		BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A791E310401005A3529 /* VideoScene.swift */; };
-		BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */; };
+		BFA89A7E1E3108D0005A3529 /* ImageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A7D1E3108D0005A3529 /* ImageScene.swift */; };
 		BFAB12FC1E35B82900A1642C /* StereoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB12FB1E35B82900A1642C /* StereoView.swift */; };
 		BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */; };
 		BFAB13011E35B97500A1642C /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13001E35B97500A1642C /* Eye.swift */; };
@@ -45,12 +45,12 @@
 
 /* Begin PBXFileReference section */
 		BF1452DE1E320BAC0042598E /* MediaSceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MediaSceneLoader.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BF1452E01E320BEF0042598E /* MediaSceneLoader+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Photo.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BF1452E01E320BEF0042598E /* MediaSceneLoader+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Image.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Video.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryBitMask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF603F541E41B57600A28013 /* OrientationIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationIndicator.swift; sourceTree = "<group>"; };
 		BFA89A791E310401005A3529 /* VideoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PhotoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFA89A7D1E3108D0005A3529 /* ImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB12FB1E35B82900A1642C /* StereoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB12FE1E35B94400A1642C /* StereoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoRenderer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB13001E35B97500A1642C /* Eye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Eye.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -184,10 +184,10 @@
 			children = (
 				BFFE23881E409046006097A1 /* MediaFormat.swift */,
 				BF1452DE1E320BAC0042598E /* MediaSceneLoader.swift */,
-				BF1452E01E320BEF0042598E /* MediaSceneLoader+Photo.swift */,
+				BF1452E01E320BEF0042598E /* MediaSceneLoader+Image.swift */,
 				BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */,
 				BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */,
-				BFA89A7D1E3108D0005A3529 /* PhotoScene.swift */,
+				BFA89A7D1E3108D0005A3529 /* ImageScene.swift */,
 				BFA89A791E310401005A3529 /* VideoScene.swift */,
 				BF1453051E321CE30042598E /* CategoryBitMask.swift */,
 				BFB891911E2E044900FA9129 /* Video */,
@@ -280,7 +280,7 @@
 				BFAB13011E35B97500A1642C /* Eye.swift in Sources */,
 				BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */,
 				BFB891A21E2E08FC00FA9129 /* DeviceOrientationProvider.swift in Sources */,
-				BFA89A7E1E3108D0005A3529 /* PhotoScene.swift in Sources */,
+				BFA89A7E1E3108D0005A3529 /* ImageScene.swift in Sources */,
 				BFB891A61E2E109A00FA9129 /* Rotation+CoreMotion.swift in Sources */,
 				BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */,
 				BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */,
@@ -292,7 +292,7 @@
 				BFAB13051E35B9EB00A1642C /* ViewerParameters.swift in Sources */,
 				BFAB13071E35BE0C00A1642C /* ScreenParameters.swift in Sources */,
 				BF1452DF1E320BAC0042598E /* MediaSceneLoader.swift in Sources */,
-				BF1452E11E320BEF0042598E /* MediaSceneLoader+Photo.swift in Sources */,
+				BF1452E11E320BEF0042598E /* MediaSceneLoader+Image.swift in Sources */,
 				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,
 				BFAB130B1E35D1E900A1642C /* StereoParameters.swift in Sources */,
 				BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */,

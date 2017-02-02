@@ -54,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BF1453121E322A440042598E /* StereoPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StereoPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1453121E322A440042598E /* StereoImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StereoImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1453151E322A440042598E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF1453171E322A440042598E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BF14531C1E322A440042598E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		BF1453131E322A440042598E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF1453121E322A440042598E /* StereoPhoto.app */,
+				BF1453121E322A440042598E /* StereoImage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BF1453111E322A440042598E /* StereoPhoto */ = {
+		BF1453111E322A440042598E /* StereoImage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF1453241E322A440042598E /* Build configuration list for PBXNativeTarget "StereoPhoto" */;
+			buildConfigurationList = BF1453241E322A440042598E /* Build configuration list for PBXNativeTarget "StereoImage" */;
 			buildPhases = (
 				BF14530E1E322A440042598E /* Sources */,
 				BF14530F1E322A440042598E /* Frameworks */,
@@ -134,9 +134,9 @@
 				BFF6BBB31E40CF3C0000B243 /* PBXTargetDependency */,
 				BFF6BBB71E40CF4D0000B243 /* PBXTargetDependency */,
 			);
-			name = StereoPhoto;
+			name = StereoImage;
 			productName = StereoSphericalPhoto;
-			productReference = BF1453121E322A440042598E /* StereoPhoto.app */;
+			productReference = BF1453121E322A440042598E /* StereoImage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BF14530D1E322A440042598E /* Build configuration list for PBXProject "StereoPhoto" */;
+			buildConfigurationList = BF14530D1E322A440042598E /* Build configuration list for PBXProject "StereoImage" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -175,7 +175,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BF1453111E322A440042598E /* StereoPhoto */,
+				BF1453111E322A440042598E /* StereoImage */,
 			);
 		};
 /* End PBXProject section */
@@ -336,7 +336,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.StereoPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.StereoImage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -350,7 +350,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.StereoPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.StereoImage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -359,7 +359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BF14530D1E322A440042598E /* Build configuration list for PBXProject "StereoPhoto" */ = {
+		BF14530D1E322A440042598E /* Build configuration list for PBXProject "StereoImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF1453221E322A440042598E /* Debug */,
@@ -368,7 +368,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF1453241E322A440042598E /* Build configuration list for PBXNativeTarget "StereoPhoto" */ = {
+		BF1453241E322A440042598E /* Build configuration list for PBXNativeTarget "StereoImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF1453251E322A440042598E /* Debug */,

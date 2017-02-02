@@ -54,9 +54,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFB892451E2F9CFF00FA9129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BFB892401E2F9CFF00FA9129 /* MonoImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFB892431E2F9CFF00FA9129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFB892451E2F9CFF00FA9129 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8924A1E2F9CFF00FA9129 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB8924D1E2F9CFF00FA9129 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFB8924F1E2F9CFF00FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		BFB892411E2F9CFF00FA9129 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */,
+				BFB892401E2F9CFF00FA9129 /* MonoImage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BFB8923F1E2F9CFF00FA9129 /* MonoPhoto */ = {
+		BFB8923F1E2F9CFF00FA9129 /* MonoImage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoPhoto" */;
+			buildConfigurationList = BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoImage" */;
 			buildPhases = (
 				BFB8923C1E2F9CFF00FA9129 /* Sources */,
 				BFB8923D1E2F9CFF00FA9129 /* Frameworks */,
@@ -134,9 +134,9 @@
 				BFF6BB991E40CECB0000B243 /* PBXTargetDependency */,
 				BFF6BB9D1E40CED10000B243 /* PBXTargetDependency */,
 			);
-			name = MonoPhoto;
+			name = MonoImage;
 			productName = MonoSphericalPhoto;
-			productReference = BFB892401E2F9CFF00FA9129 /* MonoPhoto.app */;
+			productReference = BFB892401E2F9CFF00FA9129 /* MonoImage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoPhoto" */;
+			buildConfigurationList = BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoImage" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -175,7 +175,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BFB8923F1E2F9CFF00FA9129 /* MonoPhoto */,
+				BFB8923F1E2F9CFF00FA9129 /* MonoImage */,
 			);
 		};
 /* End PBXProject section */
@@ -336,7 +336,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.MonoPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.MonoImage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -350,7 +350,7 @@
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.MonoPhoto";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eje-c.MetalScope.MonoImage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -359,7 +359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoPhoto" */ = {
+		BFB8923B1E2F9CFF00FA9129 /* Build configuration list for PBXProject "MonoImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB892501E2F9CFF00FA9129 /* Debug */,
@@ -368,7 +368,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoPhoto" */ = {
+		BFB892521E2F9CFF00FA9129 /* Build configuration list for PBXNativeTarget "MonoImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFB892531E2F9CFF00FA9129 /* Debug */,

@@ -1,5 +1,5 @@
 //
-//  MediaSceneLoader+Photo.swift
+//  MediaSceneLoader+Image.swift
 //  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/20.
@@ -9,14 +9,14 @@
 import SceneKit
 
 extension MediaSceneLoader {
-    public func loadPhoto(image: UIImage, format: MediaFormat) {
-        let scene: PhotoSceneProtocol
+    public func load(_ image: UIImage, format: MediaFormat) {
+        let scene: ImageSceneProtocol
 
         switch format {
         case .mono:
-            scene = MonoSphericalPhotoScene()
+            scene = MonoSphericalImageScene()
         case .stereoOverUnder:
-            scene = StereoSphericalPhotoScene()
+            scene = StereoSphericalImageScene()
         }
 
         scene.image = image

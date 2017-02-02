@@ -1,5 +1,5 @@
 //
-//  PhotoScene.swift
+//  ImageScene.swift
 //  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/19.
@@ -9,11 +9,11 @@
 import SceneKit
 import UIKit
 
-public protocol PhotoSceneProtocol: class {
+public protocol ImageSceneProtocol: class {
     var image: UIImage? { get set }
 }
 
-public final class MonoSphericalPhotoScene: MonoSphericalMediaScene, PhotoSceneProtocol {
+public final class MonoSphericalImageScene: MonoSphericalMediaScene, ImageSceneProtocol {
     public var image: UIImage? {
         didSet {
             mediaSphereNode.mediaContents = image
@@ -21,7 +21,7 @@ public final class MonoSphericalPhotoScene: MonoSphericalMediaScene, PhotoSceneP
     }
 }
 
-public final class StereoSphericalPhotoScene: StereoSphericalMediaScene, PhotoSceneProtocol {
+public final class StereoSphericalImageScene: StereoSphericalMediaScene, ImageSceneProtocol {
     public var image: UIImage? {
         didSet {
             var leftImage: UIImage?

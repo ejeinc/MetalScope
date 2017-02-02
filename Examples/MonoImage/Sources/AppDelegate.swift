@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  StereoSphericalPhoto
+//  MonoImage
 //
-//  Created by Jun Tanaka on 2017/01/20.
+//  Created by Jun Tanaka on 2017/01/18.
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
@@ -14,7 +14,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.tintColor = .white
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         return true

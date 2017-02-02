@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/Jun/Desktop/eje/PanoramaView/Examples/StereoPhoto/StereoPhoto.xcodeproj">
+      location = "self:/Users/Jun/Desktop/eje/MetalScope/Examples/MonoPhoto/MonoImage.xcodeproj">
    </FileRef>
 </Workspace>

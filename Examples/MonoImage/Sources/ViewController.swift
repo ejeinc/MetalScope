@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MonoSphericalPhoto
+//  MonoImage
 //
 //  Created by Jun Tanaka on 2017/01/18.
 //  Copyright © 2017 eje Inc. All rights reserved.
@@ -36,7 +36,7 @@ final class ViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
-        panoramaView.loadPhoto(image: #imageLiteral(resourceName: "test"), format: .mono)
+        panoramaView.load(#imageLiteral(resourceName: "test"), format: .mono)
 
         self.panoramaView = panoramaView
     }

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  StereoSphericalPhoto
+//  StereoImage
 //
 //  Created by Jun Tanaka on 2017/01/20.
 //  Copyright © 2017 eje Inc. All rights reserved.
@@ -37,7 +37,7 @@ final class ViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
-        panoramaView.loadPhoto(image: #imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
+        panoramaView.load(#imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
 
         self.panoramaView = panoramaView
     }
