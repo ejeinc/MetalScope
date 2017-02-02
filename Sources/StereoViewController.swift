@@ -44,6 +44,8 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         return button
     }
 
+    open var closeButtonHandler: ((_ sender: UIButton) -> Void)?
+
     open var showsHelpButton: Bool = false {
         didSet {
             _helpButton?.isHidden = !showsHelpButton
@@ -59,6 +61,8 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         }
         return button
     }
+
+    open var helpButtonHandler: ((_ sender: UIButton) -> Void)?
 
     private weak var _stereoView: StereoView?
     private weak var _closeButton: UIButton?
@@ -132,6 +136,12 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
             closeButton.topAnchor.constraint(equalTo: view.topAnchor),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])
+
+        closeButton.addTarget(self, action: #selector(handleTapOnCloseButton(_:)), for: .touchUpInside)
+    }
+
+    @objc private func handleTapOnCloseButton(_ sender: UIButton) {
+        closeButtonHandler?(sender)
     }
 
     private func loadHelpButton() {
@@ -158,5 +168,11 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
             helpButton.topAnchor.constraint(equalTo: view.topAnchor),
             helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+
+        helpButton.addTarget(self, action: #selector(handleTapOnHelpButton(_:)), for: .touchUpInside)
+    }
+
+    @objc private func handleTapOnHelpButton(_ sender: UIButton) {
+        helpButtonHandler?(sender)
     }
 }
