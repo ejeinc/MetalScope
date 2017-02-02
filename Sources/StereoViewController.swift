@@ -141,7 +141,11 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
     }
 
     @objc private func handleTapOnCloseButton(_ sender: UIButton) {
-        closeButtonHandler?(sender)
+        if let handler = closeButtonHandler {
+            handler(sender)
+        } else if sender.allTargets.count == 1 {
+            presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
 
     private func loadHelpButton() {
@@ -173,6 +177,11 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
     }
 
     @objc private func handleTapOnHelpButton(_ sender: UIButton) {
-        helpButtonHandler?(sender)
+        if let handler = helpButtonHandler {
+            handler(sender)
+        } else if sender.allTargets.count == 1 {
+            let url = URL(string: "https://support.google.com/cardboard/answer/6383058")!
+            UIApplication.shared.openURL(url)
+        }
     }
 }
