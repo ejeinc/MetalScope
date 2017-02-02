@@ -40,7 +40,7 @@ final class ViewController: UIViewController {
         do {
             let url = Bundle.main.url(forResource: "test", withExtension: "mp4")!
             let player = AVPlayer(url: url)
-            try panoramaView.loadVideo(player: player, format: .mono)
+            try panoramaView.load(player, format: .mono)
             player.play()
         } catch {
             fatalError(error.localizedDescription)
