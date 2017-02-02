@@ -44,7 +44,7 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         return button
     }
 
-    open var showsHelpButton: Bool = true {
+    open var showsHelpButton: Bool = false {
         didSet {
             _helpButton?.isHidden = !showsHelpButton
         }
