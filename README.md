@@ -14,6 +14,75 @@ Metal-backed 360-degree media view for iOS.
 | :sunrise_over_mountains: | Custom SCNScene presentation
 | :bird:                   | Written in Swift 3
 
+## Usage
+
+### PanoramaView
+
+Use `PanoramaView` to display an equirectangular image or video.
+
+```swift
+import MetalScope
+import Metal
+
+guard let device = MTLCreateSystemDefaultDevice() else {
+    fatalError("MetalScope requires Metal 🤘")
+}
+
+let panoramaView = PanoramaView(frame: ..., device: device)
+
+// load mono image
+let panoramaImage = UIImage(...)
+panoramaView.load(panoramaImage, format: .mono)
+
+// load stereo video
+let videoURL = URL(...)
+let player = AVPlayer(url: videoURL)
+do {
+    try panoramaView.load(player, format: .stereoOverUnder)
+} catch {
+    fatalError("Failed to load video: \(error)")
+}
+player.play()
+
+// load any SCNScene
+panoramaView.scene = ...
+```
+
+`PanoramaView` rotates the point of view by device motions and user's pan gesture. To reset rotation, just call `resetCenter()`
+
+```swift
+let panoramaView: PanoramaView = ...
+
+// double tap to re-center the scene
+let recognizer = UITapGestureRecognizer(
+  target: panoramaView,
+  action: #selector(PanoramaView.resetCenter))
+recognizer.numberOfTapsRequired = 2
+
+panoramaView.addGestureRecognizer(recognizer)
+
+// if you want to disable pan gesture:
+panoramaView.panGestureRecognizer.isEnabled = false
+```
+
+### StereoView
+
+For stereo display for Google's Cardboard, use `StereoView` or `StereoViewController` instead.
+
+```swift
+let stereoViewController = StereoViewController(device: ...)
+
+// load media
+stereoViewController.load(image, format: .stereoOverUnder)
+
+// or any SCNScene
+stereoViewController.scene = panoramaView.scene
+
+present(stereoViewController, animated: true, completion: nil)
+```
+
+Check example apps for more samples.
+
 ## Requirements
 
 - Xcode 8.2+
