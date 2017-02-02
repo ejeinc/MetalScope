@@ -79,6 +79,8 @@ stereoViewController.scene = panoramaView.scene
 present(stereoViewController, animated: true, completion: nil)
 ```
 
+![Preview of StereoViewController](https://raw.githubusercontent.com/ejeinc/MetalScope/master/Resources/stereo-preview.jpg)
+
 Check example apps for more samples.
 
 ## Requirements
