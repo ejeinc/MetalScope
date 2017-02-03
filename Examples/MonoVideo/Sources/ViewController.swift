@@ -21,6 +21,8 @@ final class ViewController: UIViewController {
 
     weak var panoramaView: PanoramaView?
 
+    var player: AVPlayer?
+
     private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,15 +35,20 @@ final class ViewController: UIViewController {
             panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        panoramaView.addGestureRecognizer(tapGestureRecognizer)
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
+
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePlaying))
+        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        panoramaView.addGestureRecognizer(singleTapGestureRecognizer)
 
         do {
             let url = Bundle.main.url(forResource: "test", withExtension: "mp4")!
             let player = AVPlayer(url: url)
             try panoramaView.load(player, format: .mono)
             player.play()
+            self.player = player
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -57,5 +64,17 @@ final class ViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         panoramaView?.updateInterfaceOrientation(with: coordinator)
+    }
+
+    func togglePlaying() {
+        guard let player = player else {
+            return
+        }
+
+        if player.rate == 0 {
+            player.play()
+        } else {
+            player.pause()
+        }
     }
 }
