@@ -188,10 +188,6 @@ extension StereoView: SCNSceneRendererDelegate {
     }
 
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        if let scene = scene as? VideoSceneProtocol {
-            scene.renderVideo(atTime: time, renderer: renderer)
-        }
-
         stereoRenderer.render(atTime: time)
     }
 }

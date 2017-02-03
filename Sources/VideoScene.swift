@@ -14,20 +14,7 @@ import SceneKit
 import AVFoundation
 
 public protocol VideoSceneProtocol: class {
-    var playerRenderer: PlayerRenderer { get }
-
-    func renderVideo(atTime time: TimeInterval, renderer: SCNSceneRenderer)
-}
-
-extension VideoSceneProtocol {
-    public var player: AVPlayer? {
-        get {
-            return playerRenderer.player
-        }
-        set(value) {
-            playerRenderer.player = value
-        }
-    }
+    var player: AVPlayer? { get set }
 }
 
 public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneProtocol {
@@ -37,16 +24,36 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
         }
     }
 
-    public let playerRenderer: PlayerRenderer
+    private lazy var renderLoop: RenderLoop = {
+        return RenderLoop { [weak self] time in
+            self?.renderVideo(atTime: time)
+        }
+    }()
 
-    public init(playerRenderer: PlayerRenderer) {
-        self.playerRenderer = playerRenderer
-        super.init()
+    private let renderer: PlayerRenderer
+    private let commandQueue: MTLCommandQueue
+
+    public var player: AVPlayer? {
+        didSet {
+            renderer.player = player
+        }
     }
 
-    public convenience init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
-        let renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
-        self.init(playerRenderer: renderer)
+    public override var isPaused: Bool {
+        didSet {
+            if isPaused {
+                renderLoop.pause()
+            } else {
+                renderLoop.resume()
+            }
+        }
+    }
+
+    public init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
+        renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
+        commandQueue = device.makeCommandQueue()
+        super.init()
+        renderLoop.resume()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -54,7 +61,7 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
     }
 
     private func updateTextureIfNeeded() {
-        guard let videoSize = playerRenderer.itemRenderer.playerItem?.presentationSize, videoSize != .zero else {
+        guard let videoSize = renderer.itemRenderer.playerItem?.presentationSize, videoSize != .zero else {
             return
         }
 
@@ -65,24 +72,31 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
             return
         }
 
-        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .bgra8Unorm_srgb, width: width, height: height, mipmapped: true)
-        playerTexture = playerRenderer.itemRenderer.device.makeTexture(descriptor: descriptor)
+        let pixelFormat: MTLPixelFormat
+        if #available(iOS 10, *) {
+            pixelFormat = .bgra8Unorm_srgb
+        } else {
+            pixelFormat = .bgra8Unorm
+        }
+
+        let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: true)
+        playerTexture = renderer.itemRenderer.device.makeTexture(descriptor: descriptor)
     }
 
-    public func renderVideo(atTime time: TimeInterval, renderer: SCNSceneRenderer) {
-        guard playerRenderer.hasNewPixelBuffer(atHostTime: time) else {
+    public func renderVideo(atTime time: TimeInterval, commandQueue: MTLCommandQueue? = nil) {
+        guard renderer.hasNewPixelBuffer(atHostTime: time) else {
             return
         }
 
         updateTextureIfNeeded()
 
-        guard let texture = playerTexture, let commandQueue = renderer.commandQueue else {
+        guard let texture = playerTexture else {
             return
         }
 
         do {
-            let commandBuffer = commandQueue.makeCommandBuffer()
-            try playerRenderer.render(atHostTime: time, to: texture, commandBuffer: commandBuffer)
+            let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
+            try renderer.render(atHostTime: time, to: texture, commandBuffer: commandBuffer)
             commandBuffer.commit()
         } catch let error as CVError {
             debugPrint("[MonoSphericalVideoScene] failed to render video with error: \(error)")
@@ -107,16 +121,36 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
     }
 
-    public let playerRenderer: PlayerRenderer
+    private lazy var renderLoop: RenderLoop = {
+        return RenderLoop { [weak self] time in
+            self?.renderVideo(atTime: time)
+        }
+    }()
 
-    public init(playerRenderer: PlayerRenderer) {
-        self.playerRenderer = playerRenderer
-        super.init()
+    private let renderer: PlayerRenderer
+    private let commandQueue: MTLCommandQueue
+
+    public var player: AVPlayer? {
+        didSet {
+            renderer.player = player
+        }
     }
 
-    public convenience init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
-        let renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
-        self.init(playerRenderer: renderer)
+    public override var isPaused: Bool {
+        didSet {
+            if isPaused {
+                renderLoop.pause()
+            } else {
+                renderLoop.resume()
+            }
+        }
+    }
+
+    public init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
+        renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
+        commandQueue = device.makeCommandQueue()
+        super.init()
+        renderLoop.resume()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -124,7 +158,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
     }
 
     private func updateTexturesIfNeeded() {
-        guard let videoSize = playerRenderer.itemRenderer.playerItem?.presentationSize, videoSize != .zero else {
+        guard let videoSize = renderer.itemRenderer.playerItem?.presentationSize, videoSize != .zero else {
             return
         }
 
@@ -135,7 +169,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
             return
         }
 
-        let device = playerRenderer.device
+        let device = renderer.device
 
         let playerTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .bgra8Unorm_srgb, width: width, height: height, mipmapped: true)
         playerTexture = device.makeTexture(descriptor: playerTextureDescriptor)
@@ -145,25 +179,21 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         rightSphereTexture = device.makeTexture(descriptor: sphereTextureDescriptor)
     }
 
-    public func renderVideo(atTime time: TimeInterval, renderer: SCNSceneRenderer) {
-        guard playerRenderer.hasNewPixelBuffer(atHostTime: time) else {
+    public func renderVideo(atTime time: TimeInterval, commandQueue: MTLCommandQueue? = nil) {
+        guard renderer.hasNewPixelBuffer(atHostTime: time) else {
             return
         }
 
         updateTexturesIfNeeded()
 
-        guard
-            let playerTexture = playerTexture,
-            let leftSphereTexture = leftSphereTexture,
-            let rightSphereTexture = rightSphereTexture,
-            let commandQueue = renderer.commandQueue else {
+        guard let playerTexture = playerTexture else {
             return
         }
 
-        do {
-            let commandBuffer = commandQueue.makeCommandBuffer()
+        let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
 
-            try playerRenderer.render(atHostTime: time, to: playerTexture, commandBuffer: commandBuffer)
+        do {
+            try renderer.render(atHostTime: time, to: playerTexture, commandBuffer: commandBuffer)
 
             func copyPlayerTexture(region: MTLRegion, to sphereTexture: MTLTexture) {
                 let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
@@ -183,11 +213,15 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
 
             let halfHeight = playerTexture.height / 2
 
-            let leftSphereRegion = MTLRegionMake2D(0, 0, playerTexture.width, halfHeight)
-            copyPlayerTexture(region: leftSphereRegion, to: leftSphereTexture)
+            if let leftTexture = leftSphereTexture {
+                let leftSphereRegion = MTLRegionMake2D(0, 0, playerTexture.width, halfHeight)
+                copyPlayerTexture(region: leftSphereRegion, to: leftTexture)
+            }
 
-            let rightSphereRegion = MTLRegionMake2D(0, halfHeight, playerTexture.width, halfHeight)
-            copyPlayerTexture(region: rightSphereRegion, to: rightSphereTexture)
+            if let rightTexture = rightSphereTexture {
+                let rightSphereRegion = MTLRegionMake2D(0, halfHeight, playerTexture.width, halfHeight)
+                copyPlayerTexture(region: rightSphereRegion, to: rightTexture)
+            }
 
             commandBuffer.commit()
         } catch let error as CVError {

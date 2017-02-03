@@ -178,10 +178,6 @@ extension PanoramaView: SCNSceneRendererDelegate {
     }
 
     public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        if let scene = renderer.scene as? VideoSceneProtocol {
-            scene.renderVideo(atTime: time, renderer: renderer)
-        }
-
         sceneRendererDelegate?.renderer?(renderer, willRenderScene: scene, atTime: time)
     }
 
