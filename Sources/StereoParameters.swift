@@ -18,6 +18,13 @@ public struct StereoParameters: StereoParametersProtocol {
     public var viewer: ViewerParametersProtocol
 }
 
+extension StereoParameters {
+    public init(screenModel: ScreenModel = .default, viewerModel: ViewerModel = .default) {
+        screen = screenModel
+        viewer = viewerModel
+    }
+}
+
 extension StereoParametersProtocol {
     func cameraProjectionTransform(for eye: Eye, nearZ: Float, farZ: Float, aspectRatio: Float = 1) -> SCNMatrix4 {
         var projection = distortedProjection(for: eye)
