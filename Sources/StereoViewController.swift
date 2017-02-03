@@ -84,11 +84,14 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
 
     open override func loadView() {
         let stereoView = StereoView(device: device)
+        stereoView.backgroundColor = .black
         stereoView.scene = scene
         stereoView.translatesAutoresizingMaskIntoConstraints = false
+        stereoView.isPlaying = false
         _stereoView = stereoView
 
         let view = UIView(frame: stereoView.bounds)
+        view.backgroundColor = .black
         view.addSubview(stereoView)
         self.view = view
 
@@ -106,6 +109,26 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         if showsHelpButton {
             loadHelpButton()
         }
+    }
+
+    open override func viewWillAppear(_ animated: Bool) {
+        if animated {
+            _stereoView?.alpha = 0
+        }
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        _stereoView?.isPlaying = true
+
+        if animated {
+            UIView.animate(withDuration: 0.2) {
+                self._stereoView?.alpha = 1
+            }
+        }
+    }
+
+    open override func viewWillDisappear(_ animated: Bool) {
+        _stereoView?.isPlaying = false
     }
 
     open override var prefersStatusBarHidden: Bool {
