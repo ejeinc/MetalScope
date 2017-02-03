@@ -6,6 +6,10 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
+#if (arch(i386) || arch(x86_64)) && os(iOS)
+    // Not available on iOS Simulator
+#else
+
 import UIKit
 import SceneKit
 
@@ -203,3 +207,5 @@ private extension UIScreen {
         return CGRect(x: 0, y: 0, width: nativeBounds.height, height: nativeBounds.width)
     }
 }
+
+#endif

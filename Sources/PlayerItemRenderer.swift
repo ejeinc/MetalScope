@@ -6,6 +6,10 @@
 //  Copyright © 2016 eje Inc. All rights reserved.
 //
 
+#if (arch(i386) || arch(x86_64)) && os(iOS)
+    // Not available on iOS Simulator
+#else
+
 import Metal
 import AVFoundation
 
@@ -115,3 +119,5 @@ public final class PlayerItemRenderer {
         try render(atItemTime: itemTime, to: texture, commandBuffer: commandBuffer)
     }
 }
+
+#endif

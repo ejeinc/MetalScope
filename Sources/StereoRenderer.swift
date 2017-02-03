@@ -6,6 +6,10 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
+#if (arch(i386) || arch(x86_64)) && os(iOS)
+    // Not available on iOS Simulator
+#else
+
 import SceneKit
 import Metal
 
@@ -129,3 +133,5 @@ private extension StereoRenderer {
         }
     }
 }
+
+#endif
