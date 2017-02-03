@@ -12,6 +12,7 @@
 		BF1452E31E320C210042598E /* MediaSceneLoader+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */; };
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
 		BF603F551E41B57600A28013 /* OrientationIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF603F541E41B57600A28013 /* OrientationIndicator.swift */; };
+		BF9B15B61E44B4B1004CC8CE /* KeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B15B51E44B4B1004CC8CE /* KeyValueObserver.swift */; };
 		BFA89A7A1E310401005A3529 /* VideoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A791E310401005A3529 /* VideoScene.swift */; };
 		BFA89A7E1E3108D0005A3529 /* ImageScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A7D1E3108D0005A3529 /* ImageScene.swift */; };
 		BFAB12FC1E35B82900A1642C /* StereoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB12FB1E35B82900A1642C /* StereoView.swift */; };
@@ -49,6 +50,7 @@
 		BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Video.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryBitMask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF603F541E41B57600A28013 /* OrientationIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationIndicator.swift; sourceTree = "<group>"; };
+		BF9B15B51E44B4B1004CC8CE /* KeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueObserver.swift; sourceTree = "<group>"; };
 		BFA89A791E310401005A3529 /* VideoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFA89A7D1E3108D0005A3529 /* ImageScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB12FB1E35B82900A1642C /* StereoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -101,6 +103,14 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		BF9B15B71E44B50A004CC8CE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B15B51E44B4B1004CC8CE /* KeyValueObserver.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		BFAB12FD1E35B82D00A1642C /* StereoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
 				BF4B3D291E420D95005BE575 /* UI */,
+				BF9B15B71E44B50A004CC8CE /* Utilities */,
 				BFB8917C1E2E013400FA9129 /* Info.plist */,
 				BFAB13151E363ACD00A1642C /* Assets.xcassets */,
 			);
@@ -296,6 +307,7 @@
 				BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */,
 				BFAB130B1E35D1E900A1642C /* StereoParameters.swift in Sources */,
 				BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */,
+				BF9B15B61E44B4B1004CC8CE /* KeyValueObserver.swift in Sources */,
 				BFAB13091E35BE9800A1642C /* ScreenModel.swift in Sources */,
 				BFFE23891E409046006097A1 /* MediaFormat.swift in Sources */,
 				BFAB13031E35B9DA00A1642C /* ViewerModel.swift in Sources */,

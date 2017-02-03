@@ -67,18 +67,4 @@ public final class PlayerRenderer {
     }
 }
 
-private extension PlayerRenderer {
-    final class KeyValueObserver: NSObject {
-        private let action: ([NSKeyValueChangeKey: Any]?) -> Void
-
-        init(_ action: @escaping ([NSKeyValueChangeKey: Any]?) -> Void) {
-            self.action = action
-        }
-
-        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-            action(change)
-        }
-    }
-}
-
 #endif
