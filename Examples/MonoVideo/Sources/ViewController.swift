@@ -28,12 +28,13 @@ final class ViewController: UIViewController {
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
-        NSLayoutConstraint.activate([
+        let constraints: [NSLayoutConstraint] = [
             panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
             panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        ]
+        NSLayoutConstraint.activate(constraints)
 
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
@@ -47,7 +48,7 @@ final class ViewController: UIViewController {
     }
 
     private func loadVideo() {
-        let url = Bundle.main.url(forResource: "test", withExtension: "mp4")!
+        let url = Bundle.main.url(forResource: "Sample", withExtension: "mp4")!
         let playerItem = AVPlayerItem(url: url)
         let player = AVPlayer(playerItem: playerItem)
         self.player = player
@@ -74,6 +75,10 @@ final class ViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         panoramaView?.updateInterfaceOrientation(with: coordinator)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     func togglePlaying() {

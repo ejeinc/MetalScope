@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF2DB2891E48A20A0064CCAA /* Sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BF2DB2881E48A20A0064CCAA /* Sample.mp4 */; };
 		BFA89A9D1E3117C0005A3529 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */; };
 		BFA89A9F1E3117C0005A3529 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA89A9E1E3117C0005A3529 /* ViewController.swift */; };
 		BFA89AA41E3117C0005A3529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA31E3117C0005A3529 /* Assets.xcassets */; };
 		BFA89AA71E3117C0005A3529 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */; };
-		BFA89ABD1E31187A005A3529 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BFA89ABC1E31187A005A3529 /* test.mp4 */; };
 		BFF6BBA71E40CF130000B243 /* MetalScope.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6BBA41E40CEFF0000B243 /* MetalScope.framework */; };
 		BFF6BBA81E40CF130000B243 /* MetalScope.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFF6BBA41E40CEFF0000B243 /* MetalScope.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -55,13 +55,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF2DB2881E48A20A0064CCAA /* Sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.mp4; sourceTree = "<group>"; };
 		BFA89A991E3117C0005A3529 /* MonoVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonoVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFA89A9E1E3117C0005A3529 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFA89AA31E3117C0005A3529 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFA89AA61E3117C0005A3529 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFA89AA81E3117C0005A3529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFA89ABC1E31187A005A3529 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		BFF6BB9F1E40CEFF0000B243 /* MetalScope.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MetalScope.xcodeproj; path = ../../MetalScope.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,7 +103,7 @@
 			children = (
 				BFA89A9C1E3117C0005A3529 /* AppDelegate.swift */,
 				BFA89A9E1E3117C0005A3529 /* ViewController.swift */,
-				BFA89ABC1E31187A005A3529 /* test.mp4 */,
+				BF2DB2881E48A20A0064CCAA /* Sample.mp4 */,
 				BFA89AA31E3117C0005A3529 /* Assets.xcassets */,
 				BFA89AA51E3117C0005A3529 /* LaunchScreen.storyboard */,
 				BFA89AA81E3117C0005A3529 /* Info.plist */,
@@ -199,8 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA89AA71E3117C0005A3529 /* LaunchScreen.storyboard in Resources */,
-				BFA89ABD1E31187A005A3529 /* test.mp4 in Resources */,
 				BFA89AA41E3117C0005A3529 /* Assets.xcassets in Resources */,
+				BF2DB2891E48A20A0064CCAA /* Sample.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -351,7 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "app-icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2ZY4DX9AXC;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -25,12 +25,13 @@ final class ViewController: UIViewController {
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
-        NSLayoutConstraint.activate([
+        let constraints: [NSLayoutConstraint] = [
             panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
             panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        ]
+        NSLayoutConstraint.activate(constraints)
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
         tapGestureRecognizer.numberOfTapsRequired = 2
@@ -38,7 +39,7 @@ final class ViewController: UIViewController {
 
         self.panoramaView = panoramaView
 
-        panoramaView.load(#imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
+        panoramaView.load(#imageLiteral(resourceName: "Sample"), format: .stereoOverUnder)
     }
 
     private func loadStereoButton() {
@@ -77,6 +78,10 @@ final class ViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         panoramaView?.updateInterfaceOrientation(with: coordinator)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     func presentStereoView() {
