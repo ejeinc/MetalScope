@@ -17,6 +17,20 @@ public protocol VideoSceneProtocol: class {
     var player: AVPlayer? { get set }
 }
 
+private extension VideoSceneProtocol {
+    func preferredPixelFormat(on device: MTLDevice) -> MTLPixelFormat {
+        // check sRGB writes availability
+        // https://developer.apple.com/metal/availability/
+        if #available(iOS 10, *), device.supportsFeatureSet(.iOS_GPUFamily2_v3) {
+            return .bgra8Unorm_srgb
+        } else if device.supportsFeatureSet(.iOS_GPUFamily3_v1) {
+            return .bgra8Unorm_srgb
+        } else {
+            return .bgra8Unorm
+        }
+    }
+}
+
 public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneProtocol {
     private var playerTexture: MTLTexture? {
         didSet {
@@ -72,15 +86,11 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
             return
         }
 
-        let pixelFormat: MTLPixelFormat
-        if #available(iOS 10, *) {
-            pixelFormat = .bgra8Unorm_srgb
-        } else {
-            pixelFormat = .bgra8Unorm
-        }
+        let device = renderer.device
+        let pixelFormat = preferredPixelFormat(on: device)
 
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: true)
-        playerTexture = renderer.itemRenderer.device.makeTexture(descriptor: descriptor)
+        playerTexture = device.makeTexture(descriptor: descriptor)
     }
 
     public func renderVideo(atTime time: TimeInterval, commandQueue: MTLCommandQueue? = nil) {
@@ -170,11 +180,12 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
 
         let device = renderer.device
+        let pixelFormat = preferredPixelFormat(on: device)
 
-        let playerTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .bgra8Unorm_srgb, width: width, height: height, mipmapped: true)
+        let playerTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: true)
         playerTexture = device.makeTexture(descriptor: playerTextureDescriptor)
 
-        let sphereTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .bgra8Unorm_srgb, width: width, height: height / 2, mipmapped: true)
+        let sphereTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height / 2, mipmapped: true)
         leftSphereTexture = device.makeTexture(descriptor: sphereTextureDescriptor)
         rightSphereTexture = device.makeTexture(descriptor: sphereTextureDescriptor)
     }
