@@ -19,7 +19,6 @@ final class ViewController: UIViewController {
     }()
 
     weak var panoramaView: PanoramaView?
-    weak var cardboardButton: UIButton?
 
     private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
@@ -37,33 +36,35 @@ final class ViewController: UIViewController {
         tapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(tapGestureRecognizer)
 
-        panoramaView.load(#imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
-
         self.panoramaView = panoramaView
+
+        panoramaView.load(#imageLiteral(resourceName: "stereo"), format: .stereoOverUnder)
     }
 
-    private func loadCardboardButton() {
-        let cardboardButton = UIButton(type: .system)
-        cardboardButton.setImage(UIImage(named: "icon-cardboard", in: Bundle(for: PanoramaView.self), compatibleWith: nil), for: .normal)
-        cardboardButton.addTarget(self, action: #selector(presentStereoView), for: .touchUpInside)
-        cardboardButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(cardboardButton)
+    private func loadStereoButton() {
+        let button = UIButton(type: .system)
+        button.setTitle("Stereo", for: .normal)
+        button.addTarget(self, action: #selector(presentStereoView), for: .touchUpInside)
+        button.contentHorizontalAlignment = .right
+        button.contentVerticalAlignment = .bottom
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
 
-        NSLayoutConstraint.activate([
-            cardboardButton.widthAnchor.constraint(equalToConstant: 64),
-            cardboardButton.heightAnchor.constraint(equalToConstant: 64),
-            cardboardButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            cardboardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-
-        self.cardboardButton = cardboardButton
+        let constraints: [NSLayoutConstraint] = [
+            button.widthAnchor.constraint(equalToConstant: 96),
+            button.heightAnchor.constraint(equalToConstant: 64),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadPanoramaView()
-        loadCardboardButton()
+        loadStereoButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
