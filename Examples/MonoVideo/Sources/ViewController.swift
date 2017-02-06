@@ -43,23 +43,28 @@ final class ViewController: UIViewController {
         singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         panoramaView.addGestureRecognizer(singleTapGestureRecognizer)
 
-        do {
-            let url = Bundle.main.url(forResource: "test", withExtension: "mp4")!
-            let player = AVPlayer(url: url)
-            try panoramaView.load(player, format: .mono)
-            player.play()
-            self.player = player
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-
         self.panoramaView = panoramaView
+    }
+
+    private func loadVideo() {
+        let url = Bundle.main.url(forResource: "test", withExtension: "mp4")!
+        let playerItem = AVPlayerItem(url: url)
+        let player = AVPlayer(playerItem: playerItem)
+        self.player = player
+
+        do {
+            try panoramaView?.load(player, format: .mono)
+            player.play()
+        } catch {
+            fatalError("Failed to load video with error: \(error)")
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loadPanoramaView()
+        loadVideo()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
