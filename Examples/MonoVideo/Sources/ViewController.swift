@@ -55,6 +55,11 @@ final class ViewController: UIViewController {
         do {
             try panoramaView?.load(player, format: .mono)
             player.play()
+            // loop
+            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
+                player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+                player.play()
+            }
         } catch {
             fatalError("Failed to load video with error: \(error)")
         }
