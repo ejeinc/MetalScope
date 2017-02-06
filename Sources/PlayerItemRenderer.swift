@@ -22,16 +22,14 @@ public final class PlayerItemRenderer {
 
     public var playerItem: AVPlayerItem? {
         willSet {
-            guard let item = playerItem, item.outputs.contains(videoOutput) else {
-                return
+            if let item = playerItem {
+                unbind(item)
             }
-            item.remove(videoOutput)
         }
         didSet {
-            guard let item = playerItem, !item.outputs.contains(videoOutput) else {
-                return
+            if let item = playerItem {
+                bind(item)
             }
-            item.add(videoOutput)
         }
     }
 
@@ -74,7 +72,23 @@ public final class PlayerItemRenderer {
     }
 
     deinit {
-        playerItem = nil
+        if let item = playerItem {
+            unbind(item)
+        }
+    }
+
+    private func bind(_ playerItem: AVPlayerItem) {
+        guard !playerItem.outputs.contains(videoOutput) else {
+            return
+        }
+        playerItem.add(videoOutput)
+    }
+
+    private func unbind(_ playerItem: AVPlayerItem) {
+        guard playerItem.outputs.contains(videoOutput) else {
+            return
+        }
+        playerItem.remove(videoOutput)
     }
 
     public func hasNewPixelBuffer(atItemTime time: CMTime) -> Bool {

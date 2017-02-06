@@ -18,12 +18,14 @@ public final class PlayerRenderer {
 
     public var player: AVPlayer? {
         willSet {
-            player?.removeObserver(currentItemObserver, forKeyPath: "currentItem")
-            itemRenderer.playerItem = nil
+            if let player = player {
+                unbind(player)
+            }
         }
         didSet {
-            itemRenderer.playerItem = player?.currentItem
-            player?.addObserver(currentItemObserver, forKeyPath: "currentItem", options: [.new], context: nil)
+            if let player = player {
+                bind(player)
+            }
         }
     }
 
@@ -47,7 +49,19 @@ public final class PlayerRenderer {
     }
 
     deinit {
-        player = nil
+        if let player = player {
+            unbind(player)
+        }
+    }
+
+    private func bind(_ player: AVPlayer) {
+        itemRenderer.playerItem = player.currentItem
+        player.addObserver(currentItemObserver, forKeyPath: "currentItem", options: [.new], context: nil)
+    }
+
+    private func unbind(_ player: AVPlayer) {
+        player.removeObserver(currentItemObserver, forKeyPath: "currentItem")
+        itemRenderer.playerItem = nil
     }
 
     public func hasNewPixelBuffer(atItemTime time: CMTime) -> Bool {
