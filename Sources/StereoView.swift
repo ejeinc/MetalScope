@@ -173,15 +173,17 @@ extension StereoView {
 
 extension StereoView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        let targetTime = time + 2 / 60 // 2 frames ahead
+
         if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
-            provider.waitDeviceOrientation(atTime: time)
+            provider.waitDeviceOrientation(atTime: targetTime)
         }
 
         SCNTransaction.lock()
         SCNTransaction.begin()
         SCNTransaction.disableActions = true
 
-        orientationNode.updateDeviceOrientation(atTime: time)
+        orientationNode.updateDeviceOrientation(atTime: targetTime)
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
