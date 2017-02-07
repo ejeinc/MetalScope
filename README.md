@@ -21,6 +21,7 @@ Use `PanoramaView` to display an equirectangular image or video.
 ```swift
 import MetalScope
 import Metal
+import AVFoundation
 
 guard let device = MTLCreateSystemDefaultDevice() else {
     fatalError("MetalScope requires Metal 🤘")
