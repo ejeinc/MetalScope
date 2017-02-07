@@ -92,7 +92,7 @@ Check example apps for more samples.
 - Swift 3.0+
 - Metal (Apple A7+)
 
-*NOTE: Metal is not supported in the iOS Simulator* 😢
+NOTE: Metal is not supported in the iOS Simulator 😢
 
 ## Installation
 
