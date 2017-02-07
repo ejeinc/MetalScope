@@ -28,6 +28,7 @@ final class ViewController: UIViewController {
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
+        // fill parent view
         let constraints: [NSLayoutConstraint] = [
             panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
             panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -36,10 +37,12 @@ final class ViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
 
+        // double tap to reset center
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
+        // single tap to toggle play/pause
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePlaying))
         singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         panoramaView.addGestureRecognizer(singleTapGestureRecognizer)

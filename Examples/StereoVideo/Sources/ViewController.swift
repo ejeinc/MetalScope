@@ -28,6 +28,7 @@ final class ViewController: UIViewController {
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
+        // fill parent view
         let constraints: [NSLayoutConstraint] = [
             panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
             panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -36,9 +37,10 @@ final class ViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        panoramaView.addGestureRecognizer(tapGestureRecognizer)
+        // double tap to reset center
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.resetCenter))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
         self.panoramaView = panoramaView
     }
@@ -70,6 +72,7 @@ final class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
 
+        // place to bottom-right corner
         let constraints: [NSLayoutConstraint] = [
             button.widthAnchor.constraint(equalToConstant: 96),
             button.heightAnchor.constraint(equalToConstant: 64),
