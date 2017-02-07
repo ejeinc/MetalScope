@@ -41,7 +41,7 @@ internal final class StereoRenderer {
             pixelFormat: outputTexture.pixelFormat,
             width: outputTexture.width / 2,
             height: outputTexture.height,
-            mipmapped: false
+            mipmapped: true
         )
 
         eyeRenderingConfigurations = [

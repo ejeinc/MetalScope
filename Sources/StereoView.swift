@@ -113,7 +113,7 @@ public final class StereoView: UIView, MediaSceneLoader {
             pixelFormat: .bgra8Unorm_srgb,
             width: Int(textureSize.width),
             height: Int(textureSize.height),
-            mipmapped: false
+            mipmapped: true
         )
         let texture = device.makeTexture(descriptor: textureDescriptor)
 
