@@ -96,7 +96,7 @@ Check example apps for more samples.
 
 ### Carthage
 
-If you use [Carthage][https://github.com/Carthage/Carthage] to manage your dependencies, add MetalScope to your `Cartfile`:
+If you use [Carthage](https://github.com/Carthage/Carthage) to manage your dependencies, add MetalScope to your `Cartfile`:
 
 ```
 github "ejeinc/MetalScope"
@@ -104,7 +104,7 @@ github "ejeinc/MetalScope"
 
 ### CocoaPods
 
-If you use [CocoaPods][https://github.com/CocoaPods/CocoaPods] to manage your dependencies, add MetalScope to your `Podfile`:
+If you use [CocoaPods](https://github.com/CocoaPods/CocoaPods) to manage your dependencies, add MetalScope to your `Podfile`:
 
 ```
 pod 'MetalScope'
