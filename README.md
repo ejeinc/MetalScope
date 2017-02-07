@@ -35,11 +35,7 @@ panoramaView.load(panoramaImage, format: .mono)
 // load stereo video
 let videoURL = URL(...)
 let player = AVPlayer(url: videoURL)
-do {
-    try panoramaView.load(player, format: .stereoOverUnder)
-} catch {
-    fatalError("Failed to load video: \(error)")
-}
+panoramaView.load(player, format: .stereoOverUnder)
 player.play()
 
 // load any SCNScene
