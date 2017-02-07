@@ -28,11 +28,11 @@ guard let device = MTLCreateSystemDefaultDevice() else {
 
 let panoramaView = PanoramaView(frame: ..., device: device)
 
-// load mono image
+// load monoscopic panorama image
 let panoramaImage = UIImage(...)
 panoramaView.load(panoramaImage, format: .mono)
 
-// load stereo video
+// load stereoscopic panorama video
 let videoURL = URL(...)
 let player = AVPlayer(url: videoURL)
 panoramaView.load(player, format: .stereoOverUnder)
