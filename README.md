@@ -75,7 +75,7 @@ stereoViewController.scene = panoramaView.scene
 // customize stereo parameters if needed
 stereoViewController.stereoParameters = StereoParameters(
   screenModel: .default,
-  viewerModel: .cardboardJun2014)
+  viewerModel: .cardboardMay2015)
 
 present(stereoViewController, animated: true, completion: nil)
 ```
