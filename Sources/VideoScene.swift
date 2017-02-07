@@ -39,12 +39,8 @@ extension VideoSceneProtocol {
         self.init(renderer: renderer)
     }
 
-    fileprivate func preferredPixelFormat(on device: MTLDevice) -> MTLPixelFormat {
-        // check sRGB writes availability
-        // https://developer.apple.com/metal/availability/
-        if #available(iOS 10, *), device.supportsFeatureSet(.iOS_GPUFamily2_v3) {
-            return .bgra8Unorm_srgb
-        } else if device.supportsFeatureSet(.iOS_GPUFamily3_v1) {
+    fileprivate var preferredPixelFormat: MTLPixelFormat {
+        if #available(iOS 10, *) {
             return .bgra8Unorm_srgb
         } else {
             return .bgra8Unorm
@@ -103,7 +99,7 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
         }
 
         let device = renderer.device
-        let pixelFormat = preferredPixelFormat(on: device)
+        let pixelFormat = preferredPixelFormat
 
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: true)
         playerTexture = device.makeTexture(descriptor: descriptor)
@@ -191,7 +187,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
 
         let device = renderer.device
-        let pixelFormat = preferredPixelFormat(on: device)
+        let pixelFormat = preferredPixelFormat
 
         let playerTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: true)
         playerTexture = device.makeTexture(descriptor: playerTextureDescriptor)
