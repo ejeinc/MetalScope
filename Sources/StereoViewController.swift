@@ -22,6 +22,12 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         }
     }
 
+    open var stereoParameters: StereoParametersProtocol = StereoParameters() {
+        didSet {
+            _stereoView?.stereoParameters = stereoParameters
+        }
+    }
+
     open var stereoView: StereoView {
         if !isViewLoaded {
             loadView()
@@ -86,6 +92,7 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         let stereoView = StereoView(device: device)
         stereoView.backgroundColor = .black
         stereoView.scene = scene
+        stereoView.stereoParameters = stereoParameters
         stereoView.translatesAutoresizingMaskIntoConstraints = false
         stereoView.isPlaying = false
         _stereoView = stereoView

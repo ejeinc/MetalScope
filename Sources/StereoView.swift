@@ -45,7 +45,7 @@ public final class StereoView: UIView, MediaSceneLoader {
 
     public let stereoTexture: MTLTexture
 
-    public var stereoParameters: StereoParametersProtocol = defaultStereoParameters {
+    public var stereoParameters: StereoParametersProtocol = StereoParameters() {
         didSet {
             stereoCameraNode.stereoParameters = stereoParameters
             stereoScene.stereoParameters = stereoParameters
@@ -86,8 +86,6 @@ public final class StereoView: UIView, MediaSceneLoader {
         scene.stereoTexture = self.stereoTexture
         return scene
     }()
-
-    private static let defaultStereoParameters = StereoParameters(screen: ScreenModel.default, viewer: ViewerModel.default)
 
     public init(stereoTexture: MTLTexture) {
         self.stereoTexture = stereoTexture
