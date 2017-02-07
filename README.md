@@ -96,10 +96,18 @@ Check example apps for more samples.
 
 ### Carthage
 
-To integrate `MetalScope` into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
+If you use [Carthage][https://github.com/Carthage/Carthage] to manage your dependencies, add MetalScope to your `Cartfile`:
 
-```ogdl
-github "ejeinc/MetalScope" "master"
+```
+github "ejeinc/MetalScope"
+```
+
+### CocoaPods
+
+If you use [CocoaPods][https://github.com/CocoaPods/CocoaPods] to manage your dependencies, add MetalScope to your `Podfile`:
+
+```
+pod 'MetalScope'
 ```
 
 ### Manually
