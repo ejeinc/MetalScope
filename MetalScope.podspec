@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'MetalScope'
   s.version = '0.1.0'
-  s.summary = 'Metal-backed 360-degree media view for iOS'
+  s.summary = 'Metal-backed 360° panorama view for iOS'
 
   s.homepage = 'https://github.com/ejeinc/MetalScope'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
