@@ -14,14 +14,14 @@ import SceneKit
 import AVFoundation
 
 extension MediaSceneLoader {
-    public func load(_ player: AVPlayer, format: MediaFormat) throws {
+    public func load(_ player: AVPlayer, format: MediaFormat) {
         let scene: VideoSceneProtocol
 
         switch format {
         case .mono:
-            scene = try MonoSphericalVideoScene(device: device)
+            scene = MonoSphericalVideoScene(device: device)
         case .stereoOverUnder:
-            scene = try StereoSphericalVideoScene(device: device)
+            scene = StereoSphericalVideoScene(device: device)
         }
 
         scene.player = player

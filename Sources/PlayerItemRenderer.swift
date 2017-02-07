@@ -47,18 +47,22 @@ public final class PlayerItemRenderer {
         textureCache = cache
     }
 
-    public convenience init(device: MTLDevice, outputSettings: [String : Any]? = nil) throws {
-        let defaultSettings: [String: Any] = [
+    public convenience init(device: MTLDevice) {
+        do {
+            try self.init(device: device, outputSettings: [:])
+        } catch {
+            fatalError("Failed to initialize PlayerItemRenderer with default settings")
+        }
+    }
+
+    public convenience init(device: MTLDevice, outputSettings: [String: Any]) throws {
+        var settings: [String: Any] = [
             (kCVPixelBufferMetalCompatibilityKey as String): true,
             (kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA
         ]
 
-        var settings = defaultSettings
-
-        if let outputSettings = outputSettings {
-            for (key, value) in outputSettings {
-                settings[key] = value
-            }
+        for (key, value) in outputSettings {
+            settings[key] = value
         }
 
         let videoOutput: AVPlayerItemVideoOutput

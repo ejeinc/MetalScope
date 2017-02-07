@@ -14,11 +14,32 @@ import SceneKit
 import AVFoundation
 
 public protocol VideoSceneProtocol: class {
-    var player: AVPlayer? { get set }
+    var renderer: PlayerRenderer { get }
+
+    init(renderer: PlayerRenderer)
 }
 
-private extension VideoSceneProtocol {
-    func preferredPixelFormat(on device: MTLDevice) -> MTLPixelFormat {
+extension VideoSceneProtocol {
+    public var player: AVPlayer? {
+        get {
+            return renderer.player
+        }
+        set(value) {
+            renderer.player = value
+        }
+    }
+
+    public init(device: MTLDevice) {
+        let renderer = PlayerRenderer(device: device)
+        self.init(renderer: renderer)
+    }
+
+    public init(device: MTLDevice, outputSettings: [String: Any]) throws {
+        let renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
+        self.init(renderer: renderer)
+    }
+
+    fileprivate func preferredPixelFormat(on device: MTLDevice) -> MTLPixelFormat {
         // check sRGB writes availability
         // https://developer.apple.com/metal/availability/
         if #available(iOS 10, *), device.supportsFeatureSet(.iOS_GPUFamily2_v3) {
@@ -44,14 +65,9 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
         }
     }()
 
-    private let renderer: PlayerRenderer
     private let commandQueue: MTLCommandQueue
 
-    public var player: AVPlayer? {
-        didSet {
-            renderer.player = player
-        }
-    }
+    public let renderer: PlayerRenderer
 
     public override var isPaused: Bool {
         didSet {
@@ -63,9 +79,9 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
         }
     }
 
-    public init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
-        renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
-        commandQueue = device.makeCommandQueue()
+    public init(renderer: PlayerRenderer) {
+        self.renderer = renderer
+        commandQueue = renderer.device.makeCommandQueue()
         super.init()
         renderLoop.resume()
     }
@@ -137,14 +153,9 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
     }()
 
-    private let renderer: PlayerRenderer
     private let commandQueue: MTLCommandQueue
 
-    public var player: AVPlayer? {
-        didSet {
-            renderer.player = player
-        }
-    }
+    public let renderer: PlayerRenderer
 
     public override var isPaused: Bool {
         didSet {
@@ -156,9 +167,9 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
     }
 
-    public init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
-        renderer = try PlayerRenderer(device: device, outputSettings: outputSettings)
-        commandQueue = device.makeCommandQueue()
+    public init(renderer: PlayerRenderer) {
+        self.renderer = renderer
+        commandQueue = renderer.device.makeCommandQueue()
         super.init()
         renderLoop.resume()
     }

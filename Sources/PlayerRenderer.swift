@@ -43,7 +43,12 @@ public final class PlayerRenderer {
         }
     }
 
-    public convenience init(device: MTLDevice, outputSettings: [String: Any]? = nil) throws {
+    public convenience init(device: MTLDevice) {
+        let itemRenderer = PlayerItemRenderer(device: device)
+        self.init(itemRenderer: itemRenderer)
+    }
+
+    public convenience init(device: MTLDevice, outputSettings: [String: Any]) throws {
         let itemRenderer = try PlayerItemRenderer(device: device, outputSettings: outputSettings)
         self.init(itemRenderer: itemRenderer)
     }
