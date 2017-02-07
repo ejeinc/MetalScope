@@ -47,19 +47,17 @@ final class ViewController: UIViewController {
         let url = Bundle.main.url(forResource: "Sample", withExtension: "mp4")!
         let playerItem = AVPlayerItem(url: url)
         let player = AVPlayer(playerItem: playerItem)
+
+        panoramaView?.load(player, format: .stereoOverUnder)
+
         self.player = player
 
-        do {
-            try panoramaView?.load(player, format: .stereoOverUnder)
+        // loop
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
+            player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
             player.play()
-            // loop
-            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
-                player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-                player.play()
-            }
-        } catch {
-            fatalError("Failed to load video with error: \(error)")
         }
+        player.play()
     }
 
     private func loadStereoButton() {
