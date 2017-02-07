@@ -1,6 +1,6 @@
 # MetalScope
 
-Metal-backed 360-degree media view for iOS.
+Metal-backed 360° panorama view for iOS.
 
 |                          | Features
 |--------------------------|---------
