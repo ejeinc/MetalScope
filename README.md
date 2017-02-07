@@ -7,7 +7,7 @@ Metal-backed 360° panorama view for iOS.
 | :metal:                  | Built on top of SceneKit + Metal
 | :eyes:                   | Distorted stereo view for Cardboard
 | :globe_with_meridians:   | Support mono/stereo equirectangular images/videos
-| :arrow_forward:          | Direct access to AVPlayer for 360 video control
+| :arrow_forward:          | Direct access to AVPlayer for video control
 | :point_up_2:             | Smooth touch rotation and re-centering
 | :sunrise_over_mountains: | Custom SCNScene presentation
 | :bird:                   | Written in Swift 3
