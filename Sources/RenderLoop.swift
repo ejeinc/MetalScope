@@ -29,11 +29,11 @@ public final class RenderLoop {
         self.action = action
     }
 
-    func pause() {
+    public func pause() {
         displayLink.isPaused = true
     }
 
-    func resume() {
+    public func resume() {
         displayLink.isPaused = false
     }
 
