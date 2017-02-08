@@ -1,5 +1,7 @@
 # MetalScope
 
+![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat) ![CocoaPods compatible](https://img.shields.io/cocoapods/v/MetalScope.svg) ![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg)
+
 Metal-backed 360° panorama view for iOS.
 
 |                          | Features
