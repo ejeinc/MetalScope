@@ -37,7 +37,7 @@ public final class RenderLoop {
         displayLink.isPaused = false
     }
 
-    @objc func handleDisplayLink(_ sender: CADisplayLink) {
+    @objc private func handleDisplayLink(_ sender: CADisplayLink) {
         let time: TimeInterval
         if #available(iOS 10, *) {
             time = sender.targetTimestamp
