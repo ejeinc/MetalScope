@@ -62,6 +62,10 @@ panoramaView.addGestureRecognizer(recognizer)
 panoramaView.panGestureRecognizer.isEnabled = false
 ```
 
+![PanoramaView Preview](https://raw.githubusercontent.com/ejeinc/MetalScope/master/Resources/panorama-preview.gif)
+
+[60 FPS demo](https://youtu.be/D7wTFA5K96U) on YouTube
+
 ### StereoView
 
 For stereo display for Google's Cardboard, use `StereoView` or `StereoViewController` instead.
