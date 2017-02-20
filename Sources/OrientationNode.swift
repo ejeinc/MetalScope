@@ -16,15 +16,9 @@ public final class OrientationNode: SCNNode {
 
     public let pointOfView = SCNNode()
 
-    public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider.shared {
-        didSet {
-            renewDefaultDeviceOrientationProviderTokenIfNeeded()
-        }
-    }
+    public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider()
 
-    public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider.shared
-
-    private var defaultDeviceOrientationProviderToken: DefaultDeviceOrientationProvider.Token?
+    public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider()
 
     public override init() {
         super.init()
@@ -39,8 +33,6 @@ public final class OrientationNode: SCNNode {
         camera.xFov = 60
         camera.yFov = 60
         pointOfView.camera = camera
-
-        renewDefaultDeviceOrientationProviderTokenIfNeeded()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -82,13 +74,5 @@ public final class OrientationNode: SCNNode {
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
-    }
-
-    private func renewDefaultDeviceOrientationProviderTokenIfNeeded() {
-        if let defaultProvider = deviceOrientationProvider as? DefaultDeviceOrientationProvider {
-            defaultDeviceOrientationProviderToken = defaultProvider.makeToken()
-        } else {
-            defaultDeviceOrientationProviderToken = nil
-        }
     }
 }

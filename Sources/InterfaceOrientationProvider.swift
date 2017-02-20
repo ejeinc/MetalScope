@@ -38,8 +38,6 @@ extension UIApplication: InterfaceOrientationProvider {
 }
 
 internal final class DefaultInterfaceOrientationProvider: InterfaceOrientationProvider {
-    static let shared = DefaultInterfaceOrientationProvider()
-
     func interfaceOrientation(atTime time: TimeInterval) -> Rotation? {
         return UIApplication.shared.interfaceOrientation(atTime: time)
     }
