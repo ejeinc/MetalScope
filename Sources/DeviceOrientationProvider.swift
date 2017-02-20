@@ -66,59 +66,50 @@ extension CMMotionManager: DeviceOrientationProvider {
 }
 
 internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider {
-    static let shared = DefaultDeviceOrientationProvider()
+    private static let motionManager = CMMotionManager()
 
-    private lazy var motionManager: CMMotionManager = {
-        let manager = CMMotionManager()
-        manager.deviceMotionUpdateInterval = 1 / 60
-        return manager
-    }()
+    private static let instanceCountQueue = DispatchQueue(label: "com.eje-c.MetalScope.DefaultDeviceOrientationProvider.instanceCountQueue")
 
-    final class Token {
-        private let invalidation: () -> Void
-
-        fileprivate init(_ invalidation: @escaping () -> Void) {
-            self.invalidation = invalidation
-        }
-
-        deinit {
-            invalidation()
-        }
-    }
-
-    private let tokenCountQueue = DispatchQueue(label: "com.eje-c.MetalScope.DefaultDeviceOrientationProvider.tokenCountQueue")
-
-    private var tokenCount: Int = 0 {
+    private static var instanceCount: Int = 0 {
         didSet {
-            guard motionManager.isDeviceMotionAvailable else {
+            print(instanceCount)
+
+            let manager = motionManager
+
+            guard manager.isDeviceMotionAvailable else {
                 return
             }
-            if tokenCount > 0 {
-                if !motionManager.isDeviceMotionActive {
-                    motionManager.startDeviceMotionUpdates()
-                }
-            } else {
-                motionManager.stopDeviceMotionUpdates()
+
+            if instanceCount > 0, !manager.isDeviceMotionActive {
+                manager.deviceMotionUpdateInterval = 1 / 60
+                manager.startDeviceMotionUpdates()
+            } else if instanceCount == 0, manager.isDeviceMotionActive {
+                manager.stopDeviceMotionUpdates()
             }
         }
     }
 
-    var isPaused: Bool {
-        return tokenCountQueue.sync { !motionManager.isDeviceMotionActive }
+    private static func incrementInstanceCount() {
+        instanceCountQueue.async { instanceCount += 1 }
     }
 
-    func makeToken() -> Token {
-        tokenCountQueue.async { self.tokenCount += 1 }
-        return Token {
-            self.tokenCountQueue.async { self.tokenCount -= 1 }
-        }
+    private static func decrementInstanceCount() {
+        instanceCountQueue.async { instanceCount -= 1 }
+    }
+
+    init() {
+        DefaultDeviceOrientationProvider.incrementInstanceCount()
+    }
+
+    deinit {
+        DefaultDeviceOrientationProvider.decrementInstanceCount()
     }
 
     func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
-        return motionManager.deviceOrientation(atTime: time)
+        return DefaultDeviceOrientationProvider.motionManager.deviceOrientation(atTime: time)
     }
 
     func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
-        return motionManager.shouldWaitDeviceOrientation(atTime: time)
+        return DefaultDeviceOrientationProvider.motionManager.shouldWaitDeviceOrientation(atTime: time)
     }
 }
