@@ -72,8 +72,6 @@ internal final class DefaultDeviceOrientationProvider: DeviceOrientationProvider
 
     private static var instanceCount: Int = 0 {
         didSet {
-            print(instanceCount)
-
             let manager = motionManager
 
             guard manager.isDeviceMotionAvailable else {
