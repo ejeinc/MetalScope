@@ -171,7 +171,11 @@ extension StereoView {
 
 extension StereoView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        let targetTime = time + 2 / 60 // 2 frames ahead
+        var targetTime = time
+
+        if #available(iOS 10, *) {
+            targetTime += 2 / 60 // 2 frames ahead
+        }
 
         if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
             provider.waitDeviceOrientation(atTime: targetTime)
