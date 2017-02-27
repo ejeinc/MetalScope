@@ -103,7 +103,7 @@ extension StereoParametersProtocol {
 }
 
 extension StereoParametersProtocol {
-    /// Most of the code in this section is originally ported from Google's Cardboard SDK for Unity
+    /// Most of the code in this section was originally ported from Google's Cardboard SDK for Unity
     /// https://github.com/googlevr/gvr-unity-sdk/blob/v0.6/Cardboard/Scripts/CardboardProfile.cs
 
     var leftEyeVisibleTanAngles: float4 {

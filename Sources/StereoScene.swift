@@ -76,7 +76,7 @@ internal final class StereoScene: SCNScene {
 }
 
 private extension StereoScene {
-    /// Most of the code in this section is originally ported from Google's Cardboard SDK for Unity
+    /// Most of the code in this section was originally ported from Google's Cardboard SDK for Unity
     /// https://github.com/googlevr/gvr-unity-sdk/blob/v0.6/Cardboard/Scripts/CardboardPostRender.cs
 
     func computeMeshPoints(with parameters: StereoParametersProtocol, width: Int, height: Int) -> (vertices: [SCNVector3], texcoord: [float2]) {
