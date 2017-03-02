@@ -14,7 +14,7 @@ import SceneKit
 
 extension MediaSceneLoader {
     public func load(_ image: UIImage, format: MediaFormat) {
-        let scene: ImageSceneProtocol
+        let scene: ImageScene
 
         switch format {
         case .mono:
