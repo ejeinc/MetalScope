@@ -9,11 +9,11 @@
 import SceneKit
 import UIKit
 
-public protocol ImageSceneProtocol: class {
+public protocol ImageScene: class {
     var image: UIImage? { get set }
 }
 
-public final class MonoSphericalImageScene: MonoSphericalMediaScene, ImageSceneProtocol {
+public final class MonoSphericalImageScene: MonoSphericalMediaScene, ImageScene {
     public var image: UIImage? {
         didSet {
             mediaSphereNode.mediaContents = image
@@ -21,7 +21,7 @@ public final class MonoSphericalImageScene: MonoSphericalMediaScene, ImageSceneP
     }
 }
 
-public final class StereoSphericalImageScene: StereoSphericalMediaScene, ImageSceneProtocol {
+public final class StereoSphericalImageScene: StereoSphericalMediaScene, ImageScene {
     public var image: UIImage? {
         didSet {
             var leftImage: UIImage?

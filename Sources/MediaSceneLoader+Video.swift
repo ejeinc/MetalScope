@@ -15,7 +15,7 @@ import AVFoundation
 
 extension MediaSceneLoader {
     public func load(_ player: AVPlayer, format: MediaFormat) {
-        let scene: VideoSceneProtocol
+        let scene: VideoScene
 
         switch format {
         case .mono:

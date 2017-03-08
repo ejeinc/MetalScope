@@ -13,13 +13,13 @@
 import SceneKit
 import AVFoundation
 
-public protocol VideoSceneProtocol: class {
+public protocol VideoScene: class {
     var renderer: PlayerRenderer { get }
 
     init(renderer: PlayerRenderer)
 }
 
-extension VideoSceneProtocol {
+extension VideoScene {
     public var player: AVPlayer? {
         get {
             return renderer.player
@@ -48,7 +48,7 @@ extension VideoSceneProtocol {
     }
 }
 
-public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneProtocol {
+public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoScene {
     private var playerTexture: MTLTexture? {
         didSet {
             mediaSphereNode.mediaContents = playerTexture
@@ -128,7 +128,7 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoSceneP
     }
 }
 
-public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSceneProtocol {
+public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoScene {
     private var playerTexture: MTLTexture?
 
     private var leftSphereTexture: MTLTexture? {
