@@ -1,5 +1,5 @@
 //
-//  MetalScope.swift
+//  PanoramaView.swift
 //  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/17.
