@@ -28,7 +28,7 @@
 		BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13101E35EE0D00A1642C /* StereoScene.swift */; };
 		BFAB13131E361B3700A1642C /* StereoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB13121E361B3700A1642C /* StereoViewController.swift */; };
 		BFAB13161E363ACD00A1642C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFAB13151E363ACD00A1642C /* Assets.xcassets */; };
-		BFB8917D1E2E013400FA9129 /* PanoramaView.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* PanoramaView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFB8917D1E2E013400FA9129 /* MetalScope.h in Headers */ = {isa = PBXBuildFile; fileRef = BFB8917B1E2E013400FA9129 /* MetalScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFB8918C1E2E037100FA9129 /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918B1E2E037100FA9129 /* CVError.swift */; };
 		BFB8918E1E2E039800FA9129 /* PlayerItemRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */; };
 		BFB891901E2E03A300FA9129 /* PlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8918F1E2E03A300FA9129 /* PlayerRenderer.swift */; };
@@ -68,7 +68,7 @@
 		BFAB13121E361B3700A1642C /* StereoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StereoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFAB13151E363ACD00A1642C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB891781E2E013400FA9129 /* MetalScope.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetalScope.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFB8917B1E2E013400FA9129 /* PanoramaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PanoramaView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		BFB8917B1E2E013400FA9129 /* MetalScope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MetalScope.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BFB8917C1E2E013400FA9129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFB8918B1E2E037100FA9129 /* CVError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CVError.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8918D1E2E039800FA9129 /* PlayerItemRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlayerItemRenderer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -155,7 +155,7 @@
 		BFB8917A1E2E013400FA9129 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BFB8917B1E2E013400FA9129 /* PanoramaView.h */,
+				BFB8917B1E2E013400FA9129 /* MetalScope.h */,
 				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
 				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
@@ -216,7 +216,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFB8917D1E2E013400FA9129 /* PanoramaView.h in Headers */,
+				BFB8917D1E2E013400FA9129 /* MetalScope.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
