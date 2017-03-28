@@ -156,8 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB8917B1E2E013400FA9129 /* MetalScope.h */,
-				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
-				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
+				BFDF48B81E8A52E200FC7A74 /* PanoramaView */,
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
 				BFB891B31E2E1EEA00FA9129 /* Media */,
@@ -207,6 +206,15 @@
 				BFB891911E2E044900FA9129 /* Video */,
 			);
 			name = Media;
+			sourceTree = "<group>";
+		};
+		BFDF48B81E8A52E200FC7A74 /* PanoramaView */ = {
+			isa = PBXGroup;
+			children = (
+				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
+				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
+			);
+			name = PanoramaView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
