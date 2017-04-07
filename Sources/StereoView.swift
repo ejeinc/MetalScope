@@ -29,6 +29,12 @@ public final class StereoView: UIView, MediaSceneLoader {
         }
     }
 
+    public weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
+        didSet {
+            scnRendererDelegate.forwardingTarget = sceneRendererDelegate
+        }
+    }
+
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
         node.pointOfView.addChildNode(self.stereoCameraNode)
@@ -65,7 +71,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         ])
         view.backgroundColor = .black
         view.isUserInteractionEnabled = false
-        view.delegate = self
+        view.delegate = self.scnViewDelegate
         view.scene = self.stereoScene
         view.pointOfView = self.stereoScene.pointOfView
         view.isPlaying = true
@@ -77,6 +83,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         let renderer = StereoRenderer(outputTexture: self.stereoTexture)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .left), for: .left)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .right), for: .right)
+        renderer.sceneRendererDelegate = self.scnRendererDelegate
         return renderer
     }()
 
@@ -85,6 +92,14 @@ public final class StereoView: UIView, MediaSceneLoader {
         scene.stereoParameters = self.stereoParameters
         scene.stereoTexture = self.stereoTexture
         return scene
+    }()
+
+    private lazy var scnViewDelegate: SCNViewDelegate = {
+        return SCNViewDelegate(stereoRenderer: self.stereoRenderer)
+    }()
+
+    private lazy var scnRendererDelegate: SCNRendererDelegate = {
+        return SCNRendererDelegate(orientationNode: self.orientationNode)
     }()
 
     public init(stereoTexture: MTLTexture) {
@@ -143,12 +158,14 @@ extension StereoView {
         return stereoRenderer.scnRenderer
     }
 
+    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
     public func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
-        return stereoRenderer.sceneRendererDelegate(for: eye)
+        fatalError("Use sceneRendererDelegate property instead")
     }
 
+    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
     public func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
-        stereoRenderer.setSceneRendererDelegate(delegate, for: eye)
+        fatalError("Use sceneRendererDelegate property instead")
     }
 
     public var isPlaying: Bool {
@@ -169,30 +186,64 @@ extension StereoView {
     }
 }
 
-extension StereoView: SCNSceneRendererDelegate {
-    public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        var targetTime = time
+private extension StereoView {
+    final class SCNViewDelegate: NSObject, SCNSceneRendererDelegate {
+        let stereoRenderer: StereoRenderer
 
-        if #available(iOS 10, *) {
-            targetTime += 2 / 60 // 2 frames ahead
+        init(stereoRenderer: StereoRenderer) {
+            self.stereoRenderer = stereoRenderer
         }
 
-        if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
-            provider.waitDeviceOrientation(atTime: targetTime)
+        func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+            guard let commandQueue = renderer.commandQueue else {
+                fatalError("Invalid rendering API")
+            }
+
+            stereoRenderer.render(atTime: time, commandQueue: commandQueue)
         }
-
-        SCNTransaction.lock()
-        SCNTransaction.begin()
-        SCNTransaction.disableActions = true
-
-        orientationNode.updateDeviceOrientation(atTime: targetTime)
-
-        SCNTransaction.commit()
-        SCNTransaction.unlock()
     }
 
-    public func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        stereoRenderer.render(atTime: time)
+    final class SCNRendererDelegate: NSObject, SCNSceneRendererDelegate {
+        weak var forwardingTarget: SCNSceneRendererDelegate?
+
+        let orientationNode: OrientationNode
+
+        init(orientationNode: OrientationNode) {
+            self.orientationNode = orientationNode
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+            if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
+                provider.waitDeviceOrientation(atTime: time)
+            }
+
+            SCNTransaction.lock()
+            SCNTransaction.begin()
+            SCNTransaction.disableActions = true
+
+            orientationNode.updateDeviceOrientation(atTime: time)
+
+            SCNTransaction.commit()
+            SCNTransaction.unlock()
+
+            forwardingTarget?.renderer?(renderer, updateAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
+            forwardingTarget?.renderer?(renderer, didApplyAnimationsAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
+            forwardingTarget?.renderer?(renderer, didSimulatePhysicsAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+            forwardingTarget?.renderer?(renderer, willRenderScene: scene, atTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
+            forwardingTarget?.renderer?(renderer, didRenderScene: scene, atTime: time)
+        }
     }
 }
 
