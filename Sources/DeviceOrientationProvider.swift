@@ -19,6 +19,10 @@ extension DeviceOrientationProvider {
     }
 
     public func waitDeviceOrientation(atTime time: TimeInterval, timeout: DispatchTime) -> DispatchTimeoutResult {
+        guard deviceOrientation(atTime: time) == nil else {
+            return .success
+        }
+
         let semaphore = DispatchSemaphore(value: 0)
 
         let queue = DispatchQueue(label: "com.eje-c.MetalScope.DeviceOrientationProvider.waitingQueue")
