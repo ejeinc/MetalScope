@@ -39,21 +39,27 @@ extension DeviceOrientationProvider {
 
 extension CMMotionManager: DeviceOrientationProvider {
     public func deviceOrientation(atTime time: TimeInterval) -> Rotation? {
-        guard let motion = deviceMotion, abs(motion.timestamp - time) < 1 else {
+        guard let motion = deviceMotion else {
+            return nil
+        }
+
+        let timeInterval = time - motion.timestamp
+
+        guard timeInterval < 1 else {
             return nil
         }
 
         var rotation = Rotation(motion)
 
-        let interval = time - motion.timestamp
+        if timeInterval > 0 {
+            let rx = motion.rotationRate.x * timeInterval
+            let ry = motion.rotationRate.y * timeInterval
+            let rz = motion.rotationRate.z * timeInterval
 
-        let rx = motion.rotationRate.x * interval
-        let ry = motion.rotationRate.y * interval
-        let rz = motion.rotationRate.z * interval
-
-        rotation.rotate(byX: Float(rx))
-        rotation.rotate(byY: Float(ry))
-        rotation.rotate(byZ: Float(rz))
+            rotation.rotate(byX: Float(rx))
+            rotation.rotate(byY: Float(ry))
+            rotation.rotate(byZ: Float(rz))
+        }
 
         let reference = Rotation(x: .pi / 2)
 
@@ -61,7 +67,7 @@ extension CMMotionManager: DeviceOrientationProvider {
     }
 
     public func shouldWaitDeviceOrientation(atTime time: TimeInterval) -> Bool {
-        return isDeviceMotionActive && abs((deviceMotion?.timestamp ?? 0) - time) > 1
+        return isDeviceMotionActive && time - (deviceMotion?.timestamp ?? 0) > 1
     }
 }
 
