@@ -41,6 +41,13 @@ public struct Lenses {
     public let offset: Float
     public let alignment: Alignment
     public let screenDistance: Float
+
+    public init(separation: Float, offset: Float, alignment: Alignment, screenDistance: Float) {
+        self.separation = separation
+        self.offset = offset
+        self.alignment = alignment
+        self.screenDistance = screenDistance
+    }
 }
 
 public struct FieldOfView {
