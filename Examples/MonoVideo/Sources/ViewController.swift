@@ -22,6 +22,14 @@ final class ViewController: UIViewController {
     weak var panoramaView: PanoramaView?
 
     var player: AVPlayer?
+    var playerLooper: Any? // AVPlayerLooper if available
+    var playerObservingToken: Any?
+
+    deinit {
+        if let token = playerObservingToken {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
 
     private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
@@ -53,17 +61,22 @@ final class ViewController: UIViewController {
     private func loadVideo() {
         let url = Bundle.main.url(forResource: "Sample", withExtension: "mp4")!
         let playerItem = AVPlayerItem(url: url)
-        let player = AVPlayer(playerItem: playerItem)
+        let player = AVQueuePlayer(playerItem: playerItem)
 
         panoramaView?.load(player, format: .mono)
 
         self.player = player
 
         // loop
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
-            player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-            player.play()
+        if #available(iOS 10, *) {
+            playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
+        } else {
+            player.actionAtItemEnd = .none
+            playerObservingToken = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
+                player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+            }
         }
+
         player.play()
     }
 
