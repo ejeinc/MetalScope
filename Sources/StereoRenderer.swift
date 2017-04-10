@@ -27,8 +27,15 @@ internal final class StereoRenderer {
 
     let scnRenderer: SCNRenderer
 
-    private let renderSemaphore = DispatchSemaphore(value: 3)
+    weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
+        didSet {
+            rendererDelegateProxy.forwardingTarget = sceneRendererDelegate
+        }
+    }
+
+    private let renderSemaphore = DispatchSemaphore(value: 6)
     private let eyeRenderingConfigurations: [Eye: EyeRenderingConfiguration]
+    private let rendererDelegateProxy = RendererDelegateProxy()
 
     init(outputTexture: MTLTexture) {
         self.outputTexture = outputTexture
@@ -36,6 +43,7 @@ internal final class StereoRenderer {
         let device = outputTexture.device
 
         scnRenderer = SCNRenderer(device: device, options: nil)
+        scnRenderer.delegate = rendererDelegateProxy
 
         let eyeTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
             pixelFormat: outputTexture.pixelFormat,
@@ -58,26 +66,20 @@ internal final class StereoRenderer {
         eyeRenderingConfigurations[eye]?.pointOfView = pointOfView
     }
 
-    func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
-        return eyeRenderingConfigurations[eye]?.delegate
-    }
-
-    func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
-        eyeRenderingConfigurations[eye]?.delegate = delegate
-    }
-
     func render(atTime time: TimeInterval) {
+        render(atTime: time, commandQueue: scnRenderer.commandQueue!)
+    }
+
+    func render(atTime time: TimeInterval, commandQueue: MTLCommandQueue) {
         let semaphore = renderSemaphore
 
-        semaphore.wait()
-
-        guard let commandQueue = scnRenderer.commandQueue else {
-            fatalError("Invalid SCNRenderer context")
-        }
-
-        let commandBuffer = commandQueue.makeCommandBuffer()
-
         for (eye, configuration) in eyeRenderingConfigurations {
+            semaphore.wait()
+
+            let commandBuffer = commandQueue.makeCommandBuffer()
+
+            rendererDelegateProxy.currentRenderingEye = eye
+
             let texture = configuration.texture
             let viewport = CGRect(x: 0, y: 0, width: texture.width, height: texture.height)
 
@@ -88,7 +90,6 @@ internal final class StereoRenderer {
             passDescriptor.colorAttachments[0].loadAction = .clear
 
             scnRenderer.pointOfView = configuration.pointOfView
-            scnRenderer.delegate = configuration.delegate
             scnRenderer.render(atTime: time, viewport: viewport, commandBuffer: commandBuffer, passDescriptor: passDescriptor)
 
             let destinationOrigin: MTLOrigin
@@ -112,13 +113,32 @@ internal final class StereoRenderer {
                 destinationOrigin: destinationOrigin
             )
             blitCommandEncoder.endEncoding()
-        }
 
-        commandBuffer.addCompletedHandler { _ in
-            semaphore.signal()
-        }
+            commandBuffer.addCompletedHandler { _ in
+                semaphore.signal()
+            }
 
-        commandBuffer.commit()
+            commandBuffer.commit()
+        }
+    }
+}
+
+extension MTLCommandBufferStatus: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .committed:
+            return "committed"
+        case .completed:
+            return "completed"
+        case .enqueued:
+            return "enqueued"
+        case .error:
+            return "error"
+        case .notEnqueued:
+            return "notEnqueued"
+        case .scheduled:
+            return "scheduled"
+        }
     }
 }
 
@@ -126,10 +146,52 @@ private extension StereoRenderer {
     final class EyeRenderingConfiguration {
         let texture: MTLTexture
         var pointOfView: SCNNode?
-        weak var delegate: SCNSceneRendererDelegate?
 
         init(texture: MTLTexture) {
             self.texture = texture
+        }
+    }
+}
+
+private extension StereoRenderer {
+    final class RendererDelegateProxy: NSObject, SCNSceneRendererDelegate {
+        var currentRenderingEye: Eye?
+
+        weak var forwardingTarget: SCNSceneRendererDelegate?
+
+        func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+            guard currentRenderingEye == .left else {
+                return
+            }
+            forwardingTarget?.renderer?(renderer, updateAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
+            guard currentRenderingEye == .left else {
+                return
+            }
+            forwardingTarget?.renderer?(renderer, didApplyAnimationsAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didSimulatePhysicsAtTime time: TimeInterval) {
+            guard currentRenderingEye == .left else {
+                return
+            }
+            forwardingTarget?.renderer?(renderer, didSimulatePhysicsAtTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+            guard currentRenderingEye == .left else {
+                return
+            }
+            forwardingTarget?.renderer?(renderer, willRenderScene: scene, atTime: time)
+        }
+
+        func renderer(_ renderer: SCNSceneRenderer, didRenderScene scene: SCNScene, atTime time: TimeInterval) {
+            guard currentRenderingEye == .right else {
+                return
+            }
+            forwardingTarget?.renderer?(renderer, didRenderScene: scene, atTime: time)
         }
     }
 }
