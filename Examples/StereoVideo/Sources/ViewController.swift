@@ -42,6 +42,11 @@ final class ViewController: UIViewController {
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
+        // single tap to toggle play/pause
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePlaying))
+        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        panoramaView.addGestureRecognizer(singleTapGestureRecognizer)
+
         self.panoramaView = panoramaView
     }
 
@@ -106,9 +111,22 @@ final class ViewController: UIViewController {
         return .lightContent
     }
 
+    func togglePlaying() {
+        guard let player = player else {
+            return
+        }
+
+        if player.rate == 0 {
+            player.play()
+        } else {
+            player.pause()
+        }
+    }
+
     func presentStereoView() {
         let stereoViewController = StereoViewController(device: device)
         stereoViewController.scene = panoramaView?.scene
+        stereoViewController.stereoView.tapGestureRecognizer.addTarget(self, action: #selector(togglePlaying))
         present(stereoViewController, animated: true, completion: nil)
     }
 }
