@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 public final class StereoView: UIView, MediaSceneLoader {
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     public let stereoTexture: MTLTexture
 
     public var device: MTLDevice {
@@ -23,7 +23,7 @@ public final class StereoView: UIView, MediaSceneLoader {
             orientationNode.removeFromParentNode()
             scene?.rootNode.addChildNode(orientationNode)
 
-            #if METALSCOPE_ENABLE_METAL
+            #if (arch(arm) || arch(arm64)) && os(iOS)
             stereoRenderer.scene = scene
             #endif
         }
@@ -31,7 +31,7 @@ public final class StereoView: UIView, MediaSceneLoader {
 
     public weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
         didSet {
-            #if METALSCOPE_ENABLE_METAL
+            #if (arch(arm) || arch(arm64)) && os(iOS)
             scnRendererDelegate.forwardingTarget = sceneRendererDelegate
             #endif
         }
@@ -55,7 +55,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         didSet {
             stereoCameraNode.stereoParameters = stereoParameters
 
-            #if METALSCOPE_ENABLE_METAL
+            #if (arch(arm) || arch(arm64)) && os(iOS)
             stereoScene.stereoParameters = stereoParameters
             #endif
         }
@@ -68,7 +68,7 @@ public final class StereoView: UIView, MediaSceneLoader {
     }()
 
     lazy var scnView: SCNView = {
-        #if METALSCOPE_ENABLE_METAL
+        #if (arch(arm) || arch(arm64)) && os(iOS)
         let view = SCNView(frame: self.bounds, options: [
             SCNView.Option.preferredRenderingAPI.rawValue: SCNRenderingAPI.metal.rawValue,
             SCNView.Option.preferredDevice.rawValue: self.device
@@ -86,7 +86,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         return view
     }()
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     fileprivate lazy var stereoRenderer: StereoRenderer = {
         let renderer = StereoRenderer(outputTexture: self.stereoTexture)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .left), for: .left)
@@ -96,7 +96,7 @@ public final class StereoView: UIView, MediaSceneLoader {
     }()
     #endif
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     fileprivate lazy var stereoScene: StereoScene = {
         let scene = StereoScene()
         scene.stereoParameters = self.stereoParameters
@@ -105,7 +105,7 @@ public final class StereoView: UIView, MediaSceneLoader {
     }()
     #endif
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     private lazy var scnViewDelegate: SCNViewDelegate = {
         return SCNViewDelegate(stereoRenderer: self.stereoRenderer)
     }()
@@ -115,7 +115,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         return SCNRendererDelegate(orientationNode: self.orientationNode)
     }()
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(stereoTexture: MTLTexture) {
         self.stereoTexture = stereoTexture
 
@@ -191,7 +191,7 @@ extension StereoView {
     }
 }
 
-#if METALSCOPE_ENABLE_METAL
+#if (arch(arm) || arch(arm64)) && os(iOS)
 extension StereoView {
     public var sceneRenderer: SCNSceneRenderer {
         return stereoRenderer.scnRenderer
@@ -209,7 +209,7 @@ extension StereoView {
 }
 #endif
 
-#if METALSCOPE_ENABLE_METAL
+#if (arch(arm) || arch(arm64)) && os(iOS)
 private extension StereoView {
     final class SCNViewDelegate: NSObject, SCNSceneRendererDelegate {
         let stereoRenderer: StereoRenderer

@@ -6,7 +6,7 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
-#if METALSCOPE_ENABLE_METAL
+#if (arch(arm) || arch(arm64)) && os(iOS)
 
 import Metal
 import AVFoundation

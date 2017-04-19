@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 open class StereoViewController: UIViewController, MediaSceneLoader {
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     open let device: MTLDevice
     #endif
 
@@ -76,7 +76,7 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
     private weak var _closeButton: UIButton?
     private weak var _helpButton: UIButton?
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(device: MTLDevice) {
         self.device = device
 
@@ -93,7 +93,7 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
     }
 
     open override func loadView() {
-        #if METALSCOPE_ENABLE_METAL
+        #if (arch(arm) || arch(arm64)) && os(iOS)
         let stereoView = StereoView(device: device)
         #else
         let stereoView = StereoView()

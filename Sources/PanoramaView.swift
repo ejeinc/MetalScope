@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 
 public final class PanoramaView: UIView, MediaSceneLoader {
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
 
@@ -35,7 +35,7 @@ public final class PanoramaView: UIView, MediaSceneLoader {
     }()
 
     lazy var scnView: SCNView = {
-        #if METALSCOPE_ENABLE_METAL
+        #if (arch(arm) || arch(arm64)) && os(iOS)
         let view = SCNView(frame: self.bounds, options: [
             SCNView.Option.preferredRenderingAPI.rawValue: SCNRenderingAPI.metal.rawValue,
             SCNView.Option.preferredDevice.rawValue: self.device
@@ -63,7 +63,7 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
     }()
 
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(frame: CGRect, device: MTLDevice) {
         self.device = device
         super.init(frame: frame)
