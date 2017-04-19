@@ -6,32 +6,34 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
-#if (arch(i386) || arch(x86_64)) && os(iOS)
-    // Not available on iOS Simulator
-#else
-
 import UIKit
 import SceneKit
 
 public final class StereoView: UIView, MediaSceneLoader {
+    #if METALSCOPE_ENABLE_METAL
+    public let stereoTexture: MTLTexture
+
     public var device: MTLDevice {
         return stereoTexture.device
     }
+    #endif
 
     public var scene: SCNScene? {
-        get {
-            return stereoRenderer.scene
-        }
-        set(value) {
+        didSet {
             orientationNode.removeFromParentNode()
-            value?.rootNode.addChildNode(orientationNode)
-            stereoRenderer.scene = value
+            scene?.rootNode.addChildNode(orientationNode)
+
+            #if METALSCOPE_ENABLE_METAL
+            stereoRenderer.scene = scene
+            #endif
         }
     }
 
     public weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
         didSet {
+            #if METALSCOPE_ENABLE_METAL
             scnRendererDelegate.forwardingTarget = sceneRendererDelegate
+            #endif
         }
     }
 
@@ -49,12 +51,13 @@ public final class StereoView: UIView, MediaSceneLoader {
         return node
     }()
 
-    public let stereoTexture: MTLTexture
-
     public var stereoParameters: StereoParametersProtocol = StereoParameters() {
         didSet {
             stereoCameraNode.stereoParameters = stereoParameters
+
+            #if METALSCOPE_ENABLE_METAL
             stereoScene.stereoParameters = stereoParameters
+            #endif
         }
     }
 
@@ -65,20 +68,25 @@ public final class StereoView: UIView, MediaSceneLoader {
     }()
 
     lazy var scnView: SCNView = {
+        #if METALSCOPE_ENABLE_METAL
         let view = SCNView(frame: self.bounds, options: [
             SCNView.Option.preferredRenderingAPI.rawValue: SCNRenderingAPI.metal.rawValue,
             SCNView.Option.preferredDevice.rawValue: self.device
         ])
-        view.backgroundColor = .black
-        view.isUserInteractionEnabled = false
         view.delegate = self.scnViewDelegate
         view.scene = self.stereoScene
         view.pointOfView = self.stereoScene.pointOfView
+        #else
+        let view = SCNView(frame: self.bounds)
+        #endif
+        view.backgroundColor = .black
+        view.isUserInteractionEnabled = false
         view.isPlaying = true
         self.addSubview(view)
         return view
     }()
 
+    #if METALSCOPE_ENABLE_METAL
     fileprivate lazy var stereoRenderer: StereoRenderer = {
         let renderer = StereoRenderer(outputTexture: self.stereoTexture)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .left), for: .left)
@@ -86,22 +94,28 @@ public final class StereoView: UIView, MediaSceneLoader {
         renderer.sceneRendererDelegate = self.scnRendererDelegate
         return renderer
     }()
+    #endif
 
+    #if METALSCOPE_ENABLE_METAL
     fileprivate lazy var stereoScene: StereoScene = {
         let scene = StereoScene()
         scene.stereoParameters = self.stereoParameters
         scene.stereoTexture = self.stereoTexture
         return scene
     }()
+    #endif
 
+    #if METALSCOPE_ENABLE_METAL
     private lazy var scnViewDelegate: SCNViewDelegate = {
         return SCNViewDelegate(stereoRenderer: self.stereoRenderer)
     }()
+    #endif
 
     private lazy var scnRendererDelegate: SCNRendererDelegate = {
         return SCNRendererDelegate(orientationNode: self.orientationNode)
     }()
 
+    #if METALSCOPE_ENABLE_METAL
     public init(stereoTexture: MTLTexture) {
         self.stereoTexture = stereoTexture
 
@@ -137,6 +151,11 @@ public final class StereoView: UIView, MediaSceneLoader {
         let sceneScale = textureSize.width / (bounds.width * UIScreen.main.scale)
         scnView.transform = CGAffineTransform(scaleX: sceneScale, y: sceneScale)
     }
+    #else
+    public init() {
+        super.init(frame: UIScreen.main.landscapeBounds)
+    }
+    #endif
 
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -154,20 +173,6 @@ public final class StereoView: UIView, MediaSceneLoader {
 }
 
 extension StereoView {
-    public var sceneRenderer: SCNSceneRenderer {
-        return stereoRenderer.scnRenderer
-    }
-
-    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
-    public func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
-        fatalError("Use sceneRendererDelegate property instead")
-    }
-
-    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
-    public func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
-        fatalError("Use sceneRendererDelegate property instead")
-    }
-
     public var isPlaying: Bool {
         get {
             return scnView.isPlaying
@@ -186,6 +191,25 @@ extension StereoView {
     }
 }
 
+#if METALSCOPE_ENABLE_METAL
+extension StereoView {
+    public var sceneRenderer: SCNSceneRenderer {
+        return stereoRenderer.scnRenderer
+    }
+
+    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
+    public func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
+        fatalError("Use sceneRendererDelegate property instead")
+    }
+
+    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
+    public func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
+        fatalError("Use sceneRendererDelegate property instead")
+    }
+}
+#endif
+
+#if METALSCOPE_ENABLE_METAL
 private extension StereoView {
     final class SCNViewDelegate: NSObject, SCNSceneRendererDelegate {
         let stereoRenderer: StereoRenderer
@@ -202,7 +226,10 @@ private extension StereoView {
             stereoRenderer.render(atTime: time, commandQueue: commandQueue)
         }
     }
+}
+#endif
 
+private extension StereoView {
     final class SCNRendererDelegate: NSObject, SCNSceneRendererDelegate {
         weak var forwardingTarget: SCNSceneRendererDelegate?
 
@@ -256,5 +283,3 @@ private extension UIScreen {
         return CGRect(x: 0, y: 0, width: nativeBounds.height, height: nativeBounds.width)
     }
 }
-
-#endif

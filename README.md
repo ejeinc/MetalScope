@@ -91,6 +91,19 @@ present(stereoViewController, animated: true, completion: nil)
 
 Check example apps for more samples.
 
+### Simulator
+`PanoramaView`, `StereoView` and `StereoViewController` can also be used on iOS simulator by using alternative initializers.
+
+```swift
+#if METALSCOPE_ENABLE_METAL
+let panoramaView = PanoramaView(frame: view.bounds, device: device)
+#else
+let panoramaView = PanoramaView(frame: view.bounds) // on simulator
+#endif
+```
+
+Please note that these classes are significantly limited in functionality on the simulator. For example, `PanoramaView` can display photos, but cannot display videos. For `StereoView` and `StereoViewController`, it is a placeholder and nothing is displayed.
+
 ## Requirements
 
 - Xcode 8.2+

@@ -6,15 +6,13 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
-#if (arch(i386) || arch(x86_64)) && os(iOS)
-    // Not available on iOS Simulator
-#else
-
 import UIKit
 import SceneKit
 
 public final class PanoramaView: UIView, MediaSceneLoader {
+    #if METALSCOPE_ENABLE_METAL
     public let device: MTLDevice
+    #endif
 
     public var scene: SCNScene? {
         get {
@@ -37,10 +35,14 @@ public final class PanoramaView: UIView, MediaSceneLoader {
     }()
 
     lazy var scnView: SCNView = {
+        #if METALSCOPE_ENABLE_METAL
         let view = SCNView(frame: self.bounds, options: [
             SCNView.Option.preferredRenderingAPI.rawValue: SCNRenderingAPI.metal.rawValue,
             SCNView.Option.preferredDevice.rawValue: self.device
         ])
+        #else
+        let view = SCNView(frame: self.bounds)
+        #endif
         view.backgroundColor = .black
         view.isUserInteractionEnabled = false
         view.delegate = self
@@ -61,13 +63,18 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
     }()
 
+    #if METALSCOPE_ENABLE_METAL
     public init(frame: CGRect, device: MTLDevice) {
         self.device = device
-
         super.init(frame: frame)
-
         addGestureRecognizer(self.panGestureManager.gestureRecognizer)
     }
+    #else
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        addGestureRecognizer(self.panGestureManager.gestureRecognizer)
+    }
+    #endif
 
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -185,5 +192,3 @@ extension PanoramaView: SCNSceneRendererDelegate {
         sceneRendererDelegate?.renderer?(renderer, didRenderScene: scene, atTime: time)
     }
 }
-
-#endif

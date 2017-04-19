@@ -6,15 +6,13 @@
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
-#if (arch(i386) || arch(x86_64)) && os(iOS)
-    // Not available on iOS Simulator
-#else
-
 import UIKit
 import SceneKit
 
 open class StereoViewController: UIViewController, MediaSceneLoader {
+    #if METALSCOPE_ENABLE_METAL
     open let device: MTLDevice
+    #endif
 
     open var scene: SCNScene? {
         didSet {
@@ -78,18 +76,28 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
     private weak var _closeButton: UIButton?
     private weak var _helpButton: UIButton?
 
+    #if METALSCOPE_ENABLE_METAL
     public init(device: MTLDevice) {
         self.device = device
 
         super.init(nibName: nil, bundle: nil)
     }
+    #else
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    #endif
 
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     open override func loadView() {
+        #if METALSCOPE_ENABLE_METAL
         let stereoView = StereoView(device: device)
+        #else
+        let stereoView = StereoView()
+        #endif
         stereoView.backgroundColor = .black
         stereoView.scene = scene
         stereoView.stereoParameters = stereoParameters
@@ -219,5 +227,3 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         }
     }
 }
-
-#endif

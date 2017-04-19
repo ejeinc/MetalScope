@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define METALSCOPE_ENABLE_METAL (!TARGET_OS_SIMULATOR)
+
 //! Project version number for MetalScope.
 FOUNDATION_EXPORT double MetalScopeVersionNumber;
 
