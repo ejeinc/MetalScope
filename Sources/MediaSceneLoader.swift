@@ -9,7 +9,7 @@
 import SceneKit
 
 public protocol MediaSceneLoader: class {
-    #if METALSCOPE_ENABLE_METAL
+    #if (arch(arm) || arch(arm64)) && os(iOS)
     var device: MTLDevice { get }
     #endif
 

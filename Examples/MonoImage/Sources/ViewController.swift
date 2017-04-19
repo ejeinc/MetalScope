@@ -21,7 +21,7 @@ final class ViewController: UIViewController {
     weak var panoramaView: PanoramaView?
 
     private func loadPanoramaView() {
-        #if METALSCOPE_ENABLE_METAL
+        #if arch(arm) || arch(arm64)
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
         #else
         let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
