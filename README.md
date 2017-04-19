@@ -95,10 +95,10 @@ Check example apps for more samples.
 `PanoramaView`, `StereoView` and `StereoViewController` can also be used on iOS simulator by using alternative initializers.
 
 ```swift
-#if METALSCOPE_ENABLE_METAL
+#if arch(arm) || arch(arm64)
 let panoramaView = PanoramaView(frame: view.bounds, device: device)
 #else
-let panoramaView = PanoramaView(frame: view.bounds) // on simulator
+let panoramaView = PanoramaView(frame: view.bounds) // simulator
 #endif
 ```
 
