@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-open class StereoViewController: UIViewController, MediaSceneLoader {
+open class StereoViewController: UIViewController, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     open let device: MTLDevice
     #endif
@@ -227,3 +227,9 @@ open class StereoViewController: UIViewController, MediaSceneLoader {
         }
     }
 }
+
+extension StereoViewController: ImageLoadable {}
+
+#if (arch(arm) || arch(arm64)) && os(iOS)
+extension StereoViewController: VideoLoadable {}
+#endif

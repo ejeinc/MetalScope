@@ -1,5 +1,5 @@
 //
-//  MediaSceneLoader.swift
+//  SceneLoadable.swift
 //  MetalScope
 //
 //  Created by Jun Tanaka on 2017/01/20.
@@ -8,10 +8,6 @@
 
 import SceneKit
 
-public protocol MediaSceneLoader: class {
-    #if (arch(arm) || arch(arm64)) && os(iOS)
-    var device: MTLDevice { get }
-    #endif
-
+public protocol SceneLoadable: class {
     var scene: SCNScene? { get set }
 }

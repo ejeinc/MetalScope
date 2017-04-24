@@ -1,14 +1,19 @@
 //
-//  MediaSceneLoader+Image.swift
+//  ImageLoadable.swift
 //  MetalScope
 //
-//  Created by Jun Tanaka on 2017/01/20.
+//  Created by Jun Tanaka on 2017/04/24.
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
 import SceneKit
+import UIKit
 
-extension MediaSceneLoader {
+public protocol ImageLoadable: class {
+    func load(_ image: UIImage, format: MediaFormat)
+}
+
+extension ImageLoadable where Self: SceneLoadable {
     public func load(_ image: UIImage, format: MediaFormat) {
         let scene: ImageScene
 

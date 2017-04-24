@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-public final class StereoView: UIView, MediaSceneLoader {
+public final class StereoView: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let stereoTexture: MTLTexture
 
@@ -174,6 +174,12 @@ public final class StereoView: UIView, MediaSceneLoader {
         scnView.frame = bounds
     }
 }
+
+extension StereoView: ImageLoadable {}
+
+#if (arch(arm) || arch(arm64)) && os(iOS)
+extension StereoView: VideoLoadable {}
+#endif
 
 extension StereoView {
     public var isPlaying: Bool {
