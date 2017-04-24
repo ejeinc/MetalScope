@@ -32,7 +32,7 @@ public final class StereoView: UIView, MediaSceneLoader {
     public weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
         didSet {
             #if (arch(arm) || arch(arm64)) && os(iOS)
-            scnRendererDelegate.forwardingTarget = sceneRendererDelegate
+            stereoRendererDelegate.forwardingTarget = sceneRendererDelegate
             #endif
         }
     }
@@ -73,7 +73,7 @@ public final class StereoView: UIView, MediaSceneLoader {
             SCNView.Option.preferredRenderingAPI.rawValue: SCNRenderingAPI.metal.rawValue,
             SCNView.Option.preferredDevice.rawValue: self.device
         ])
-        view.delegate = self.scnViewDelegate
+        view.delegate = self.viewRendererDelegate
         view.scene = self.stereoScene
         view.pointOfView = self.stereoScene.pointOfView
         #else
@@ -91,7 +91,7 @@ public final class StereoView: UIView, MediaSceneLoader {
         let renderer = StereoRenderer(outputTexture: self.stereoTexture)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .left), for: .left)
         renderer.setPointOfView(self.stereoCameraNode.pointOfView(for: .right), for: .right)
-        renderer.sceneRendererDelegate = self.scnRendererDelegate
+        renderer.sceneRendererDelegate = self.stereoRendererDelegate
         return renderer
     }()
     #endif
@@ -106,14 +106,17 @@ public final class StereoView: UIView, MediaSceneLoader {
     #endif
 
     #if (arch(arm) || arch(arm64)) && os(iOS)
-    private lazy var scnViewDelegate: SCNViewDelegate = {
-        return SCNViewDelegate(stereoRenderer: self.stereoRenderer)
+    fileprivate lazy var viewRendererDelegate: ViewRendererDelegate = {
+        return ViewRendererDelegate(stereoRenderer: self.stereoRenderer)
     }()
     #endif
 
-    private lazy var scnRendererDelegate: SCNRendererDelegate = {
-        return SCNRendererDelegate(orientationNode: self.orientationNode)
+    fileprivate lazy var stereoRendererDelegate: StereoRendererDelegate = {
+        return StereoRendererDelegate(orientationNode: self.orientationNode)
     }()
+
+    fileprivate var needsResetRotation = false
+    fileprivate var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.StereoView.needsResetRotationQueue")
 
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(stereoTexture: MTLTexture) {
@@ -186,8 +189,8 @@ extension StereoView {
         return scnView.snapshot()
     }
 
-    public func resetCenter() {
-        orientationNode.resetCenter(animated: true)
+    public func setNeedsResetRotation() {
+        stereoRendererDelegate.setNeedsResetRotation()
     }
 }
 
@@ -196,22 +199,12 @@ extension StereoView {
     public var sceneRenderer: SCNSceneRenderer {
         return stereoRenderer.scnRenderer
     }
-
-    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
-    public func sceneRendererDelegate(for eye: Eye) -> SCNSceneRendererDelegate? {
-        fatalError("Use sceneRendererDelegate property instead")
-    }
-
-    @available(*, unavailable, message: "Use sceneRendererDelegate property instead")
-    public func setSceneRendererDelegate(_ delegate: SCNSceneRendererDelegate, for eye: Eye) {
-        fatalError("Use sceneRendererDelegate property instead")
-    }
 }
 #endif
 
 #if (arch(arm) || arch(arm64)) && os(iOS)
 private extension StereoView {
-    final class SCNViewDelegate: NSObject, SCNSceneRendererDelegate {
+    final class ViewRendererDelegate: NSObject, SCNSceneRendererDelegate {
         let stereoRenderer: StereoRenderer
 
         init(stereoRenderer: StereoRenderer) {
@@ -230,13 +223,22 @@ private extension StereoView {
 #endif
 
 private extension StereoView {
-    final class SCNRendererDelegate: NSObject, SCNSceneRendererDelegate {
+    final class StereoRendererDelegate: NSObject, SCNSceneRendererDelegate {
         weak var forwardingTarget: SCNSceneRendererDelegate?
 
         let orientationNode: OrientationNode
 
+        private var needsResetRotation = false
+        private var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.StereoView.StereoRendererDelegate.needsResetRotationQueue")
+
         init(orientationNode: OrientationNode) {
             self.orientationNode = orientationNode
+        }
+
+        func setNeedsResetRotation() {
+            needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
+                self?.needsResetRotation = true
+            }
         }
 
         func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -252,6 +254,15 @@ private extension StereoView {
 
             SCNTransaction.commit()
             SCNTransaction.unlock()
+
+            let needsResetRotation: Bool = needsResetRotationQueue.sync(execute: {
+                let value = self.needsResetRotation
+                self.needsResetRotation = false
+                return value
+            })
+            if needsResetRotation {
+                orientationNode.resetRotation(animated: false)
+            }
 
             forwardingTarget?.renderer?(renderer, updateAtTime: time)
         }

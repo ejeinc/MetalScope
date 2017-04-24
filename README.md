@@ -45,7 +45,7 @@ player.play()
 panoramaView.scene = ...
 ```
 
-`PanoramaView` rotates the point of view by device motions and user's pan gesture. To reset rotation, just call `resetCenter()`
+`PanoramaView` rotates the point of view by device motions and user's pan gesture. To reset rotation, just call `setNeedsResetRotation()`
 
 ```swift
 let panoramaView: PanoramaView = ...
@@ -53,7 +53,7 @@ let panoramaView: PanoramaView = ...
 // double tap to re-center the scene
 let recognizer = UITapGestureRecognizer(
   target: panoramaView,
-  action: #selector(PanoramaView.resetCenter))
+  action: #selector(PanoramaView.setNeedsResetRotation))
 recognizer.numberOfTapsRequired = 2
 
 panoramaView.addGestureRecognizer(recognizer)
