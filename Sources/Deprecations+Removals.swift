@@ -43,3 +43,6 @@ extension OrientationNode {
         resetRotation(animated: animated, completionHanlder: completionHanlder)
     }
 }
+
+@available(*, unavailable, message: "This protocol has been removed. Use `SceneLoadable`, `ImageLoadable` and `VideoLoadable` instead")
+public protocol MediaSceneLoader: class {}

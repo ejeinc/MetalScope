@@ -1,8 +1,8 @@
 //
-//  MediaSceneLoader+Video.swift
+//  VideoLoadable.swift
 //  MetalScope
 //
-//  Created by Jun Tanaka on 2017/01/20.
+//  Created by Jun Tanaka on 2017/04/24.
 //  Copyright © 2017 eje Inc. All rights reserved.
 //
 
@@ -11,7 +11,13 @@
 import SceneKit
 import AVFoundation
 
-extension MediaSceneLoader {
+public protocol VideoLoadable: class {
+    var device: MTLDevice { get }
+
+    func load(_ player: AVPlayer, format: MediaFormat)
+}
+
+extension VideoLoadable where Self: SceneLoadable {
     public func load(_ player: AVPlayer, format: MediaFormat) {
         let scene: VideoScene
 

@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-public final class PanoramaView: UIView, MediaSceneLoader {
+public final class PanoramaView: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
     #endif
@@ -102,6 +102,12 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         }
     }
 }
+
+extension PanoramaView: ImageLoadable {}
+
+#if (arch(arm) || arch(arm64)) && os(iOS)
+extension PanoramaView: VideoLoadable {}
+#endif
 
 extension PanoramaView {
     public var sceneRenderer: SCNSceneRenderer {
