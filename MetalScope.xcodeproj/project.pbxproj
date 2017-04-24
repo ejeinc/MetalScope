@@ -11,6 +11,7 @@
 		BF1452E11E320BEF0042598E /* MediaSceneLoader+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E01E320BEF0042598E /* MediaSceneLoader+Image.swift */; };
 		BF1452E31E320C210042598E /* MediaSceneLoader+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */; };
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
+		BF46F09A1EADDEDA00F5CB58 /* Deprecations+Removals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46F0991EADDEDA00F5CB58 /* Deprecations+Removals.swift */; };
 		BF603F551E41B57600A28013 /* OrientationIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF603F541E41B57600A28013 /* OrientationIndicator.swift */; };
 		BF9B15B41E44B47F004CC8CE /* RenderLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B15B31E44B47F004CC8CE /* RenderLoop.swift */; };
 		BF9B15B61E44B4B1004CC8CE /* KeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B15B51E44B4B1004CC8CE /* KeyValueObserver.swift */; };
@@ -50,6 +51,7 @@
 		BF1452E01E320BEF0042598E /* MediaSceneLoader+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Image.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1452E21E320C210042598E /* MediaSceneLoader+Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "MediaSceneLoader+Video.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryBitMask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BF46F0991EADDEDA00F5CB58 /* Deprecations+Removals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Deprecations+Removals.swift"; sourceTree = "<group>"; };
 		BF603F541E41B57600A28013 /* OrientationIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationIndicator.swift; sourceTree = "<group>"; };
 		BF9B15B31E44B47F004CC8CE /* RenderLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderLoop.swift; sourceTree = "<group>"; };
 		BF9B15B51E44B4B1004CC8CE /* KeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueObserver.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB8917B1E2E013400FA9129 /* MetalScope.h */,
+				BF46F0991EADDEDA00F5CB58 /* Deprecations+Removals.swift */,
 				BFDF48B81E8A52E200FC7A74 /* PanoramaView */,
 				BFAB12FD1E35B82D00A1642C /* StereoView */,
 				BFB891921E2E04EB00FA9129 /* OrientationNode */,
@@ -320,6 +323,7 @@
 				BFAB130B1E35D1E900A1642C /* StereoParameters.swift in Sources */,
 				BFAB12FF1E35B94400A1642C /* StereoRenderer.swift in Sources */,
 				BF9B15B61E44B4B1004CC8CE /* KeyValueObserver.swift in Sources */,
+				BF46F09A1EADDEDA00F5CB58 /* Deprecations+Removals.swift in Sources */,
 				BFAB13091E35BE9800A1642C /* ScreenModel.swift in Sources */,
 				BFFE23891E409046006097A1 /* MediaFormat.swift in Sources */,
 				BFAB13031E35B9DA00A1642C /* ViewerModel.swift in Sources */,

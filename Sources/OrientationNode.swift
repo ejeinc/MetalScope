@@ -53,7 +53,7 @@ public final class OrientationNode: SCNNode {
         interfaceOrientationNode.orientation = rotation.scnQuaternion
     }
 
-    public func resetCenter() {
+    public func resetRotation() {
         let r1 = Rotation(pointOfView.worldTransform).inverted()
         let r2 = Rotation(referenceRotationNode.worldTransform)
         let r3 = r1 * r2
@@ -62,7 +62,7 @@ public final class OrientationNode: SCNNode {
         userRotationNode.transform = SCNMatrix4Identity
     }
 
-    public func resetCenter(animated: Bool, completionHanlder: (() -> Void)? = nil) {
+    public func resetRotation(animated: Bool, completionHanlder: (() -> Void)? = nil) {
         SCNTransaction.lock()
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.6
@@ -70,7 +70,7 @@ public final class OrientationNode: SCNNode {
         SCNTransaction.completionBlock = completionHanlder
         SCNTransaction.disableActions = !animated
 
-        resetCenter()
+        resetRotation()
 
         SCNTransaction.commit()
         SCNTransaction.unlock()

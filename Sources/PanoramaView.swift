@@ -63,6 +63,9 @@ public final class PanoramaView: UIView, MediaSceneLoader {
         return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
     }()
 
+    fileprivate var needsResetRotation = false
+    fileprivate var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.PanoramaView.needsResetRotationQueue")
+
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(frame: CGRect, device: MTLDevice) {
         self.device = device
@@ -139,8 +142,10 @@ extension PanoramaView {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
-    public func resetCenter() {
-        orientationNode.resetCenter(animated: true)
+    public func setNeedsResetRotation() {
+        needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
+            self?.needsResetRotation = true
+        }
     }
 }
 
@@ -172,6 +177,15 @@ extension PanoramaView: SCNSceneRendererDelegate {
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
+
+        let needsResetRotation: Bool = needsResetRotationQueue.sync(execute: {
+            let value = self.needsResetRotation
+            self.needsResetRotation = false
+            return value
+        })
+        if needsResetRotation {
+            orientationNode.resetRotation(animated: !disableActions)
+        }
 
         sceneRendererDelegate?.renderer?(renderer, updateAtTime: time)
     }
