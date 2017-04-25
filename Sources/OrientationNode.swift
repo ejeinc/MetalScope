@@ -75,4 +75,14 @@ public final class OrientationNode: SCNNode {
         SCNTransaction.commit()
         SCNTransaction.unlock()
     }
+
+    /// Requests reset of rotation in the next rendering frame.
+    ///
+    /// - Parameter animated: Pass true to animate the transition.
+    public func setNeedsResetRotation(animated: Bool) {
+        let action = SCNAction.run { node in
+            (node as! OrientationNode).resetRotation(animated: animated)
+        }
+        runAction(action, forKey: "setNeedsResetRotation")
+    }
 }
