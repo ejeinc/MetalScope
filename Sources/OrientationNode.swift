@@ -54,8 +54,8 @@ public final class OrientationNode: SCNNode {
     }
 
     public func resetRotation() {
-        let r1 = Rotation(pointOfView.worldTransform).inverted()
-        let r2 = Rotation(referenceRotationNode.worldTransform)
+        let r1 = Rotation(pointOfView.presentation.worldTransform).inverted()
+        let r2 = Rotation(referenceRotationNode.presentation.worldTransform)
         let r3 = r1 * r2
         referenceRotationNode.transform = r3.scnMatrix4
 
@@ -74,5 +74,15 @@ public final class OrientationNode: SCNNode {
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
+    }
+
+    /// Requests reset of rotation in the next rendering frame.
+    ///
+    /// - Parameter animated: Pass true to animate the transition.
+    public func setNeedsResetRotation(animated: Bool) {
+        let action = SCNAction.run { node in
+            (node as! OrientationNode).resetRotation(animated: animated)
+        }
+        runAction(action, forKey: "setNeedsResetRotation")
     }
 }

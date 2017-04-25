@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         #else
         let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
         #endif
-        panoramaView.setNeedsResetRotation()
+        panoramaView.setNeedsResetRotation(animated: false)
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
