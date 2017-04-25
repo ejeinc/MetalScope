@@ -115,9 +115,6 @@ public final class StereoView: UIView, SceneLoadable {
         return StereoRendererDelegate(orientationNode: self.orientationNode)
     }()
 
-    fileprivate var needsResetRotation = false
-    fileprivate var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.StereoView.needsResetRotationQueue")
-
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(stereoTexture: MTLTexture) {
         self.stereoTexture = stereoTexture
@@ -196,7 +193,7 @@ extension StereoView {
     }
 
     public func setNeedsResetRotation() {
-        stereoRendererDelegate.setNeedsResetRotation()
+        orientationNode.setNeedsResetRotation(animated: false)
     }
 }
 
@@ -234,17 +231,8 @@ private extension StereoView {
 
         let orientationNode: OrientationNode
 
-        private var needsResetRotation = false
-        private var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.StereoView.StereoRendererDelegate.needsResetRotationQueue")
-
         init(orientationNode: OrientationNode) {
             self.orientationNode = orientationNode
-        }
-
-        func setNeedsResetRotation() {
-            needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
-                self?.needsResetRotation = true
-            }
         }
 
         func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -260,15 +248,6 @@ private extension StereoView {
 
             SCNTransaction.commit()
             SCNTransaction.unlock()
-
-            let needsResetRotation: Bool = needsResetRotationQueue.sync(execute: {
-                let value = self.needsResetRotation
-                self.needsResetRotation = false
-                return value
-            })
-            if needsResetRotation {
-                orientationNode.resetRotation(animated: false)
-            }
 
             forwardingTarget?.renderer?(renderer, updateAtTime: time)
         }

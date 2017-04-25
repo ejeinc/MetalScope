@@ -52,8 +52,8 @@ public final class PanoramaView: UIView, SceneLoadable {
         return view
     }()
 
-    fileprivate lazy var panGestureManager: PanGestureManager = {
-        let manager = PanGestureManager(rotationNode: self.orientationNode.userRotationNode)
+    fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
+        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
         manager.minimumVerticalRotationAngle = -60 / 180 * .pi
         manager.maximumVerticalRotationAngle = 60 / 180 * .pi
         return manager
@@ -62,9 +62,6 @@ public final class PanoramaView: UIView, SceneLoadable {
     fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {
         return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
     }()
-
-    fileprivate var needsResetRotation = false
-    fileprivate var needsResetRotationQueue = DispatchQueue(label: "com.eje-c.MetalScope.PanoramaView.needsResetRotationQueue")
 
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(frame: CGRect, device: MTLDevice) {
@@ -148,10 +145,8 @@ extension PanoramaView {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
-    public func setNeedsResetRotation() {
-        needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
-            self?.needsResetRotation = true
-        }
+    public func setNeedsResetRotation(animated: Bool = true) {
+        orientationNode.setNeedsResetRotation(animated: animated)
     }
 }
 
@@ -183,15 +178,6 @@ extension PanoramaView: SCNSceneRendererDelegate {
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
-
-        let needsResetRotation: Bool = needsResetRotationQueue.sync(execute: {
-            let value = self.needsResetRotation
-            self.needsResetRotation = false
-            return value
-        })
-        if needsResetRotation {
-            orientationNode.resetRotation(animated: !disableActions)
-        }
 
         sceneRendererDelegate?.renderer?(renderer, updateAtTime: time)
     }
