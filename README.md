@@ -53,7 +53,7 @@ let panoramaView: PanoramaView = ...
 // double tap to re-center the scene
 let recognizer = UITapGestureRecognizer(
   target: panoramaView,
-  action: #selector(PanoramaView.setNeedsResetRotation))
+  action: #selector(PanoramaView.setNeedsResetRotation(_:)))
 recognizer.numberOfTapsRequired = 2
 
 panoramaView.addGestureRecognizer(recognizer)
