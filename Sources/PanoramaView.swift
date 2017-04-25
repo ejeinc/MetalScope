@@ -146,6 +146,8 @@ extension PanoramaView {
     }
 
     public func setNeedsResetRotation(animated: Bool = true) {
+        panGestureManager.stopAnimations()
+
         orientationNode.setNeedsResetRotation(animated: animated)
     }
 }
