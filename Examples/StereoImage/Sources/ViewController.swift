@@ -22,7 +22,7 @@ final class ViewController: UIViewController {
 
     private func loadPanoramaView() {
         let panoramaView = PanoramaView(frame: view.bounds, device: device)
-        panoramaView.setNeedsResetRotation()
+        panoramaView.setNeedsResetRotation(animated: false)
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
