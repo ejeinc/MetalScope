@@ -52,8 +52,8 @@ public final class PanoramaView: UIView, SceneLoadable {
         return view
     }()
 
-    fileprivate lazy var panGestureManager: PanGestureManager = {
-        let manager = PanGestureManager(rotationNode: self.orientationNode.userRotationNode)
+    fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
+        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
         manager.minimumVerticalRotationAngle = -60 / 180 * .pi
         manager.maximumVerticalRotationAngle = 60 / 180 * .pi
         return manager
@@ -149,6 +149,8 @@ extension PanoramaView {
     }
 
     public func setNeedsResetRotation() {
+        panGestureManager.stopAnimations()
+
         needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
             self?.needsResetRotation = true
         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF1452DF1E320BAC0042598E /* SceneLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452DE1E320BAC0042598E /* SceneLoadable.swift */; };
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
+		BF1F1D381EAF6A53004AEEB4 /* PanoramaPanGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaPanGestureManager.swift */; };
 		BF46F09A1EADDEDA00F5CB58 /* Deprecations+Removals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46F0991EADDEDA00F5CB58 /* Deprecations+Removals.swift */; };
 		BF46F0A11EADE9C300F5CB58 /* ImageLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46F0A01EADE9C300F5CB58 /* ImageLoadable.swift */; };
 		BF46F0A31EADEA4600F5CB58 /* VideoLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF46F0A21EADEA4600F5CB58 /* VideoLoadable.swift */; };
@@ -40,7 +41,6 @@
 		BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */; };
 		BFB891B71E2E2A9900FA9129 /* InterfaceOrientationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */; };
 		BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */; };
-		BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */; };
 		BFB892691E30DCEA00FA9129 /* OrientationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB892681E30DCEA00FA9129 /* OrientationNode.swift */; };
 		BFFE23841E407DDD006097A1 /* InterfaceOrientationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */; };
 		BFFE23891E409046006097A1 /* MediaFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFE23881E409046006097A1 /* MediaFormat.swift */; };
@@ -82,7 +82,7 @@
 		BFB891A71E2E10CA00FA9129 /* Rotation+SceneKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Rotation+SceneKit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB891B61E2E2A9900FA9129 /* InterfaceOrientationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InterfaceOrientationProvider.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB8920A1E2F364B00FA9129 /* SphericalMediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SphericalMediaScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "PanoramaView+PanGesture.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		BFB8922F1E2F761600FA9129 /* PanoramaPanGestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PanoramaPanGestureManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFB892681E30DCEA00FA9129 /* OrientationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OrientationNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFFE23831E407DDD006097A1 /* InterfaceOrientationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InterfaceOrientationUpdater.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BFFE23881E409046006097A1 /* MediaFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MediaFormat.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -215,7 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
-				BFB8922F1E2F761600FA9129 /* PanoramaView+PanGesture.swift */,
+				BFB8922F1E2F761600FA9129 /* PanoramaPanGestureManager.swift */,
 			);
 			name = PanoramaView;
 			sourceTree = "<group>";
@@ -309,7 +309,6 @@
 				BF46F0A11EADE9C300F5CB58 /* ImageLoadable.swift in Sources */,
 				BF9B15B41E44B47F004CC8CE /* RenderLoop.swift in Sources */,
 				BFB891A61E2E109A00FA9129 /* Rotation+CoreMotion.swift in Sources */,
-				BFB892301E2F761600FA9129 /* PanoramaView+PanGesture.swift in Sources */,
 				BFAB13111E35EE0D00A1642C /* StereoScene.swift in Sources */,
 				BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */,
 				BFB891A41E2E090A00FA9129 /* Rotation.swift in Sources */,
@@ -335,6 +334,7 @@
 				BFB8919F1E2E083000FA9129 /* PanoramaView.swift in Sources */,
 				BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */,
 				BF603F551E41B57600A28013 /* OrientationIndicator.swift in Sources */,
+				BF1F1D381EAF6A53004AEEB4 /* PanoramaPanGestureManager.swift in Sources */,
 				BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
