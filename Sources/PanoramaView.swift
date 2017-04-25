@@ -149,6 +149,8 @@ extension PanoramaView {
     }
 
     public func setNeedsResetRotation() {
+        panGestureManager.stopAnimations()
+
         needsResetRotationQueue.async(flags: [.barrier]) { [weak self] in
             self?.needsResetRotation = true
         }
