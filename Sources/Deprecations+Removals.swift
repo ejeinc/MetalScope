@@ -9,14 +9,14 @@
 import SceneKit
 
 extension PanoramaView {
-    @available(*, deprecated, message: "Use `setNeedsResetRotation()` instead")
+    @available(*, deprecated, message: "Use `setNeedsResetRotation` instead")
     public func resetCenter() {
-        setNeedsResetRotation()
+        setNeedsResetRotation(animated: true)
     }
 }
 
 extension StereoView {
-    @available(*, deprecated, message: "Use `setNeedsResetRotation()` instead")
+    @available(*, deprecated, message: "Use `setNeedsResetRotation` instead")
     public func resetCenter() {
         setNeedsResetRotation()
     }
