@@ -54,8 +54,8 @@ public final class OrientationNode: SCNNode {
     }
 
     public func resetRotation() {
-        let r1 = Rotation(pointOfView.worldTransform).inverted()
-        let r2 = Rotation(referenceRotationNode.worldTransform)
+        let r1 = Rotation(pointOfView.presentation.worldTransform).inverted()
+        let r2 = Rotation(referenceRotationNode.presentation.worldTransform)
         let r3 = r1 * r2
         referenceRotationNode.transform = r3.scnMatrix4
 
