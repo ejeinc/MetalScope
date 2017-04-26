@@ -11,7 +11,7 @@
 import SceneKit
 import AVFoundation
 
-public protocol VideoLoadable: class {
+public protocol VideoLoadable {
     var device: MTLDevice { get }
 
     func load(_ player: AVPlayer, format: MediaFormat)

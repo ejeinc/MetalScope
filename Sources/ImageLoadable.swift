@@ -9,7 +9,7 @@
 import SceneKit
 import UIKit
 
-public protocol ImageLoadable: class {
+public protocol ImageLoadable {
     func load(_ image: UIImage, format: MediaFormat)
 }
 
@@ -27,5 +27,6 @@ extension ImageLoadable where Self: SceneLoadable {
         scene.image = image
 
         self.scene = (scene as? SCNScene)
+        target.scene = (scene as? SCNScene)
     }
 }
