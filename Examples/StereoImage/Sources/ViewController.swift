@@ -89,7 +89,14 @@ final class ViewController: UIViewController {
     }
 
     func presentStereoView() {
+        let introView = UILabel()
+        introView.text = "Place your phone into your Cardboard viewer."
+        introView.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        introView.textAlignment = .center
+        introView.backgroundColor = #colorLiteral(red: 0.2745098039, green: 0.3529411765, blue: 0.3921568627, alpha: 1)
+
         let stereoViewController = StereoViewController(device: device)
+        stereoViewController.introductionView = introView
         stereoViewController.scene = panoramaView?.scene
         present(stereoViewController, animated: true, completion: nil)
     }
