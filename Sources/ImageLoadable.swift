@@ -15,18 +15,14 @@ public protocol ImageLoadable {
 
 extension ImageLoadable where Self: SceneLoadable {
     public func load(_ image: UIImage, format: MediaFormat) {
-        ImageSceneLoader(target: self).load(image, format: format)
+        scene = ImageSceneLoader().load(image, format: format)
     }
 }
 
-public struct ImageSceneLoader<Target: SceneLoadable>: ImageLoadable {
-    public let target: Target
+public struct ImageSceneLoader {
+    public init() {}
 
-    public init(target: Target) {
-        self.target = target
-    }
-
-    public func load(_ image: UIImage, format: MediaFormat) {
+    public func load(_ image: UIImage, format: MediaFormat) -> SCNScene {
         let scene: ImageScene
 
         switch format {
@@ -38,6 +34,6 @@ public struct ImageSceneLoader<Target: SceneLoadable>: ImageLoadable {
 
         scene.image = image
 
-        target.scene = (scene as? SCNScene)
+        return scene as! SCNScene
     }
 }

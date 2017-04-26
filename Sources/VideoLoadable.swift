@@ -19,20 +19,18 @@ public protocol VideoLoadable {
 
 extension VideoLoadable where Self: SceneLoadable {
     public func load(_ player: AVPlayer, format: MediaFormat) {
-        VideoSceneLoader(target: self).load(player, format: format)
+        scene = VideoSceneLoader(device: device).load(player, format: format)
     }
 }
 
-public struct VideoSceneLoader<Target: SceneLoadable>: VideoLoadable {
-    public let target: Target
+public struct VideoSceneLoader {
     public let device: MTLDevice
 
-    public init(target: Target, device: MTLDevice) {
-        self.target = target
+    public init(device: MTLDevice) {
         self.device = device
     }
 
-    public func load(_ player: AVPlayer, format: MediaFormat) {
+    public func load(_ player: AVPlayer, format: MediaFormat) -> SCNScene {
         let scene: VideoScene
 
         switch format {
@@ -44,13 +42,7 @@ public struct VideoSceneLoader<Target: SceneLoadable>: VideoLoadable {
 
         scene.player = player
 
-        target.scene = (scene as? SCNScene)
-    }
-}
-
-extension VideoSceneLoader where Target: VideoLoadable {
-    public init(target: Target) {
-        self.init(target: target, device: target.device)
+       return scene as! SCNScene
     }
 }
 
