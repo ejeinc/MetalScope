@@ -60,6 +60,8 @@ final class ViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         panoramaView?.updateInterfaceOrientation(with: coordinator)
     }
 }

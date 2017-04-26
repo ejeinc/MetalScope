@@ -72,9 +72,28 @@ open class StereoViewController: UIViewController, SceneLoadable {
 
     open var helpButtonHandler: ((_ sender: UIButton) -> Void)?
 
+    open var introductionView: UIView? {
+        willSet {
+            introductionView?.removeFromSuperview()
+        }
+        didSet {
+            guard isViewLoaded else {
+                return
+            }
+            if let _ = introductionView {
+                showIntroductionView()
+            } else {
+                hideIntroductionView()
+            }
+        }
+    }
+
     private weak var _stereoView: StereoView?
     private weak var _closeButton: UIButton?
     private weak var _helpButton: UIButton?
+
+    private weak var introdutionContainerView: UIView?
+    private var introductionViewUpdateTimer: DispatchSourceTimer?
 
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(device: MTLDevice) {
@@ -105,9 +124,14 @@ open class StereoViewController: UIViewController, SceneLoadable {
         stereoView.isPlaying = false
         _stereoView = stereoView
 
+        let introductionContainerView = UIView(frame: stereoView.bounds)
+        introductionContainerView.isHidden = true
+        self.introdutionContainerView = introductionContainerView
+
         let view = UIView(frame: stereoView.bounds)
         view.backgroundColor = .black
         view.addSubview(stereoView)
+        view.addSubview(introductionContainerView)
         self.view = view
 
         NSLayoutConstraint.activate([
@@ -126,13 +150,25 @@ open class StereoViewController: UIViewController, SceneLoadable {
         }
     }
 
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        introdutionContainerView!.bounds = view!.bounds
+        introdutionContainerView!.center = CGPoint(x: view!.bounds.midX, y: view!.bounds.midY)
+        introductionView?.frame = introdutionContainerView!.bounds
+    }
+
     open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         if animated {
             _stereoView?.alpha = 0
         }
     }
 
     open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         _stereoView?.isPlaying = true
 
         if animated {
@@ -140,10 +176,19 @@ open class StereoViewController: UIViewController, SceneLoadable {
                 self._stereoView?.alpha = 1
             }
         }
+
+        if UIDevice.current.orientation != .unknown {
+            showIntroductionView(animated: animated)
+            startIntroductionViewVisibilityUpdates()
+        }
     }
 
     open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
         _stereoView?.isPlaying = false
+
+        stopIntroductionViewVisibilityUpdates()
     }
 
     open override var prefersStatusBarHidden: Bool {
@@ -170,7 +215,7 @@ open class StereoViewController: UIViewController, SceneLoadable {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         _closeButton = closeButton
 
-        view.insertSubview(closeButton, aboveSubview: stereoView)
+        view.addSubview(closeButton)
 
         NSLayoutConstraint.activate([
             closeButton.widthAnchor.constraint(equalToConstant: 88),
@@ -206,7 +251,7 @@ open class StereoViewController: UIViewController, SceneLoadable {
         helpButton.translatesAutoresizingMaskIntoConstraints = false
         _helpButton = helpButton
 
-        view.insertSubview(helpButton, aboveSubview: stereoView)
+        view.addSubview(helpButton)
 
         NSLayoutConstraint.activate([
             helpButton.widthAnchor.constraint(equalToConstant: 88),
@@ -225,6 +270,102 @@ open class StereoViewController: UIViewController, SceneLoadable {
             let url = URL(string: "https://support.google.com/cardboard/answer/6383058")!
             UIApplication.shared.openURL(url)
         }
+    }
+
+    private func showIntroductionView(animated: Bool = false) {
+        precondition(isViewLoaded)
+
+        guard let introductionView = introductionView, let containerView = introdutionContainerView, let stereoView = _stereoView else {
+            return
+        }
+
+        if introductionView.superview != containerView {
+            introductionView.frame = containerView.bounds
+            introductionView.autoresizingMask = []
+            containerView.addSubview(introductionView)
+        }
+
+        if animated {
+            if containerView.isHidden {
+                containerView.isHidden = false
+                containerView.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
+            }
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [.beginFromCurrentState],
+                animations: {
+                    containerView.transform = .identity
+                    stereoView.alpha = 0
+                },
+                completion: nil)
+        } else {
+            containerView.isHidden = false
+            containerView.transform = .identity
+            stereoView.alpha = 0
+        }
+    }
+
+    private func hideIntroductionView(animated: Bool = false) {
+        precondition(isViewLoaded)
+
+        guard let containerView = introdutionContainerView, let stereoView = _stereoView else {
+            return
+        }
+
+        if animated {
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [.beginFromCurrentState],
+                animations: {
+                    containerView.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
+                    stereoView.alpha = 1
+                },
+                completion: { isFinished in
+                    guard isFinished else {
+                        return
+                    }
+                    containerView.isHidden = true
+                    containerView.transform = .identity
+                })
+        } else {
+            containerView.isHidden = true
+            containerView.transform = .identity
+            stereoView.alpha = 1
+        }
+    }
+
+    private func startIntroductionViewVisibilityUpdates(withInterval interval: TimeInterval = 3, afterDelay delay: TimeInterval = 3) {
+        precondition(introductionViewUpdateTimer == nil)
+
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.scheduleRepeating(deadline: .now() + delay, interval: interval)
+        timer.setEventHandler { [weak self] in
+            guard self?.isViewLoaded == true, let _ = self?.introductionView else {
+                return
+            }
+            switch UIDevice.current.orientation {
+            case .landscapeLeft where self?.introdutionContainerView?.isHidden == false:
+                self?.hideIntroductionView(animated: true)
+            case .landscapeRight where self?.introdutionContainerView?.isHidden == true:
+                self?.showIntroductionView(animated: true)
+            default:
+                break
+            }
+        }
+        timer.resume()
+
+        introductionViewUpdateTimer = timer
+    }
+
+    private func stopIntroductionViewVisibilityUpdates() {
+        introductionViewUpdateTimer?.cancel()
+        introductionViewUpdateTimer = nil
     }
 }
 
