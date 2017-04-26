@@ -72,15 +72,21 @@ final class ViewController: UIViewController {
         loadStereoButton()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         panoramaView?.isPlaying = true
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
         panoramaView?.isPlaying = false
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         panoramaView?.updateInterfaceOrientation(with: coordinator)
     }
 
