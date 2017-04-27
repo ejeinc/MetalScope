@@ -27,6 +27,7 @@ public final class MediaSphereNode: SCNNode {
         geometry = sphere
 
         scale = SCNVector3(x: 1, y: 1, z: -1)
+        renderingOrder = .max
     }
 
     public required init?(coder aDecoder: NSCoder) {
