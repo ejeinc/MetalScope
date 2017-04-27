@@ -32,6 +32,7 @@ public final class OrientationNode: SCNNode {
         let camera = SCNCamera()
         camera.xFov = 60
         camera.yFov = 60
+        camera.zNear = 0.3
         pointOfView.camera = camera
     }
 
