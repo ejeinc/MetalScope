@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'MetalScope'
-  s.version = '0.15.0'
+  s.version = '0.15.1'
   s.summary = 'Metal-backed 360° panorama view for iOS'
 
   s.homepage = 'https://github.com/ejeinc/MetalScope'
