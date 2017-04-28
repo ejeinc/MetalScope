@@ -81,7 +81,7 @@ public final class PanoramaView: UIView, SceneLoadable {
     }
 
     deinit {
-        scene = nil
+        orientationNode.removeFromParentNode()
     }
 
     public override func layoutSubviews() {

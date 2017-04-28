@@ -162,7 +162,7 @@ public final class StereoView: UIView, SceneLoadable {
     }
 
     deinit {
-        scene = nil
+        orientationNode.removeFromParentNode()
     }
 
     public override func layoutSubviews() {
