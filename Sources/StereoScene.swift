@@ -35,6 +35,7 @@ internal final class StereoScene: SCNScene {
 
         let node = SCNNode()
         node.camera = camera
+        node.position = SCNVector3(0, 0, 0.01)
         self.rootNode.addChildNode(node)
         return node
     }()
