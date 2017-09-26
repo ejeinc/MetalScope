@@ -16,6 +16,12 @@ public final class OrientationNode: SCNNode {
 
     public let pointOfView = SCNNode()
 
+    public var fieldOfView: CGFloat = 60 {
+        didSet {
+            self.updateCamera()
+        }
+    }
+
     public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider()
 
     public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider()
@@ -30,10 +36,10 @@ public final class OrientationNode: SCNNode {
         interfaceOrientationNode.addChildNode(pointOfView)
 
         let camera = SCNCamera()
-        camera.xFov = 60
-        camera.yFov = 60
         camera.zNear = 0.3
         pointOfView.camera = camera
+
+        self.updateCamera()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -48,10 +54,37 @@ public final class OrientationNode: SCNNode {
     }
 
     public func updateInterfaceOrientation(atTime time: TimeInterval = ProcessInfo.processInfo.systemUptime) {
-        guard let rotation = interfaceOrientationProvider?.interfaceOrientation(atTime: time) else {
+        guard let interfaceOrientation = interfaceOrientationProvider?.interfaceOrientation(atTime: time) else {
             return
         }
+
+        var rotation = Rotation()
+
+        switch interfaceOrientation {
+        case .portraitUpsideDown:
+            rotation.rotate(byZ: .pi)
+        case .landscapeLeft:
+            rotation.rotate(byZ: .pi / 2)
+        case .landscapeRight:
+            rotation.rotate(byZ: .pi / -2)
+        default:
+            break
+        }
+
         interfaceOrientationNode.orientation = rotation.scnQuaternion
+
+        if #available(iOS 11, *) {
+            let cameraProjectionDirection: SCNCameraProjectionDirection
+
+            switch interfaceOrientation {
+            case .landscapeLeft, .landscapeRight:
+                cameraProjectionDirection = .vertical
+            default:
+                cameraProjectionDirection = .horizontal
+            }
+
+            pointOfView.camera?.projectionDirection = cameraProjectionDirection
+        }
     }
 
     public func resetRotation() {
@@ -85,5 +118,18 @@ public final class OrientationNode: SCNNode {
             (node as! OrientationNode).resetRotation(animated: animated)
         }
         runAction(action, forKey: "setNeedsResetRotation")
+    }
+
+    private func updateCamera() {
+        guard let camera = self.pointOfView.camera else {
+            return
+        }
+
+        if #available(iOS 11, *) {
+            camera.fieldOfView = fieldOfView
+        } else {
+            camera.xFov = Double(fieldOfView)
+            camera.yFov = Double(fieldOfView)
+        }
     }
 }
