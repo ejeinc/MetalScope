@@ -193,7 +193,7 @@ extension StereoView {
     }
 
     public func setNeedsResetRotation() {
-        orientationNode.setNeedsResetRotation(animated: false)
+        orientationNode.setNeedsResetRotation(animated: false, fully: false)
     }
 }
 

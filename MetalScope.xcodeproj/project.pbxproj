@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46ADA8B11F7A421F00258B43 /* MoveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADA8B01F7A421F00258B43 /* MoveType.swift */; };
 		BF1452DF1E320BAC0042598E /* SceneLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1452DE1E320BAC0042598E /* SceneLoadable.swift */; };
 		BF1453061E321CE30042598E /* CategoryBitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1453051E321CE30042598E /* CategoryBitMask.swift */; };
 		BF1F1D381EAF6A53004AEEB4 /* PanoramaPanGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB8922F1E2F761600FA9129 /* PanoramaPanGestureManager.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46ADA8B01F7A421F00258B43 /* MoveType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveType.swift; sourceTree = "<group>"; };
 		BF1452DE1E320BAC0042598E /* SceneLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SceneLoadable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF1453051E321CE30042598E /* CategoryBitMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoryBitMask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BF46F0991EADDEDA00F5CB58 /* Deprecations+Removals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Deprecations+Removals.swift"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				BFB8919E1E2E083000FA9129 /* PanoramaView.swift */,
 				BFB8922F1E2F761600FA9129 /* PanoramaPanGestureManager.swift */,
+				46ADA8B01F7A421F00258B43 /* MoveType.swift */,
 			);
 			name = PanoramaView;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				BFB891A81E2E10CA00FA9129 /* Rotation+SceneKit.swift in Sources */,
 				BF603F551E41B57600A28013 /* OrientationIndicator.swift in Sources */,
 				BF1F1D381EAF6A53004AEEB4 /* PanoramaPanGestureManager.swift in Sources */,
+				46ADA8B11F7A421F00258B43 /* MoveType.swift in Sources */,
 				BFB8920B1E2F364B00FA9129 /* SphericalMediaScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
