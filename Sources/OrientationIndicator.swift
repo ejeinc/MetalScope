@@ -116,19 +116,29 @@ public final class OrientationIndicatorLayer: CALayer, OrientationIndicator {
         let viewportRatio = Double(dataSource.viewportSize.width / dataSource.viewportSize.height)
 
         let fovInDegree: Double
-        if camera.xFov != 0 && camera.yFov != 0 {
-            let fovRatio = camera.xFov / camera.yFov
-            if fovRatio > viewportRatio {
-                fovInDegree = camera.xFov
-            } else {
-                fovInDegree = camera.yFov * viewportRatio
+
+        if #available(iOS 11, *) {
+            switch camera.projectionDirection {
+            case .horizontal:
+                fovInDegree = Double(camera.fieldOfView)
+            case .vertical:
+                fovInDegree = Double(camera.fieldOfView) * viewportRatio
             }
-        } else if camera.xFov != 0 {
-            fovInDegree = camera.xFov
-        } else if camera.yFov != 0 {
-            fovInDegree = camera.yFov * viewportRatio
         } else {
-            fovInDegree = 60 * viewportRatio
+            if camera.xFov != 0 && camera.yFov != 0 {
+                let fovRatio = camera.xFov / camera.yFov
+                if fovRatio > viewportRatio {
+                    fovInDegree = camera.xFov
+                } else {
+                    fovInDegree = camera.yFov * viewportRatio
+                }
+            } else if camera.xFov != 0 {
+                fovInDegree = camera.xFov
+            } else if camera.yFov != 0 {
+                fovInDegree = camera.yFov * viewportRatio
+            } else {
+                fovInDegree = 60 * viewportRatio
+            }
         }
 
         fov = Float(fovInDegree) / 180 * .pi
