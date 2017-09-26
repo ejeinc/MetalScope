@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         #else
         let panoramaView = PanoramaView(frame: view.bounds) // iOS Simulator
         #endif
-        panoramaView.setNeedsResetRotation()
+        panoramaView.moveType = .all
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
 
@@ -40,13 +40,23 @@ final class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
 
         // double tap to reset rotation
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeMode))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
         self.panoramaView = panoramaView
 
         panoramaView.load(#imageLiteral(resourceName: "Sample"), format: .mono)
+    }
+
+    func changeMode() {
+        if self.panoramaView?.moveType == .all {
+            self.panoramaView?.moveType = .touch
+        } else if self.panoramaView?.moveType == .touch {
+            self.panoramaView?.moveType = .motion
+        } else {
+            self.panoramaView?.moveType = .all
+        }
     }
 
     override func viewDidLoad() {

@@ -14,6 +14,12 @@ public final class PanoramaView: UIView, SceneLoadable {
     public let device: MTLDevice
     #endif
 
+    public var moveType: PanoramaMoveType = .all {
+        didSet {
+            updateMoveType()
+        }
+    }
+
     public var scene: SCNScene? {
         get {
             return scnView.scene
@@ -98,6 +104,12 @@ public final class PanoramaView: UIView, SceneLoadable {
             interfaceOrientationUpdater.updateInterfaceOrientation()
         }
     }
+
+    fileprivate func updateMoveType() {
+        self.panGestureManager.gestureRecognizer.isEnabled = [.all, .touch].contains(self.moveType)
+        self.orientationNode.motionIsEnabled = [.all, .motion].contains(self.moveType)
+        self.setNeedsResetRotation(animated: true, fully: true)
+    }
 }
 
 extension PanoramaView: ImageLoadable {}
@@ -145,9 +157,9 @@ extension PanoramaView {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
-    public func setNeedsResetRotation(animated: Bool = false) {
+    public func setNeedsResetRotation(animated: Bool = false, fully: Bool = false) {
         panGestureManager.stopAnimations()
-        orientationNode.setNeedsResetRotation(animated: animated)
+        orientationNode.setNeedsResetRotation(animated: animated, fully: fully)
     }
 
     public func setNeedsResetRotation(_ sender: Any?) {
