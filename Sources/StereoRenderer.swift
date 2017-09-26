@@ -49,6 +49,7 @@ internal final class StereoRenderer {
             height: outputTexture.height,
             mipmapped: true
         )
+        eyeTextureDescriptor.usage = .renderTarget
 
         eyeRenderingConfigurations = [
             .left: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor)),
