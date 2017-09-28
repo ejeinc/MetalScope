@@ -22,7 +22,20 @@ public final class OrientationNode: SCNNode {
         }
     }
 
-    public var deviceOrientationProvider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider()
+    public var motionIsEnabled = true
+
+    private var provider: DeviceOrientationProvider? = DefaultDeviceOrientationProvider()
+    public var deviceOrientationProvider: DeviceOrientationProvider? {
+        get {
+            if motionIsEnabled {
+                return provider
+            }
+            return nil
+        }
+        set {
+            provider = newValue
+        }
+    }
 
     public var interfaceOrientationProvider: InterfaceOrientationProvider? = DefaultInterfaceOrientationProvider()
 
@@ -96,7 +109,13 @@ public final class OrientationNode: SCNNode {
         userRotationNode.transform = SCNMatrix4Identity
     }
 
-    public func resetRotation(animated: Bool, completionHanlder: (() -> Void)? = nil) {
+    public func fullyResetRotation() {
+        userRotationNode.transform = SCNMatrix4Identity
+        referenceRotationNode.transform = SCNMatrix4Identity
+        deviceOrientationNode.transform = SCNMatrix4Identity
+    }
+
+    public func resetRotation(animated: Bool, fully: Bool, completionHanlder: (() -> Void)? = nil) {
         SCNTransaction.lock()
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.6
@@ -104,7 +123,11 @@ public final class OrientationNode: SCNNode {
         SCNTransaction.completionBlock = completionHanlder
         SCNTransaction.disableActions = !animated
 
-        resetRotation()
+        if fully {
+            fullyResetRotation()
+        } else {
+            resetRotation()
+        }
 
         SCNTransaction.commit()
         SCNTransaction.unlock()
@@ -113,9 +136,9 @@ public final class OrientationNode: SCNNode {
     /// Requests reset of rotation in the next rendering frame.
     ///
     /// - Parameter animated: Pass true to animate the transition.
-    public func setNeedsResetRotation(animated: Bool) {
+    public func setNeedsResetRotation(animated: Bool, fully: Bool) {
         let action = SCNAction.run { node in
-            (node as! OrientationNode).resetRotation(animated: animated)
+            (node as! OrientationNode).resetRotation(animated: animated, fully: fully)
         }
         runAction(action, forKey: "setNeedsResetRotation")
     }

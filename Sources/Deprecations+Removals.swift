@@ -40,7 +40,7 @@ extension OrientationNode {
 
     @available(*, renamed: "OrientationNode.resetRotation")
     public func resetCenter(animated: Bool, completionHanlder: (() -> Void)? = nil) {
-        resetRotation(animated: animated, completionHanlder: completionHanlder)
+        resetRotation(animated: animated, fully: false, completionHanlder: completionHanlder)
     }
 }
 
