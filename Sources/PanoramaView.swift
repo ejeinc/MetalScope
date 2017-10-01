@@ -48,6 +48,15 @@ public final class PanoramaView: UIView, SceneLoadable {
         }
     }
 
+    public var isPanGestureEnabled: Bool {
+        get {
+            return self.panGestureManager.isEnabled
+        }
+        set {
+            self.panGestureManager.isEnabled = newValue
+        }
+    }
+
     public lazy var panGestureManager: PanoramaPanGestureManager = {
         let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
         manager.minimumVerticalRotationAngle = -60 / 180 * .pi
