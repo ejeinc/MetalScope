@@ -9,6 +9,11 @@
 import UIKit
 import SceneKit
 
+fileprivate struct RenderProperties {
+    var isDeviceMotionEnabled: Bool = true
+    weak var sceneRendererDelegate: SCNSceneRendererDelegate?
+}
+
 public final class PanoramaView: UIView, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public let device: MTLDevice
@@ -25,7 +30,23 @@ public final class PanoramaView: UIView, SceneLoadable {
         }
     }
 
-    public weak var sceneRendererDelegate: SCNSceneRendererDelegate?
+    public weak var sceneRendererDelegate: SCNSceneRendererDelegate? {
+        get {
+            return self.renderProperties.sceneRendererDelegate
+        }
+        set {
+            self.updateRenderProperties { $0.sceneRendererDelegate = newValue }
+        }
+    }
+
+    public var isDeviceMotionEnabled: Bool {
+        get {
+            return self.renderProperties.isDeviceMotionEnabled
+        }
+        set {
+            self.updateRenderProperties { $0.isDeviceMotionEnabled = newValue }
+        }
+    }
 
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
@@ -63,6 +84,14 @@ public final class PanoramaView: UIView, SceneLoadable {
         return InterfaceOrientationUpdater(orientationNode: self.orientationNode)
     }()
 
+    fileprivate var renderProperties: RenderProperties {
+        return renderPropertiesQueue.sync { _renderProperties }
+    }
+
+    private var _renderProperties = RenderProperties()
+
+    private let renderPropertiesQueue = DispatchQueue(label: "com.eje-c.MetalScope.PanoramaView.renderPropertiesQueue")
+
     #if (arch(arm) || arch(arm64)) && os(iOS)
     public init(frame: CGRect, device: MTLDevice) {
         self.device = device
@@ -96,6 +125,12 @@ public final class PanoramaView: UIView, SceneLoadable {
         } else {
             interfaceOrientationUpdater.startAutomaticInterfaceOrientationUpdates()
             interfaceOrientationUpdater.updateInterfaceOrientation()
+        }
+    }
+
+    private func updateRenderProperties(_ action: @escaping (_ properties: inout RenderProperties) -> Void) {
+        renderPropertiesQueue.async(flags: .barrier) { [unowned self] in
+            action(&self._renderProperties)
         }
     }
 }
@@ -167,22 +202,24 @@ extension PanoramaView: OrientationIndicatorDataSource {
 
 extension PanoramaView: SCNSceneRendererDelegate {
     public func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        var disableActions = false
+        if isDeviceMotionEnabled {
+            var disableActions = false
 
-        if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
-            provider.waitDeviceOrientation(atTime: time)
-            disableActions = true
+            if let provider = orientationNode.deviceOrientationProvider, provider.shouldWaitDeviceOrientation(atTime: time) {
+                provider.waitDeviceOrientation(atTime: time)
+                disableActions = true
+            }
+
+            SCNTransaction.lock()
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 1 / 15
+            SCNTransaction.disableActions = disableActions
+
+            orientationNode.updateDeviceOrientation(atTime: time)
+
+            SCNTransaction.commit()
+            SCNTransaction.unlock()
         }
-
-        SCNTransaction.lock()
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = 1 / 15
-        SCNTransaction.disableActions = disableActions
-
-        orientationNode.updateDeviceOrientation(atTime: time)
-
-        SCNTransaction.commit()
-        SCNTransaction.unlock()
 
         sceneRendererDelegate?.renderer?(renderer, updateAtTime: time)
     }
