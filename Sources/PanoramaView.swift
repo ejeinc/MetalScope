@@ -48,6 +48,13 @@ public final class PanoramaView: UIView, SceneLoadable {
         }
     }
 
+    public lazy var panGestureManager: PanoramaPanGestureManager = {
+        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
+        manager.minimumVerticalRotationAngle = -60 / 180 * .pi
+        manager.maximumVerticalRotationAngle = 60 / 180 * .pi
+        return manager
+    }()
+
     public lazy var orientationNode: OrientationNode = {
         let node = OrientationNode()
         let mask = CategoryBitMask.all.subtracting(.rightEye)
@@ -71,13 +78,6 @@ public final class PanoramaView: UIView, SceneLoadable {
         view.isPlaying = true
         self.addSubview(view)
         return view
-    }()
-
-    fileprivate lazy var panGestureManager: PanoramaPanGestureManager = {
-        let manager = PanoramaPanGestureManager(rotationNode: self.orientationNode.userRotationNode)
-        manager.minimumVerticalRotationAngle = -60 / 180 * .pi
-        manager.maximumVerticalRotationAngle = 60 / 180 * .pi
-        return manager
     }()
 
     fileprivate lazy var interfaceOrientationUpdater: InterfaceOrientationUpdater = {

@@ -10,18 +10,25 @@ import UIKit
 import UIKit.UIGestureRecognizerSubclass
 import SceneKit
 
-final class PanoramaPanGestureManager {
-    let rotationNode: SCNNode
+public final class PanoramaPanGestureManager {
+    public var isEnabled: Bool {
+        get {
+            return self.gestureRecognizer.isEnabled
+        }
+        set {
+            self.gestureRecognizer.isEnabled = newValue
+        }
+    }
 
-    var allowsVerticalRotation = true
-    var minimumVerticalRotationAngle: Float?
-    var maximumVerticalRotationAngle: Float?
+    public var allowsVerticalRotation = true
+    public var minimumVerticalRotationAngle: Float?
+    public var maximumVerticalRotationAngle: Float?
 
-    var allowsHorizontalRotation = true
-    var minimumHorizontalRotationAngle: Float?
-    var maximumHorizontalRotationAngle: Float?
+    public var allowsHorizontalRotation = true
+    public var minimumHorizontalRotationAngle: Float?
+    public var maximumHorizontalRotationAngle: Float?
 
-    lazy var gestureRecognizer: UIPanGestureRecognizer = {
+    internal lazy var gestureRecognizer: UIPanGestureRecognizer = {
         let recognizer = AdvancedPanGestureRecognizer()
         recognizer.addTarget(self, action: #selector(handlePanGesture(_:)))
         recognizer.earlyTouchEventHandler = { [weak self] in
@@ -33,11 +40,13 @@ final class PanoramaPanGestureManager {
 
     private var referenceAngles: SCNVector3?
 
-    init(rotationNode: SCNNode) {
+    private let rotationNode: SCNNode
+
+    internal init(rotationNode: SCNNode) {
         self.rotationNode = rotationNode
     }
 
-    @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+    @objc fileprivate func handlePanGesture(_ sender: UIPanGestureRecognizer) {
         guard let view = sender.view else {
             return
         }
