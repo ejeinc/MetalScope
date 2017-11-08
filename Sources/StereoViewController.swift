@@ -231,7 +231,10 @@ open class StereoViewController: UIViewController, SceneLoadable {
         if let handler = closeButtonHandler {
             handler(sender)
         } else if sender.allTargets.count == 1 {
-            presentingViewController?.dismiss(animated: true, completion: nil)
+            // dismiss it from naviagation if it's presented from it, otherwise dismiss modally
+            if navigationController?.popViewController(animated: true) == nil {
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
 
