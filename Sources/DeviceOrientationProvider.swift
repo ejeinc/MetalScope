@@ -27,7 +27,7 @@ extension DeviceOrientationProvider {
 
         let queue = DispatchQueue(label: "com.eje-c.MetalScope.DeviceOrientationProvider.waitingQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.scheduleRepeating(deadline: .now(), interval: .milliseconds(10))
+        timer.schedule(deadline: .now(), repeating: .milliseconds(10))
         timer.setEventHandler {
             guard let _ = self.deviceOrientation(atTime: time) else {
                 return

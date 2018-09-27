@@ -120,9 +120,10 @@ public final class PlayerItemRenderer {
         let sourceSize = MTLSizeMake(sourceTexture.width, sourceTexture.height, sourceTexture.depth)
         let destinationOrigin = MTLOriginMake(0, 0, 0)
 
-        let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
-        blitCommandEncoder.copy(from: sourceTexture, sourceSlice: 0, sourceLevel: 0, sourceOrigin: sourceOrigin, sourceSize: sourceSize, to: texture, destinationSlice: 0, destinationLevel: 0, destinationOrigin: destinationOrigin)
-        blitCommandEncoder.endEncoding()
+        if let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder() {
+            blitCommandEncoder.copy(from: sourceTexture, sourceSlice: 0, sourceLevel: 0, sourceOrigin: sourceOrigin, sourceSize: sourceSize, to: texture, destinationSlice: 0, destinationLevel: 0, destinationOrigin: destinationOrigin)
+            blitCommandEncoder.endEncoding()
+        }
     }
 
     public func hasNewPixelBuffer(atHostTime time: TimeInterval) -> Bool {

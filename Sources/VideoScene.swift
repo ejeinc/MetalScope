@@ -75,7 +75,10 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoScene 
 
     public init(renderer: PlayerRenderer) {
         self.renderer = renderer
-        commandQueue = renderer.device.makeCommandQueue()
+        guard let commandQueue = renderer.device.makeCommandQueue() else {
+            fatalError("Failed to makeCommandQueue()")
+        }
+        self.commandQueue = commandQueue
         super.init()
         renderLoop.resume()
     }
@@ -110,12 +113,12 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoScene 
 
         updateTextureIfNeeded()
 
-        guard let texture = playerTexture else {
-            return
-        }
+        guard
+            let texture = playerTexture,
+            let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
+        else { return }
 
         do {
-            let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
             try renderer.render(atHostTime: time, to: texture, commandBuffer: commandBuffer)
             commandBuffer.commit()
         } catch let error as CVError {
@@ -163,7 +166,10 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
 
     public init(renderer: PlayerRenderer) {
         self.renderer = renderer
-        commandQueue = renderer.device.makeCommandQueue()
+        guard let commandQueue = renderer.device.makeCommandQueue() else {
+            fatalError("Failed to makeCommandQueue()")
+        }
+        self.commandQueue = commandQueue
         super.init()
         renderLoop.resume()
     }
@@ -202,17 +208,16 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
 
         updateTexturesIfNeeded()
 
-        guard let playerTexture = playerTexture else {
-            return
-        }
-
-        let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
+        guard
+            let playerTexture = playerTexture,
+            let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer(),
+            let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
+        else { return }
 
         do {
             try renderer.render(atHostTime: time, to: playerTexture, commandBuffer: commandBuffer)
 
             func copyPlayerTexture(region: MTLRegion, to sphereTexture: MTLTexture) {
-                let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
                 blitCommandEncoder.copy(
                     from: playerTexture,
                     sourceSlice: 0,

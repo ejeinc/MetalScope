@@ -344,7 +344,7 @@ open class StereoViewController: UIViewController, SceneLoadable {
         precondition(introductionViewUpdateTimer == nil)
 
         let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.scheduleRepeating(deadline: .now() + delay, interval: interval)
+        timer.schedule(deadline: .now() + delay, repeating: interval)
         timer.setEventHandler { [weak self] in
             guard self?.isViewLoaded == true, let _ = self?.introductionView else {
                 return
