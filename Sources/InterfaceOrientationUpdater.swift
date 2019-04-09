@@ -53,7 +53,7 @@ internal final class InterfaceOrientationUpdater {
 
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 
-        let observer = NotificationCenter.default.addObserver(forName: .UIDeviceOrientationDidChange, object: nil, queue: .main) { [weak self] _ in
+        let observer = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             guard UIDevice.current.orientation.isValidInterfaceOrientation, self?.isTransitioning == false else {
                 return
             }
@@ -76,21 +76,31 @@ internal final class InterfaceOrientationUpdater {
     }
 }
 
-private extension UIViewAnimationCurve {
+private extension UIView.AnimationCurve {
     var caMediaTimingFunction: CAMediaTimingFunction {
         let name: String
 
         switch self {
         case .easeIn:
-            name = kCAMediaTimingFunctionEaseIn
+            name = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeIn)
         case .easeOut:
-            name = kCAMediaTimingFunctionEaseOut
+            name = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeOut)
         case .easeInOut:
-            name = kCAMediaTimingFunctionEaseInEaseOut
+            name = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)
         case .linear:
-            name = kCAMediaTimingFunctionLinear
+            name = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.linear)
         }
         
-        return CAMediaTimingFunction(name: name)
+        return CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(name))
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
+	return CAMediaTimingFunctionName(rawValue: input)
 }

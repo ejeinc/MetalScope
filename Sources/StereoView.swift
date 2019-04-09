@@ -144,7 +144,7 @@ public final class StereoView: UIView, SceneLoadable {
             height: Int(textureSize.height),
             mipmapped: true
         )
-        let texture = device.makeTexture(descriptor: textureDescriptor)
+        let texture = device.makeTexture(descriptor: textureDescriptor)!
 
         self.init(stereoTexture: texture)
 

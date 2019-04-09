@@ -59,7 +59,7 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoScene 
         }
     }()
 
-    private let commandQueue: MTLCommandQueue
+    private let commandQueue: MTLCommandQueue?
 
     public let renderer: PlayerRenderer
 
@@ -113,9 +113,17 @@ public final class MonoSphericalVideoScene: MonoSphericalMediaScene, VideoScene 
         guard let texture = playerTexture else {
             return
         }
-
+        var commandQueueHolder : MTLCommandQueue!
+        if let queue = commandQueue {
+            commandQueueHolder = queue
+        }else if let queue = self.commandQueue{
+            commandQueueHolder = queue
+        }else{
+            return
+        }
+        
         do {
-            let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
+            guard let commandBuffer = commandQueueHolder.makeCommandBuffer() else { return}
             try renderer.render(atHostTime: time, to: texture, commandBuffer: commandBuffer)
             commandBuffer.commit()
         } catch let error as CVError {
@@ -147,7 +155,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         }
     }()
 
-    private let commandQueue: MTLCommandQueue
+    private let commandQueue: MTLCommandQueue?
 
     public let renderer: PlayerRenderer
 
@@ -163,7 +171,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
 
     public init(renderer: PlayerRenderer) {
         self.renderer = renderer
-        commandQueue = renderer.device.makeCommandQueue()
+        self.commandQueue =  renderer.device.makeCommandQueue()
         super.init()
         renderLoop.resume()
     }
@@ -205,15 +213,24 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
         guard let playerTexture = playerTexture else {
             return
         }
+        var commandQueueHolder : MTLCommandQueue!
+        if let queue = commandQueue {
+            commandQueueHolder = queue
+        }else if let queue = self.commandQueue{
+            commandQueueHolder = queue
 
-        let commandBuffer = (commandQueue ?? self.commandQueue).makeCommandBuffer()
+        }else{
+            return
+        }
+        
+        guard let commandBuffer = commandQueueHolder.makeCommandBuffer() else { return}
 
         do {
             try renderer.render(atHostTime: time, to: playerTexture, commandBuffer: commandBuffer)
 
             func copyPlayerTexture(region: MTLRegion, to sphereTexture: MTLTexture) {
                 let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
-                blitCommandEncoder.copy(
+                blitCommandEncoder?.copy(
                     from: playerTexture,
                     sourceSlice: 0,
                     sourceLevel: 0,
@@ -224,7 +241,7 @@ public final class StereoSphericalVideoScene: StereoSphericalMediaScene, VideoSc
                     destinationLevel: 0,
                     destinationOrigin: MTLOrigin(x: 0, y: 0, z: 0)
                 )
-                blitCommandEncoder.endEncoding()
+                blitCommandEncoder?.endEncoding()
             }
 
             let halfHeight = playerTexture.height / 2
