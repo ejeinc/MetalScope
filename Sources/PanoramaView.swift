@@ -129,28 +129,28 @@ extension PanoramaView {
         }
     }
 
-    public func snapshot() -> UIImage {
+    @objc public func snapshot() -> UIImage {
         return scnView.snapshot()
     }
 
-    public var panGestureRecognizer: UIPanGestureRecognizer {
+    @objc public var panGestureRecognizer: UIPanGestureRecognizer {
         return panGestureManager.gestureRecognizer
     }
 
-    public func updateInterfaceOrientation() {
+    @objc public func updateInterfaceOrientation() {
         interfaceOrientationUpdater.updateInterfaceOrientation()
     }
 
-    public func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
+    @objc public func updateInterfaceOrientation(with transitionCoordinator: UIViewControllerTransitionCoordinator) {
         interfaceOrientationUpdater.updateInterfaceOrientation(with: transitionCoordinator)
     }
 
-    public func setNeedsResetRotation(animated: Bool = false) {
+    @objc public func setNeedsResetRotation(animated: Bool = false) {
         panGestureManager.stopAnimations()
         orientationNode.setNeedsResetRotation(animated: animated)
     }
 
-    public func setNeedsResetRotation(_ sender: Any?) {
+    @objc public func setNeedsResetRotation(_ sender: Any?) {
         setNeedsResetRotation(animated: true)
     }
 }
