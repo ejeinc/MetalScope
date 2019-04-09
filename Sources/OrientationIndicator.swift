@@ -15,8 +15,7 @@ public protocol OrientationIndicatorDataSource: class {
 }
 
 public protocol OrientationIndicator {
-    weak var dataSource: OrientationIndicatorDataSource? { get set }
-
+    var dataSource: OrientationIndicatorDataSource? { get set }
     func updateOrientation()
 }
 
