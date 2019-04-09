@@ -1,6 +1,6 @@
 # MetalScope
 
-![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat) ![CocoaPods compatible](https://img.shields.io/cocoapods/v/MetalScope.svg) ![Swift 5.0.x](https://img.shields.io/badge/Swift-3.1.x-orange.svg)
+![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat) ![CocoaPods compatible](https://img.shields.io/cocoapods/v/MetalScope.svg) ![Swift 5.0.x](https://img.shields.io/badge/Swift-5.0.x-orange.svg)
 
 Metal-backed 360° panorama view for iOS.
 
@@ -12,7 +12,7 @@ Metal-backed 360° panorama view for iOS.
 | :arrow_forward:          | Direct access to AVPlayer for video control
 | :point_up_2:             | Smooth touch rotation and re-centering
 | :sunrise_over_mountains: | Custom SCNScene presentation
-| :bird:                   | Written in Swift 3
+| :bird:                   | Written in Swift 5
 
 ## Usage
 
