@@ -12,6 +12,12 @@ import MetalScope
 import AVFoundation
 
 final class ViewController: UIViewController {
+    
+    typealias SeekOperationBlock = () -> Void
+    
+    fileprivate var timeObserverToken: Any?
+    fileprivate var isSeeking: Bool = false
+    
     lazy var device: MTLDevice = {
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Failed to create MTLDevice")
@@ -20,7 +26,8 @@ final class ViewController: UIViewController {
     }()
 
     weak var panoramaView: PanoramaView?
-
+    fileprivate var slider: UISlider!
+    
     var player: AVPlayer?
     var playerLooper: Any? // AVPlayerLooper if available
     var playerObservingToken: Any?
@@ -29,6 +36,8 @@ final class ViewController: UIViewController {
         if let token = playerObservingToken {
             NotificationCenter.default.removeObserver(token)
         }
+        
+       removePeriodicTimeObserver()
     }
 
     private func loadPanoramaView() {
@@ -36,13 +45,25 @@ final class ViewController: UIViewController {
         panoramaView.setNeedsResetRotation()
         panoramaView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(panoramaView)
+        
+        slider = UISlider(frame: CGRect(x: 30, y: view.bounds.height - 60, width: view.bounds.width - 60, height: 30))
+        slider.minimumValue = 0
+        slider.maximumValue = 1
+        slider.isContinuous = true
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(slider)
 
         // fill parent view
         let constraints: [NSLayoutConstraint] = [
             panoramaView.topAnchor.constraint(equalTo: view.topAnchor),
             panoramaView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             panoramaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            panoramaView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            slider.heightAnchor.constraint(equalToConstant: 30.0),
+            slider.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            slider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            slider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ]
         NSLayoutConstraint.activate(constraints)
 
@@ -55,6 +76,8 @@ final class ViewController: UIViewController {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(togglePlaying))
         singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         panoramaView.addGestureRecognizer(singleTapGestureRecognizer)
+        
+        slider.addTarget(self, action: #selector(seekVideo), for: .valueChanged)
 
         self.panoramaView = panoramaView
     }
@@ -77,7 +100,8 @@ final class ViewController: UIViewController {
                 player.seek(to: CMTime.zero, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
             }
         }
-
+        
+        addPeriodicTimeObserver()
         player.play()
     }
 
@@ -112,5 +136,51 @@ final class ViewController: UIViewController {
     
     @objc func resetRotation() {
         panoramaView?.setNeedsResetRotation()
+    }
+    
+    @objc func seekVideo(_ slider: UISlider) {
+        guard !isSeeking else { return }
+        guard let videoDuration = self.player?.currentItem?.duration else {
+            return
+        }
+        isSeeking = true
+        removePeriodicTimeObserver()
+        let tolerance = CMTime.zero
+        let time = CMTime(seconds: videoDuration.seconds * Double(slider.value), preferredTimescale: videoDuration.timescale)
+        player?.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance, completionHandler: { [weak self] (finished) in
+            self?.addPeriodicTimeObserver()
+            self?.isSeeking = false
+            print("seek result: \(finished)")
+        })
+    }
+}
+
+fileprivate extension ViewController {
+    
+    func addPeriodicTimeObserver() {
+        // Invoke callback every half second
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        // Queue on which to invoke the callback
+        let mainQueue = DispatchQueue.main
+        // Add time observer
+        timeObserverToken = player?.addPeriodicTimeObserver(forInterval: interval, queue: mainQueue) { [weak self] time in
+            self?.updateSlider()
+        }
+    }
+    
+    func removePeriodicTimeObserver() {
+        if let token = timeObserverToken {
+            player?.removeTimeObserver(token)
+            timeObserverToken = nil
+        }
+    }
+    
+    func updateSlider() {
+        guard let videoDuration = self.player?.currentItem?.duration.seconds else {
+            return
+        }
+        
+        let currentPlayOffset = self.player!.currentTime().seconds
+        slider.value = Float(currentPlayOffset / videoDuration)
     }
 }
