@@ -52,8 +52,8 @@ internal final class StereoRenderer {
         eyeTextureDescriptor.usage = .renderTarget
 
         eyeRenderingConfigurations = [
-            .left: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor)),
-            .right: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor))
+            .left: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor)!),
+            .right: EyeRenderingConfiguration(texture: device.makeTexture(descriptor: eyeTextureDescriptor)!)
         ]
     }
 
@@ -89,7 +89,7 @@ internal final class StereoRenderer {
             passDescriptor.colorAttachments[0].loadAction = .clear
 
             scnRenderer.pointOfView = configuration.pointOfView
-            scnRenderer.render(atTime: time, viewport: viewport, commandBuffer: commandBuffer, passDescriptor: passDescriptor)
+            scnRenderer.render(atTime: time, viewport: viewport, commandBuffer: commandBuffer!, passDescriptor: passDescriptor)
 
             let destinationOrigin: MTLOrigin
             switch eye {
@@ -99,7 +99,7 @@ internal final class StereoRenderer {
                 destinationOrigin = MTLOrigin(x: outputTexture.width / 2, y: 0, z: 0)
             }
 
-            let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder()
+            let blitCommandEncoder = commandBuffer!.makeBlitCommandEncoder()!
             blitCommandEncoder.copy(
                 from: texture,
                 sourceSlice: 0,
@@ -113,11 +113,11 @@ internal final class StereoRenderer {
             )
             blitCommandEncoder.endEncoding()
 
-            commandBuffer.addCompletedHandler { _ in
+            commandBuffer!.addCompletedHandler { _ in
                 semaphore.signal()
             }
 
-            commandBuffer.commit()
+            commandBuffer!.commit()
         }
     }
 }
@@ -137,6 +137,8 @@ extension MTLCommandBufferStatus: CustomStringConvertible {
             return "notEnqueued"
         case .scheduled:
             return "scheduled"
+        @unknown default:
+            return "unknown"
         }
     }
 }
