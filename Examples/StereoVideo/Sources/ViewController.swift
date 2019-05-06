@@ -47,7 +47,7 @@ final class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
 
         // double tap to reset rotation
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resetRotation))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
@@ -74,7 +74,7 @@ final class ViewController: UIViewController {
         } else {
             player.actionAtItemEnd = .none
             playerObservingToken = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { _ in
-                player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+                player.seek(to: CMTime.zero, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
             }
         }
 
@@ -131,7 +131,7 @@ final class ViewController: UIViewController {
         return .lightContent
     }
 
-    func togglePlaying() {
+    @objc func togglePlaying() {
         guard let player = player else {
             return
         }
@@ -143,7 +143,7 @@ final class ViewController: UIViewController {
         }
     }
 
-    func presentStereoView() {
+    @objc func presentStereoView() {
         let introView = UILabel()
         introView.text = "Place your phone into your Cardboard viewer."
         introView.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -155,5 +155,9 @@ final class ViewController: UIViewController {
         stereoViewController.scene = panoramaView?.scene
         stereoViewController.stereoView.tapGestureRecognizer.addTarget(self, action: #selector(togglePlaying))
         present(stereoViewController, animated: true, completion: nil)
+    }
+    
+    @objc func resetRotation() {
+        panoramaView?.setNeedsResetRotation()
     }
 }

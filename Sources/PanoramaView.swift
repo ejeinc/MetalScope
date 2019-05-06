@@ -150,7 +150,7 @@ extension PanoramaView {
         orientationNode.setNeedsResetRotation(animated: animated)
     }
 
-    public func setNeedsResetRotation(_ sender: Any?) {
+    public func setNeedsResetRotation() {
         setNeedsResetRotation(animated: true)
     }
 }

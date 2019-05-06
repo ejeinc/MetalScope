@@ -36,7 +36,7 @@ final class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
 
         // double tap to reset rotation
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: panoramaView, action: #selector(PanoramaView.setNeedsResetRotation(_:)))
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(resetRotation))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         panoramaView.addGestureRecognizer(doubleTapGestureRecognizer)
 
@@ -94,7 +94,7 @@ final class ViewController: UIViewController {
         return .lightContent
     }
 
-    func presentStereoView() {
+    @objc func presentStereoView() {
         let introView = UILabel()
         introView.text = "Place your phone into your Cardboard viewer."
         introView.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -105,5 +105,9 @@ final class ViewController: UIViewController {
         stereoViewController.introductionView = introView
         stereoViewController.scene = panoramaView?.scene
         present(stereoViewController, animated: true, completion: nil)
+    }
+    
+    @objc func resetRotation() {
+        panoramaView?.setNeedsResetRotation()
     }
 }
