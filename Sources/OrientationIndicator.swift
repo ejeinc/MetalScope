@@ -9,13 +9,13 @@
 import SceneKit
 import UIKit
 
-public protocol OrientationIndicatorDataSource: class {
+public protocol OrientationIndicatorDataSource: AnyObject {
     var pointOfView: SCNNode? { get }
     var viewportSize: CGSize { get }
 }
 
 public protocol OrientationIndicator {
-    weak var dataSource: OrientationIndicatorDataSource? { get set }
+    var dataSource: OrientationIndicatorDataSource? { get set }
 
     func updateOrientation()
 }

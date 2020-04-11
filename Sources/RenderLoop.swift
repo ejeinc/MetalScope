@@ -19,7 +19,7 @@ public final class RenderLoop {
 
     private lazy var displayLink: CADisplayLink = {
         let link = CADisplayLink(target: self, selector: #selector(handleDisplayLink(_:)))
-        link.add(to: .main, forMode: .commonModes)
+        link.add(to: .main, forMode: .common)
         link.isPaused = true
         return link
     }()

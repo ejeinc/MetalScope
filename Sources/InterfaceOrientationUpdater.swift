@@ -53,7 +53,7 @@ internal final class InterfaceOrientationUpdater {
 
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
 
-        let observer = NotificationCenter.default.addObserver(forName: .UIDeviceOrientationDidChange, object: nil, queue: .main) { [weak self] _ in
+        let observer = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             guard UIDevice.current.orientation.isValidInterfaceOrientation, self?.isTransitioning == false else {
                 return
             }
@@ -76,21 +76,21 @@ internal final class InterfaceOrientationUpdater {
     }
 }
 
-private extension UIViewAnimationCurve {
+private extension UIView.AnimationCurve {
     var caMediaTimingFunction: CAMediaTimingFunction {
         let name: String
 
         switch self {
         case .easeIn:
-            name = kCAMediaTimingFunctionEaseIn
+            name = CAMediaTimingFunctionName.easeIn.rawValue
         case .easeOut:
-            name = kCAMediaTimingFunctionEaseOut
+            name = CAMediaTimingFunctionName.easeOut.rawValue
         case .easeInOut:
-            name = kCAMediaTimingFunctionEaseInEaseOut
+            name = CAMediaTimingFunctionName.easeInEaseOut.rawValue
         case .linear:
-            name = kCAMediaTimingFunctionLinear
+            name = CAMediaTimingFunctionName.linear.rawValue
         }
         
-        return CAMediaTimingFunction(name: name)
+        return CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: name))
     }
 }
