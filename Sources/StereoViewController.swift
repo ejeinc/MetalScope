@@ -11,7 +11,7 @@ import SceneKit
 
 open class StereoViewController: UIViewController, SceneLoadable {
     #if (arch(arm) || arch(arm64)) && os(iOS)
-    open let device: MTLDevice
+    public let device: MTLDevice
     #endif
 
     open var scene: SCNScene? {
